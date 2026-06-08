@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizador de Matrícula - CCO/SIN</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Organizador de Matérias 🎓</h1>
+        <p>Calcule a melhor rota para o seu semestre usando inteligência de grafos</p>
+    </header>
+
+    <main class="container">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('crud')">Gerenciar Perfis</button>
+            <button class="tab-btn" onclick="switchTab('ranking')">Ver Ranking de Matérias</button>
+        </div>
+
+        <section id="tab-crud" class="tab-content active">
+            <div class="grid">
+                <div class="card">
+                    <h2 id="form-title">Cadastrar Perfil Aluno</h2>
+                    <form id="perfil-form">
+                        <input type="hidden" id="perfil-id">
+                        
+                        <div class="form-group">
+                            <label for="matricula">Matrícula:</label>
+                            <input type="text" id="matricula" required placeholder="Ex: 202600123">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="curso">Curso:</label>
+                            <select id="curso">
+                                <option value="CCO">Ciência da Computação (CCO)</option>
+                                <option value="SIN">Sistemas de Informação (SIN)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="periodo">Período Letivo Atual:</label>
+                            <input type="number" id="periodo" min="1" max="8" required placeholder="Ex: 3">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="max-horas">Limite de Horas no Semestre:</label>
+                            <input type="number" id="max-horas" required placeholder="Ex: 320">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Histórico de Matérias (Código, Nota e Faltas):</label>
+                            <div class="historico-input-group">
+                                <input type="text" id="mat-codigo" placeholder="Ex: XDES01">
+                                <input type="number" id="mat-nota" min="0" max="10" step="0.1" placeholder="Nota">
+                                <select id="mat-situacao">
+                                    <option value="APROVADO">Aprovado</option>
+                                    <option value="REPROVADO">Reprovado</option>
+                                    <option value="REPROVADO_REQUISITO">Reprovado (Serve Requisito)</option>
+                                    <option value="REPROVADO_FALTA">Reprovado por Falta</option>
+                                </select>
+                                <button type="button" class="btn-secondary" onclick="addMateriaAoHistorico()">+</button>
+                            </div>
+                            <ul id="lista-historico-preview"></ul>
+                        </div>
+
+                        <button type="submit" class="btn-primary" id="btn-salvar">Salvar Perfil</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h2>Perfis Ativos</h2>
+                    <table id="perfis-table">
+                        <thead>
+                            <tr>
+                                <th>Matrícula</th>
+                                <th>Curso</th>
+                                <th>Período</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="perfis-tbody">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-ranking" class="tab-content">
+            <div class="card">
+                <h2>Sugestão do Grafo (Grade Ideal)</h2>
+                <p>Selecione um perfil na aba ao lado e clique em calcular para exibir o ranking aqui.</p>
+                
+                <div class="ranking-header">
+                    <span id="perfil-selecionado-txt">Nenhum perfil selecionado</span>
+                    <button class="btn-primary" onclick="calcularGradeNoBackend()">Calcular Melhor Grade ⚡</button>
+                </div>
+
+                <table id="ranking-table">
+                    <thead>
+                        <tr>
+                            <th>Posição</th>
+                            <th>Código</th>
+                            <th>Disciplina</th>
+                            <th>Carga Horária</th>
+                            <th>Unidade</th>
+                            <th>Motivo da Prioridade</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ranking-tbody">
+                        <tr>
+                            <td colspan="6" style="text-align: center; color: #666;">Aguardando cálculo...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+</html>
