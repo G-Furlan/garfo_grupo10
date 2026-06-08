@@ -1,0 +1,475 @@
+[
+    {
+      "codigo": "CAHC04",
+      "disciplina": "PROJETO INTEGRADO",
+      "tipo": "Obrigatória",
+      "periodo": "1",
+      "carga_horaria": "32h",
+      "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+      "pre_requisitos": [],
+      "equivalentes": []
+    },
+    {
+      "codigo": "CRSC03",
+      "disciplina": "ARQUITETURA DE COMPUTADORES I",
+      "tipo": "Obrigatória",
+      "periodo": "1",
+      "carga_horaria": "64h",
+      "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+      "pre_requisitos": [],
+      "equivalentes": [
+        ["CIC120"]
+      ]
+    },
+    {
+      "codigo": "MAT00A",
+      "disciplina": "CÁLCULO A",
+      "tipo": "Obrigatória",
+      "periodo": "1",
+      "carga_horaria": "64h",
+      "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+      "pre_requisitos": [],
+      "equivalentes": [
+        ["MAT004"],
+        ["MAT001"],
+        ["MATI2301"],
+        ["MATI01"]
+      ]
+    },
+    {
+      "codigo": "XDES01",
+      "disciplina": "FUNDAMENTOS DE PROGRAMAÇÃO",
+      "tipo": "Obrigatória",
+      "periodo": "1",
+      "carga_horaria": "64h",
+      "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+      "pre_requisitos": [],
+      "equivalentes": [
+        ["COM110"],
+        ["ECOP11A"],
+        ["ECOP01", "ECOP11"]
+      ]
+    },
+    {
+      "codigo": "XMAC01",
+      "disciplina": "MATEMÁTICA DISCRETA",
+      "tipo": "Obrigatória",
+      "periodo": "1",
+      "carga_horaria": "64h",
+      "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+      "pre_requisitos": [],
+      "equivalentes": [
+        ["MAT015"],
+        ["MAT017"],
+        ["ECOM01A", "ECOM11A"],
+        ["ECOM01", "ECOM11"],
+        ["MAT057"]
+      ]
+    },
+    {
+        "codigo": "CMAC04",
+        "disciplina": "MODELAGEM COMPUTACIONAL",
+        "tipo": "Obrigatória",
+        "periodo": "2",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["MAT00A"]
+        ],
+        "equivalentes": [
+            ["CIC510"]
+        ]
+    },
+    {
+        "codigo": "CRSC04",
+        "disciplina": "ARQUITETURA DE COMPUTADORES II",
+        "tipo": "Obrigatória",
+        "periodo": "2",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["CRSC03", "CIC120"]
+        ],
+        "equivalentes": [
+            ["CIC121"],
+            ["ECOX01"]
+        ]
+    },
+    {
+        "codigo": "CTCO01",
+        "disciplina": "ALGORITMOS E ESTRUTURA DE DADOS I",
+        "tipo": "Obrigatória",
+        "periodo": "2",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XDES01", "COM110"]
+        ],
+        "equivalentes": [
+            ["COM111"],
+            ["ECOP02A"],
+            ["ECOP02", "ECOP12"]
+        ]
+    },
+    {
+        "codigo": "MAT00B",
+        "disciplina": "CÁLCULO B",
+        "tipo": "Obrigatória",
+        "periodo": "2",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["MAT00A", "MAT001", "MAT010"]
+        ],
+        "equivalentes": [
+            ["MAT002"],
+            ["MATI2303"],
+            ["MATI03"]
+        ]
+    },
+    {
+        "codigo": "CMAC03",
+        "disciplina": "ALGORITMOS EM GRAFOS",
+        "tipo": "Obrigatória",
+        "periodo": "3",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["CTCO01", "STCO01", "COM111"]
+        ],
+        "equivalentes": [
+            ["SMAC03"],
+            ["SIN110"]
+        ]
+    },
+    {
+        "codigo": "CRSC02",
+        "disciplina": "SISTEMAS OPERACIONAIS",
+        "tipo": "Obrigatória",
+        "periodo": "3",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["CTCO01", "STCO01"],
+            ["CRSC04"]
+        ],
+        "equivalentes": [
+            ["COM120"],
+            ["ECOS01A", "ECOS11A"],
+            ["ECOS01"]
+        ]
+    },
+    {
+        "codigo": "CTCO02",
+        "disciplina": "ALGORITMOS E ESTRUTURA DE DADOS II",
+        "tipo": "Obrigatória",
+        "periodo": "3",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["CTCO01", "STCO01", "COM111"]
+        ],
+        "equivalentes": [
+            ["COM112"],
+            ["STCO02"]
+        ]
+    },
+    {
+        "codigo": "XDES02",
+        "disciplina": "PROGRAMAÇÃO ORIENTADA A OBJETOS",
+        "tipo": "Obrigatória",
+        "periodo": "3",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XDES01", "COM111", "ECOP11A"]
+        ],
+        "equivalentes": [
+            ["COM220"],
+            ["ECOP13A"],
+            ["ECOP03", "ECOP13"]
+        ]
+    },
+    {
+        "codigo": "XDES04",
+        "disciplina": "ENGENHARIA DE SOFTWARE I",
+        "tipo": "Obrigatória",
+        "periodo": "3",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [],
+        "equivalentes": [
+            ["COM210"],
+            ["ECOT01A", "ECOT11A"],
+            ["ECOT01", "ECOT11"]
+        ]
+    },
+    {
+        "codigo": "XMAC02",
+        "disciplina": "MÉTODOS MATEMÁTICOS PARA ANÁLISE DE DADOS",
+        "tipo": "Obrigatória",
+        "periodo": "3",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["MAT00A"],
+            ["XMAC01", "ECOM01A"],
+            ["STCO01", "CTCO01", "ECOP02A"]
+        ],
+        "equivalentes": [
+            ["MAT013"]
+        ]
+    },
+    {
+        "codigo": "CDES05",
+        "disciplina": "PROGRAMAÇÃO LÓGICA E FUNCIONAL",
+        "tipo": "Obrigatória",
+        "periodo": "4",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XMAC01", "MAT015", "MAT017", "MAT057", "ECOM01A"]
+        ],
+        "equivalentes": [
+            ["CIC131"]
+        ]
+    },
+    {
+        "codigo": "CMAC05",
+        "disciplina": "CÁLCULO NUMÉRICO PARA COMPUTAÇÃO",
+        "tipo": "Obrigatória",
+        "periodo": "4",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["MAT00B", "MAT002"]
+        ],
+        "equivalentes": [
+            ["CIC250"],
+            ["MAT012"]
+        ]
+    },
+    {
+        "codigo": "CRSC05",
+        "disciplina": "SISTEMAS EMBARCADOS",
+        "tipo": "Obrigatória",
+        "periodo": "4",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["SRSC02", "CRSC02", "COM120"]
+        ],
+        "equivalentes": [
+            ["ECOP04", "ECOP14"]
+        ]
+    },
+    {
+        "codigo": "CTCO04",
+        "disciplina": "PROJETO E ANÁLISE DE ALGORITMOS",
+        "tipo": "Obrigatória",
+        "periodo": "4",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["CTCO02", "COM112"]
+        ],
+        "equivalentes": [
+            ["CIC110"]
+        ]
+    },
+    {
+        "codigo": "XDES03",
+        "disciplina": "PROGRAMAÇÃO WEB",
+        "tipo": "Obrigatória",
+        "periodo": "4",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XDES02"],
+            ["COM220"],
+            ["ECOP13A", "ECOT03A"]
+        ],
+        "equivalentes": [
+            ["COM222"],
+            ["ECOX05"]
+        ]
+    },
+    {
+        "codigo": "XRSC01",
+        "disciplina": "REDES DE COMPUTADORES",
+        "tipo": "Obrigatória",
+        "periodo": "4",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["SRSC02", "CRSC02", "COM120", "ECOS01A", "ECOS11A"]
+        ],
+        "equivalentes": [
+            ["COM240"],
+            ["TELC03A", "TELC13A"],
+            ["TELC03", "TELC13"]
+        ]
+    },
+    {
+        "codigo": "CMCO05",
+        "disciplina": "INTRODUÇÃO À COMPUTAÇÃO VISUAL",
+        "tipo": "Obrigatória",
+        "periodo": "5",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XMAC02"],
+            ["XDES02", "ECOP13A"]
+        ],
+        "equivalentes": [
+            ["CIC271"],
+            ["ECOE19"]
+        ]
+    },
+    {
+        "codigo": "CTCO03",
+        "disciplina": "ANÁLISE E PROJETO ORIENTADOS A OBJETO",
+        "tipo": "Obrigatória",
+        "periodo": "5",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XDES02", "COM220"]
+        ],
+        "equivalentes": [
+            ["COM221"]
+        ]
+    },
+    {
+        "codigo": "CTCO05",
+        "disciplina": "TEORIA DA COMPUTAÇÃO",
+        "tipo": "Obrigatória",
+        "periodo": "5",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["CDES05", "CIC110", "ECOM03A"],
+            ["CDES05", "CIC131", "ECOM03A"],
+            ["CTCO04", "CIC110", "ECOM03A"],
+            ["CTCO04", "CIC131", "ECOM03A"]
+        ],
+        "equivalentes": [
+            ["CIC132"]
+        ]
+    },
+    {
+        "codigo": "XMCO01",
+        "disciplina": "INTELIGÊNCIA ARTIFICIAL",
+        "tipo": "Obrigatória",
+        "periodo": "5",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XMAC02", "MAT013"]
+        ],
+        "equivalentes": [
+            ["CIC260"],
+            ["SIN260"]
+        ]
+    },
+    {
+        "codigo": "XPAD01",
+        "disciplina": "BANCO DE DADOS I",
+        "tipo": "Obrigatória",
+        "periodo": "5",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["STCO02", "CTCO02", "COM112", "ECOT02A", "ECOT12A"]
+        ],
+        "equivalentes": [
+            ["COM230"],
+            ["ECOT03A", "ECOT13A"],
+            ["ECOT03", "ECOT13"]
+        ]
+    },
+    {
+        "codigo": "CTCO06",
+        "disciplina": "COMPILADORES",
+        "tipo": "Obrigatória",
+        "periodo": "6",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["CTCO05", "CIC132", "ECOM05A"]
+        ],
+        "equivalentes": [
+            ["CIC220"]
+        ]
+    },
+    {
+        "codigo": "XAHC02",
+        "disciplina": "INTERAÇÃO HUMANO-COMPUTADOR",
+        "tipo": "Obrigatória",
+        "periodo": "6",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XDES03", "COM210", "ECOX05"],
+            ["XDES03", "COM222", "ECOX05"],
+            ["XDES04", "COM210", "ECOX05"],
+            ["XDES04", "COM222", "ECOX05"]
+        ],
+        "equivalentes": [
+            ["COM213"]
+        ]
+    },
+    {
+        "codigo": "TCC1-140H",
+        "disciplina": "TRABALHO DE CONCLUSÃO DE CURSO 1 - CCO",
+        "tipo": "Obrigatória",
+        "periodo": "7",
+        "carga_horaria": "140h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [],
+        "co_requisitos": ["XAHC03"],
+        "equivalentes": []
+    },
+    {
+        "codigo": "XAHC01",
+        "disciplina": "COMPUTAÇÃO E SOCIEDADE",
+        "tipo": "Obrigatória",
+        "periodo": "7",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XRSC01"],
+            ["XDES04"],
+            ["IEPG21", "ADM08H", "ADM51H", "ADM52H", "ADM54H", "ADM58H", "LET007", "XAHC06", "XAHC07", "XAHC08"]
+        ],
+        "equivalentes": [
+            ["COM312"]
+        ]
+    },
+    {
+        "codigo": "XAHC03",
+        "disciplina": "METODOLOGIA CIENTÍFICA",
+        "tipo": "Obrigatória",
+        "periodo": "7",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XRSC01"],
+            ["CTCO04", "ADM51E"]
+        ],
+        "equivalentes": [
+            ["COM310"]
+        ]
+    },
+    {
+        "codigo": "TCC2-210H",
+        "disciplina": "TRABALHO DE CONCLUSÃO DE CURSO 2 - CCO",
+        "tipo": "Obrigatória",
+        "periodo": "8",
+        "carga_horaria": "210h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [],
+        "co_requisitos": [],
+        "equivalentes": []
+    }
+]
