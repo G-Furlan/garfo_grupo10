@@ -1,0 +1,514 @@
+[
+    {
+        "codigo": "IEPG01",
+        "disciplina": "EMPREENDEDORISMO E INOVAÇÃO",
+        "tipo": "Obrigatória",
+        "periodo": "1",
+        "carga_horaria": "48h",
+        "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+        "pre_requisitos": [],
+        "equivalentes": [
+            ["EPR301"]
+        ]
+    },
+    {
+        "codigo": "IEPG22",
+        "disciplina": "ADMINISTRAÇÃO APLICADA",
+        "tipo": "Obrigatória",
+        "periodo": "1",
+        "carga_horaria": "32h",
+        "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+        "pre_requisitos": [],
+        "equivalentes": [
+            ["SIN310"],
+            ["EPR002"]
+        ]
+    },
+    {
+        "codigo": "MAT00A",
+        "disciplina": "CÁLCULO A",
+        "tipo": "Obrigatória",
+        "periodo": "1",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [],
+        "equivalentes": [
+            ["MAT004"],
+            ["MAT001"],
+            ["MATI2301"],
+            ["MATI01"]
+        ]
+    },
+    {
+        "codigo": "SAHC04",
+        "disciplina": "PROJETO INTEGRADO",
+        "tipo": "Obrigatória",
+        "periodo": "1",
+        "carga_horaria": "32h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [],
+        "equivalentes": []
+    },
+    {
+        "codigo": "SAHC05",
+        "disciplina": "FUNDAMENTOS DE SISTEMAS DE INFORMAÇÃO",
+        "tipo": "Obrigatória",
+        "periodo": "1",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [],
+        "equivalentes": [
+            ["SIN410"]
+        ]
+    },
+    {
+        "codigo": "XDES01",
+        "disciplina": "FUNDAMENTOS DE PROGRAMAÇÃO",
+        "tipo": "Obrigatória",
+        "periodo": "1",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [],
+        "equivalentes": [
+            ["COM110"],
+            ["ECOP11A"],
+            ["ECOP01", "ECOP11"]
+        ]
+    },
+    {
+        "codigo": "IEPG04",
+        "disciplina": "MAPEAMENTO DE PROCESSOS",
+        "tipo": "Obrigatória",
+        "periodo": "2",
+        "carga_horaria": "32h",
+        "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+        "pre_requisitos": [],
+        "equivalentes": []
+    },
+    {
+        "codigo": "STCO01",
+        "disciplina": "ALGORITMOS E PROGRAMAÇÃO I",
+        "tipo": "Obrigatória",
+        "periodo": "2",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XDES01", "COM110"]
+        ],
+        "equivalentes": [
+            ["CTCO01"],
+            ["COM111"],
+            ["ECOP02", "ECOP12"],
+            ["ECOP02A"]
+        ]
+    },
+    {
+        "codigo": "XDES02",
+        "disciplina": "PROGRAMAÇÃO ORIENTADA A OBJETOS",
+        "tipo": "Obrigatória",
+        "periodo": "2",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XDES01", "COM111", "ECOP11A"]
+        ],
+        "equivalentes": [
+            ["COM220"],
+            ["ECOP13A"],
+            ["ECOP03", "ECOP13"]
+        ]
+    },
+    {
+        "codigo": "XDES04",
+        "disciplina": "ENGENHARIA DE SOFTWARE I",
+        "tipo": "Obrigatória",
+        "periodo": "2",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [],
+        "equivalentes": [
+            ["COM210"],
+            ["ECOT01A", "ECOT11A"],
+            ["ECOT01", "ECOT11"]
+        ]
+    },
+    {
+        "codigo": "XMAC01",
+        "disciplina": "MATEMÁTICA DISCRETA",
+        "tipo": "Obrigatória",
+        "periodo": "2",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [],
+        "equivalentes": [
+            ["MAT015"],
+            ["MAT017"],
+            ["ECOM01A", "ECOM11A"],
+            ["ECOM01", "ECOM11"],
+            ["MAT057"]
+        ]
+    },
+    {
+        "codigo": "ECN001",
+        "disciplina": "ECONOMIA",
+        "tipo": "Obrigatória",
+        "periodo": "3",
+        "carga_horaria": "48h",
+        "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+        "pre_requisitos": [],
+        "equivalentes": [
+            ["EPRI04"],
+            ["IEPG20"]
+        ]
+    },
+    {
+        "codigo": "SDES05",
+        "disciplina": "ENGENHARIA DE SOFTWARE II",
+        "tipo": "Obrigatória",
+        "periodo": "3",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XDES04", "COM210"]
+        ],
+        "equivalentes": [
+            ["COM211"]
+        ]
+    },
+    {
+        "codigo": "SRSC03",
+        "disciplina": "ORGANIZAÇÃO E ARQUITETURA DE COMPUTADORES",
+        "tipo": "Obrigatória",
+        "periodo": "3",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [],
+        "equivalentes": [
+            ["SIN120"],
+            ["CRSC04"],
+            ["ECOX01"]
+        ]
+    },
+    {
+        "codigo": "STCO02",
+        "disciplina": "ALGORITMOS E PROGRAMAÇÃO II",
+        "tipo": "Obrigatória",
+        "periodo": "3",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["STCO01", "CTCO01", "COM111"]
+        ],
+        "equivalentes": [
+            ["CTCO02"],
+            ["COM112"]
+        ]
+    },
+    {
+        "codigo": "XDES03",
+        "disciplina": "PROGRAMAÇÃO WEB",
+        "tipo": "Obrigatória",
+        "periodo": "3",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XDES02"],
+            ["COM220"],
+            ["ECOP13A", "ECOT03A"]
+        ],
+        "equivalentes": [
+            ["COM222"],
+            ["ECOX05"]
+        ]
+    },
+    {
+        "codigo": "IEPG14",
+        "disciplina": "COMPORTAMENTO ORGANIZACIONAL I",
+        "tipo": "Obrigatória",
+        "periodo": "4",
+        "carga_horaria": "32h",
+        "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+        "pre_requisitos": [],
+        "equivalentes": [
+            ["SIN411"]
+        ]
+    },
+    {
+        "codigo": "SMAC03",
+        "disciplina": "GRAFOS",
+        "tipo": "Obrigatória",
+        "periodo": "4",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["STCO01", "CTCO01", "COM111"]
+        ],
+        "equivalentes": [
+            ["SIN110"],
+            ["CMAC03"]
+        ]
+    },
+    {
+        "codigo": "SRSC02",
+        "disciplina": "SISTEMAS OPERACIONAIS",
+        "tipo": "Obrigatória",
+        "periodo": "4",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["STCO01", "SIN120", "ECOP02A"],
+            ["STCO01", "SIN120", "ECOX01"],
+            ["CTCO01", "SIN120", "ECOP02A"],
+            ["CTCO01", "SIN120", "ECOX01"],
+            ["SRSC03", "SIN120", "ECOP02A"],
+            ["SRSC03", "SIN120", "ECOX01"]
+        ],
+        "equivalentes": [
+            ["COM120"],
+            ["ECOS01A", "ECOS11A"],
+            ["ECOS01"]
+        ]
+    },
+    {
+        "codigo": "XMAC02",
+        "disciplina": "MÉTODOS MATEMÁTICOS PARA ANÁLISE DE DADOS",
+        "tipo": "Obrigatória",
+        "periodo": "4",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["MAT00A"],
+            ["XMAC01", "ECOM01A"],
+            ["STCO01", "CTCO01", "ECOP02A"]
+        ],
+        "equivalentes": [
+            ["MAT013"]
+        ]
+    },
+    {
+        "codigo": "XPAD01",
+        "disciplina": "BANCO DE DADOS I",
+        "tipo": "Obrigatória",
+        "periodo": "4",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["STCO02", "CTCO02", "COM112", "ECOT02A", "ECOT12A"]
+        ],
+        "equivalentes": [
+            ["COM230"],
+            ["ECOT03A", "ECOT13A"],
+            ["ECOT03", "ECOT13"]
+        ]
+    },
+    {
+        "codigo": "ADM51E",
+        "disciplina": "GESTÃO DO CONHECIMENTO",
+        "tipo": "Obrigatória",
+        "periodo": "5",
+        "carga_horaria": "48h",
+        "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+        "pre_requisitos": [],
+        "equivalentes": []
+    },
+    {
+        "codigo": "SPAD02",
+        "disciplina": "BANCO DE DADOS II",
+        "tipo": "Obrigatória",
+        "periodo": "5",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XPAD01", "COM230"]
+        ],
+        "equivalentes": [
+            ["COM231"]
+        ]
+    },
+    {
+        "codigo": "SPAD03",
+        "disciplina": "INTRODUÇÃO À ANÁLISE DE DADOS",
+        "tipo": "Obrigatória",
+        "periodo": "5",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XMAC02", "MAT013"],
+            ["XPAD01", "COM230"]
+        ],
+        "equivalentes": []
+    },
+    {
+        "codigo": "XRSC01",
+        "disciplina": "REDES DE COMPUTADORES",
+        "tipo": "Obrigatória",
+        "periodo": "5",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["SRSC02", "CRSC02", "COM120", "ECOS01A", "ECOS11A"]
+        ],
+        "equivalentes": [
+            ["COM240"],
+            ["TELC03A", "TELC13A"],
+            ["TELC03", "TELC13"]
+        ]
+    },
+    {
+        "codigo": "IEPG10",
+        "disciplina": "ENGENHARIA ECONÔMICA",
+        "tipo": "Obrigatória",
+        "periodo": "6",
+        "carga_horaria": "48h",
+        "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+        "pre_requisitos": [],
+        "equivalentes": [
+            ["EPR502"],
+            ["EPR003"],
+            ["COM311"]
+        ]
+    },
+    {
+        "codigo": "SDES06",
+        "disciplina": "GERÊNCIA DE PROJETOS DE SOFTWARE",
+        "tipo": "Obrigatória",
+        "periodo": "6",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XDES04", "COM210", "ECOT01A", "ECOT11A"]
+        ],
+        "equivalentes": [
+            ["COM212"]
+        ]
+    },
+    {
+        "codigo": "XMCO01",
+        "disciplina": "INTELIGÊNCIA ARTIFICIAL",
+        "tipo": "Obrigatória",
+        "periodo": "6",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XMAC02", "MAT013"]
+        ],
+        "equivalentes": [
+            ["CIC260"],
+            ["SIN260"]
+        ]
+    },
+    {
+        "codigo": "SDES07",
+        "disciplina": "DESENVOLVIMENTO DE SISTEMAS WEB",
+        "tipo": "Obrigatória",
+        "periodo": "7",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XDES04", "COM220"],
+            ["XPAD01", "COM230"],
+            ["XDES03", "COM222"]
+        ],
+        "equivalentes": [
+            ["SIN412"]
+        ]
+    },
+    {
+        "codigo": "XAHC02",
+        "disciplina": "INTERAÇÃO HUMANO-COMPUTADOR",
+        "tipo": "Obrigatória",
+        "periodo": "7",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XDES03", "COM210", "ECOX05"],
+            ["XDES03", "COM222", "ECOX05"],
+            ["XDES04", "COM210", "ECOX05"],
+            ["XDES04", "COM222", "ECOX05"]
+        ],
+        "equivalentes": [
+            ["COM213"]
+        ]
+    },
+    {
+        "codigo": "ADM03E",
+        "disciplina": "EMPREENDEDORISMO TECNOLÓGICO",
+        "tipo": "Obrigatória",
+        "periodo": "8",
+        "carga_horaria": "48h",
+        "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+        "pre_requisitos": [
+            ["IEPG01"]
+        ],
+        "equivalentes": [
+            ["SIN312"]
+        ]
+    },
+    {
+        "codigo": "TCC1-144H-SIN",
+        "disciplina": "TRABALHO DE CONCLUSÃO DE CURSO 1 - SIN",
+        "tipo": "Obrigatória",
+        "periodo": "8",
+        "carga_horaria": "144h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [],
+        "co_requisitos": ["XAHC03"],
+        "equivalentes": []
+    },
+    {
+        "codigo": "XAHC01",
+        "disciplina": "COMPUTAÇÃO E SOCIEDADE",
+        "tipo": "Obrigatória",
+        "periodo": "8",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XRSC01"],
+            ["XDES04"],
+            ["IEPG21", "ADM08H", "ADM51H", "ADM52H", "ADM54H", "ADM58H", "LET007", "XAHC06", "XAHC07", "XAHC08"]
+        ],
+        "equivalentes": [
+            ["COM312"]
+        ]
+    },
+    {
+        "codigo": "XAHC03",
+        "disciplina": "METODOLOGIA CIENTÍFICA",
+        "tipo": "Obrigatória",
+        "periodo": "8",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["XRSC01"],
+            ["CTCO04", "ADM51E"]
+        ],
+        "equivalentes": [
+            ["COM310"]
+        ]
+    },
+    {
+        "codigo": "SADG01",
+        "disciplina": "GESTÃO E GOVERNANÇA DE TI",
+        "tipo": "Obrigatória",
+        "periodo": "9",
+        "carga_horaria": "64h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [
+            ["IEPG22", "XDES04"]
+        ],
+        "equivalentes": [
+            ["SIN210"]
+        ]
+    },
+    {
+        "codigo": "TCC2-216H-SIN",
+        "disciplina": "TRABALHO DE CONCLUSÃO DE CURSO 2 - 216H - SIN",
+        "tipo": "Obrigatória",
+        "periodo": "9",
+        "carga_horaria": "216h",
+        "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+        "pre_requisitos": [],
+        "co_requisitos": [],
+        "equivalentes": []
+    }
+]
