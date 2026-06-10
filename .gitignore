@@ -1,0 +1,23 @@
+# Dependências do projeto
+node_modules/
+
+# Logs de execução
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Diretórios de compilação/build (se aplicável)
+dist/
+build/
+out/
+
+# Configurações da IDE (WebStorm / JetBrains)
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
