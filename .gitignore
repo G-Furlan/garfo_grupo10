@@ -21,3 +21,17 @@ out/
 # Arquivos de sistema operacional
 .DS_Store
 Thumbs.db
+
+# Ambientes Virtuais Python
+.venv/
+venv/
+env/
+
+# Arquivos de Cache e Compilação do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de Dados (Prevenção de exposição de dados reais de alunos)
+*.pdf
