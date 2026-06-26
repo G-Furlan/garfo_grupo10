@@ -1,0 +1,812 @@
+{
+    "XDES01": [
+        "ECOP11",
+        "ECOP01",
+        "COM110",
+        "ECOP11A"
+    ],
+    "ECOP01": [
+        "ECOP11",
+        "XDES01",
+        "COM110",
+        "ECOP11A"
+    ],
+    "ECOP11A": [
+        "ECOP11",
+        "XDES01",
+        "COM110",
+        "ECOP01"
+    ],
+    "ECOP11": [
+        "XDES01",
+        "COM110",
+        "ECOP01",
+        "ECOP11A"
+    ],
+    "COM110": [
+        "ECOP11",
+        "XDES01",
+        "ECOP01",
+        "ECOP11A"
+    ],
+    "ECOP03": [
+        "ECOP13",
+        "ECOP13A",
+        "COM220",
+        "XDES02"
+    ],
+    "ECOP13": [
+        "XDES02",
+        "COM220",
+        "ECOP13A",
+        "ECOP03"
+    ],
+    "COM220": [
+        "ECOP13",
+        "XDES02",
+        "ECOP13A",
+        "ECOP03"
+    ],
+    "XDES02": [
+        "ECOP13",
+        "ECOP13A",
+        "COM220",
+        "ECOP03"
+    ],
+    "ECOP13A": [
+        "ECOP13",
+        "XDES02",
+        "COM220",
+        "ECOP03"
+    ],
+    "XDES03": [
+        "COM222",
+        "ECOX05"
+    ],
+    "COM222": [
+        "XDES03",
+        "ECOX05"
+    ],
+    "ECOX05": [
+        "XDES03",
+        "COM222"
+    ],
+    "XDES04": [
+        "ECOT01A",
+        "COM210",
+        "ECOT01",
+        "ECOT11",
+        "ECOT11A"
+    ],
+    "ECOT01A": [
+        "XDES04",
+        "COM210",
+        "ECOT01",
+        "ECOT11",
+        "ECOT11A"
+    ],
+    "ECOT01": [
+        "XDES04",
+        "ECOT01A",
+        "COM210",
+        "ECOT11",
+        "ECOT11A"
+    ],
+    "COM210": [
+        "XDES04",
+        "ECOT01A",
+        "ECOT01",
+        "ECOT11",
+        "ECOT11A"
+    ],
+    "ECOT11": [
+        "XDES04",
+        "ECOT01A",
+        "COM210",
+        "ECOT01",
+        "ECOT11A"
+    ],
+    "ECOT11A": [
+        "XDES04",
+        "ECOT01A",
+        "COM210",
+        "ECOT01",
+        "ECOT11"
+    ],
+    "COM211": [
+        "SDES05"
+    ],
+    "SDES05": [
+        "COM211"
+    ],
+    "SDES06": [
+        "COM212"
+    ],
+    "COM212": [
+        "SDES06"
+    ],
+    "SIN412": [
+        "SDES07"
+    ],
+    "SDES07": [
+        "SIN412"
+    ],
+    "SIN210": [
+        "SADG01"
+    ],
+    "SADG01": [
+        "SIN210"
+    ],
+    "SIN312": [
+        "ADM03E"
+    ],
+    "ADM03E": [
+        "SIN312"
+    ],
+    "IEPG10": [
+        "COM311",
+        "EPR502"
+    ],
+    "COM311": [
+        "IEPG10",
+        "EPR502"
+    ],
+    "SIN411": [
+        "IEPG14"
+    ],
+    "IEPG14": [
+        "SIN411"
+    ],
+    "IEPG20": [
+        "ECN001"
+    ],
+    "ECN001": [
+        "IEPG20"
+    ],
+    "IEPG22": [
+        "SIN310"
+    ],
+    "SIN310": [
+        "IEPG22"
+    ],
+    "ECOM11": [
+        "MAT017, MAT057",
+        "ECOM11A",
+        "MAT015, MAT057",
+        "ECOM01A",
+        "XMAC01",
+        "ECOM01"
+    ],
+    "MAT017, MAT057": [
+        "ECOM11",
+        "ECOM11A",
+        "MAT015, MAT057",
+        "ECOM01A",
+        "XMAC01",
+        "ECOM01"
+    ],
+    "ECOM11A": [
+        "ECOM11",
+        "MAT017, MAT057",
+        "MAT015, MAT057",
+        "ECOM01A",
+        "XMAC01",
+        "ECOM01"
+    ],
+    "MAT015, MAT057": [
+        "ECOM11",
+        "MAT017, MAT057",
+        "ECOM11A",
+        "ECOM01A",
+        "XMAC01",
+        "ECOM01"
+    ],
+    "XMAC01": [
+        "ECOM11",
+        "MAT017, MAT057",
+        "ECOM11A",
+        "MAT015, MAT057",
+        "ECOM01",
+        "ECOM01A"
+    ],
+    "ECOM01": [
+        "ECOM11",
+        "MAT017, MAT057",
+        "ECOM11A",
+        "MAT015, MAT057",
+        "XMAC01",
+        "ECOM01A"
+    ],
+    "ECOM01A": [
+        "ECOM11",
+        "MAT017, MAT057",
+        "ECOM11A",
+        "MAT015, MAT057",
+        "XMAC01",
+        "ECOM01"
+    ],
+    "MAT013": [
+        "XMAC02"
+    ],
+    "XMAC02": [
+        "MAT013"
+    ],
+    "SIN110": [
+        "CMAC03",
+        "SMAC03"
+    ],
+    "CMAC03": [
+        "SIN110",
+        "SMAC03"
+    ],
+    "SMAC03": [
+        "SIN110",
+        "CMAC03"
+    ],
+    "MAT001": [
+        "MAT00A"
+    ],
+    "MAT00A": [
+        "MAT001"
+    ],
+    "TELC03": [
+        "COM240",
+        "TELC03A",
+        "XRSC01",
+        "TELC13A",
+        "TELC13"
+    ],
+    "COM240": [
+        "TELC03",
+        "TELC03A",
+        "XRSC01",
+        "TELC13A",
+        "TELC13"
+    ],
+    "TELC03A": [
+        "TELC03",
+        "COM240",
+        "XRSC01",
+        "TELC13A",
+        "TELC13"
+    ],
+    "XRSC01": [
+        "TELC03",
+        "COM240",
+        "TELC03A",
+        "TELC13A",
+        "TELC13"
+    ],
+    "TELC13A": [
+        "TELC03",
+        "COM240",
+        "TELC03A",
+        "XRSC01",
+        "TELC13"
+    ],
+    "TELC13": [
+        "TELC03",
+        "COM240",
+        "TELC03A",
+        "XRSC01",
+        "TELC13A"
+    ],
+    "ECOS11A": [
+        "COM120",
+        "ECOS01",
+        "ECOS01A",
+        "CRSC02",
+        "SRSC02"
+    ],
+    "ECOS01": [
+        "ECOS11A",
+        "COM120",
+        "CRSC02",
+        "ECOS01A",
+        "SRSC02"
+    ],
+    "COM120": [
+        "ECOS11A",
+        "ECOS01",
+        "CRSC02",
+        "ECOS01A",
+        "SRSC02"
+    ],
+    "ECOS01A": [
+        "ECOS11A",
+        "COM120",
+        "ECOS01",
+        "CRSC02",
+        "SRSC02"
+    ],
+    "SRSC02": [
+        "ECOS11A",
+        "ECOS01A",
+        "COM120",
+        "ECOS01"
+    ],
+    "SIN120": [
+        "ECOX01",
+        "SRSC03",
+        "CRSC04"
+    ],
+    "ECOX01": [
+        "SIN120",
+        "CIC121",
+        "SRSC03",
+        "CRSC04"
+    ],
+    "SRSC03": [
+        "SIN120",
+        "ECOX01",
+        "CRSC04"
+    ],
+    "CRSC04": [
+        "SIN120",
+        "CIC121",
+        "ECOX01",
+        "SRSC03"
+    ],
+    "ECOP02A": [
+        "ECOP02",
+        "ECOP12",
+        "COM111",
+        "STCO01",
+        "CTCO01"
+    ],
+    "ECOP02": [
+        "ECOP02A",
+        "ECOP12",
+        "COM111",
+        "STCO01",
+        "CTCO01"
+    ],
+    "ECOP12": [
+        "ECOP02A",
+        "ECOP02",
+        "COM111",
+        "STCO01",
+        "CTCO01"
+    ],
+    "COM111": [
+        "ECOP02A",
+        "ECOP02",
+        "ECOP12",
+        "STCO01",
+        "CTCO01"
+    ],
+    "STCO01": [
+        "ECOP02A",
+        "ECOP02",
+        "ECOP12",
+        "COM111",
+        "CTCO01"
+    ],
+    "CTCO01": [
+        "ECOP02A",
+        "ECOP02",
+        "ECOP12",
+        "COM111",
+        "STCO01"
+    ],
+    "STCO02": [
+        "CTCO02",
+        "COM112"
+    ],
+    "CTCO02": [
+        "STCO02",
+        "COM112"
+    ],
+    "COM112": [
+        "STCO02",
+        "CTCO02"
+    ],
+    "ECOT13A": [
+        "XPAD01",
+        "ECOT13",
+        "ECOT03",
+        "COM230",
+        "ECOT03A"
+    ],
+    "XPAD01": [
+        "ECOT13A",
+        "ECOT13",
+        "ECOT03",
+        "COM230",
+        "ECOT03A"
+    ],
+    "ECOT13": [
+        "ECOT13A",
+        "XPAD01",
+        "ECOT03",
+        "COM230",
+        "ECOT03A"
+    ],
+    "ECOT03": [
+        "ECOT13A",
+        "XPAD01",
+        "ECOT13",
+        "COM230",
+        "ECOT03A"
+    ],
+    "COM230": [
+        "ECOT13A",
+        "XPAD01",
+        "ECOT13",
+        "ECOT03",
+        "ECOT03A"
+    ],
+    "ECOT03A": [
+        "ECOT13A",
+        "XPAD01",
+        "ECOT13",
+        "ECOT03",
+        "COM230"
+    ],
+    "COM231": [
+        "SPAD02"
+    ],
+    "SPAD02": [
+        "COM231"
+    ],
+    "CIC260": [
+        "XMACO01",
+        "XMCO01",
+        "SIN260"
+    ],
+    "XMCO01": [
+        "XMACO01",
+        "CIC260",
+        "SIN260"
+    ],
+    "SIN260": [
+        "XMACO01",
+        "CIC260",
+        "XMCO01"
+    ],
+    "XAHC01": [
+        "COM312"
+    ],
+    "COM312": [
+        "XAHC01"
+    ],
+    "XAHC02": [
+        "COM213"
+    ],
+    "COM213": [
+        "XAHC02"
+    ],
+    "XAHC03": [
+        "COM310"
+    ],
+    "COM310": [
+        "XAHC03"
+    ],
+    "SIN410": [
+        "SAHC05"
+    ],
+    "SAHC05": [
+        "SIN410"
+    ],
+    "CCO (GRADE 2013)": [
+        "CCO (GRADE 2022)",
+        "SIN (GRADE 2017 / 2022)",
+        "ECO (GRADE 2015)",
+        "ECO (GRADE 2022)",
+        "CÓDIGO"
+    ],
+    "CCO (GRADE 2022)": [
+        "CCO (GRADE 2013)",
+        "SIN (GRADE 2017 / 2022)",
+        "ECO (GRADE 2015)",
+        "ECO (GRADE 2022)",
+        "CÓDIGO"
+    ],
+    "SIN (GRADE 2017 / 2022)": [
+        "CCO (GRADE 2013)",
+        "CCO (GRADE 2022)",
+        "ECO (GRADE 2015)",
+        "ECO (GRADE 2022)",
+        "CÓDIGO"
+    ],
+    "ECO (GRADE 2015)": [
+        "SIN (GRADE 2017)",
+        "CCO (GRADE 2013)",
+        "CCO (GRADE 2022)",
+        "SIN (GRADE 2017 / 2022)",
+        "SIN (GRADE 2022)",
+        "ECO (GRADE 2022)",
+        "CÓDIGO",
+        "CCO (GRADE 2013 / 2022)"
+    ],
+    "ECO (GRADE 2022)": [
+        "SIN (GRADE 2017)",
+        "CCO (GRADE 2013)",
+        "CCO (GRADE 2022)",
+        "SIN (GRADE 2017 / 2022)",
+        "ECO (GRADE 2015)",
+        "SIN (GRADE 2022)",
+        "CÓDIGO",
+        "CCO (GRADE 2013 / 2022)"
+    ],
+    "CÓDIGO": [
+        "SIN (GRADE 2017)",
+        "CCO (GRADE 2013)",
+        "CCO (GRADE 2022)",
+        "SIN (GRADE 2017 / 2022)",
+        "ECO (GRADE 2015)",
+        "SIN (GRADE 2022)",
+        "ECO (GRADE 2022)",
+        "CCO (GRADE 2013 / 2022)"
+    ],
+    "SPAD05": [
+        "COM935"
+    ],
+    "COM935": [
+        "SPAD05"
+    ],
+    "XMCO03": [
+        "COM936"
+    ],
+    "COM936": [
+        "XMCO03"
+    ],
+    "SIN414": [
+        "XRSC06"
+    ],
+    "XRSC06": [
+        "SIN414"
+    ],
+    "XRSC07": [
+        "COM241"
+    ],
+    "COM241": [
+        "XRSC07"
+    ],
+    "ECOS12": [
+        "ECOS02",
+        "ECOS02A",
+        "XRSC09",
+        "COM242",
+        "ECOS12A"
+    ],
+    "ECOS02": [
+        "ECOS12",
+        "ECOS02A",
+        "XRSC09",
+        "COM242",
+        "ECOS12A"
+    ],
+    "ECOS02A": [
+        "ECOS12",
+        "ECOS02",
+        "XRSC09",
+        "COM242",
+        "ECOS12A"
+    ],
+    "XRSC09": [
+        "ECOS12",
+        "ECOS02",
+        "ECOS02A",
+        "COM242",
+        "ECOS12A"
+    ],
+    "COM242": [
+        "ECOS12",
+        "ECOS02",
+        "ECOS02A",
+        "XRSC09",
+        "ECOS12A"
+    ],
+    "ECOS12A": [
+        "ECOS12",
+        "ECOS02",
+        "ECOS02A",
+        "COM242",
+        "XRSC09"
+    ],
+    "SADG02": [
+        "CIC310"
+    ],
+    "CIC310": [
+        "SADG02"
+    ],
+    "CIC131": [
+        "CDES05"
+    ],
+    "CDES05": [
+        "CIC131"
+    ],
+    "CIC510": [
+        "CMAC04"
+    ],
+    "CMAC04": [
+        "CIC510"
+    ],
+    "CMAC05": [
+        "CIC250",
+        "MAT012"
+    ],
+    "MAT012": [
+        "CMAC05",
+        "CIC250"
+    ],
+    "CIC250": [
+        "CMAC05",
+        "MAT012"
+    ],
+    "MAT00B": [
+        "MAT002"
+    ],
+    "MAT002": [
+        "MAT00B"
+    ],
+    "CRSC02": [
+        "ECOS11A",
+        "ECOS01A",
+        "COM120",
+        "ECOS01"
+    ],
+    "ELTD11": [
+        "CRSC03",
+        "ELTD11A",
+        "ELTD01A",
+        "CIC120",
+        "ELTD01"
+    ],
+    "CRSC03": [
+        "ELTD11",
+        "ELTD11A",
+        "ELTD01A",
+        "CIC120",
+        "ELTD01"
+    ],
+    "ELTD11A": [
+        "ELTD11",
+        "CRSC03",
+        "ELTD01A",
+        "CIC120",
+        "ELTD01"
+    ],
+    "ELTD01A": [
+        "ELTD11",
+        "CRSC03",
+        "ELTD11A",
+        "CIC120",
+        "ELTD01"
+    ],
+    "CIC120": [
+        "ELTD11",
+        "CRSC03",
+        "ELTD11A",
+        "ELTD01A",
+        "ELTD01"
+    ],
+    "ELTD01": [
+        "ELTD11",
+        "CRSC03",
+        "ELTD11A",
+        "ELTD01A",
+        "CIC120"
+    ],
+    "CIC121": [
+        "ECOX01",
+        "CRSC04"
+    ],
+    "ECOP04": [
+        "CRSC05",
+        "ECOP14"
+    ],
+    "CRSC05": [
+        "ECOP04",
+        "ECOP14"
+    ],
+    "ECOP14": [
+        "ECOP04",
+        "CRSC05"
+    ],
+    "COM221": [
+        "CTCO03"
+    ],
+    "CTCO03": [
+        "COM221"
+    ],
+    "CIC110": [
+        "CTCO04"
+    ],
+    "CTCO04": [
+        "CIC110"
+    ],
+    "CTCO05": [
+        "CIC132"
+    ],
+    "CIC132": [
+        "CTCO05"
+    ],
+    "CIC220": [
+        "CTCO06"
+    ],
+    "CTCO06": [
+        "CIC220"
+    ],
+    "XMACO01": [
+        "CIC260",
+        "XMCO01",
+        "SIN260"
+    ],
+    "CMCO05": [
+        "CIC271",
+        "ECOE19"
+    ],
+    "CIC271": [
+        "CMCO05",
+        "ECOE19"
+    ],
+    "ECOE19": [
+        "CMCO05",
+        "CIC271"
+    ],
+    "SIN (GRADE 2017)": [
+        "ECO (GRADE 2015)",
+        "SIN (GRADE 2022)",
+        "ECO (GRADE 2022)",
+        "CÓDIGO",
+        "CCO (GRADE 2013 / 2022)"
+    ],
+    "SIN (GRADE 2022)": [
+        "SIN (GRADE 2017)",
+        "ECO (GRADE 2015)",
+        "ECO (GRADE 2022)",
+        "CÓDIGO",
+        "CCO (GRADE 2013 / 2022)"
+    ],
+    "CCO (GRADE 2013 / 2022)": [
+        "SIN (GRADE 2017)",
+        "ECO (GRADE 2015)",
+        "SIN (GRADE 2022)",
+        "ECO (GRADE 2022)",
+        "CÓDIGO"
+    ],
+    "COM937": [
+        "CDES13"
+    ],
+    "CDES13": [
+        "COM937"
+    ],
+    "ECOX21": [
+        "ECOE44"
+    ],
+    "ECOE44": [
+        "ECOX21"
+    ],
+    "ECOE45": [
+        "ECOX22"
+    ],
+    "ECOX22": [
+        "ECOE45"
+    ],
+    "EPR502": [
+        "IEPG10",
+        "COM311"
+    ],
+    "ECOX04": [
+        "COM919",
+        "ECOE03",
+        "CRSC08"
+    ],
+    "COM919": [
+        "ECOX04",
+        "ECOE03",
+        "CRSC08"
+    ],
+    "ECOE03": [
+        "ECOX04",
+        "COM919",
+        "CRSC08"
+    ],
+    "CRSC08": [
+        "ECOX04",
+        "COM919",
+        "ECOE03"
+    ]
+}
