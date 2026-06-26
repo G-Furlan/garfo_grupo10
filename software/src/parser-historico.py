@@ -6,10 +6,12 @@ import json
 def extrair_dados_completos_sigaa(caminho_pdf):
     disciplinas_brutas = []
     pendentes = []
+    codigos_equivalencias = [] # 1. Lista única para reunir as equivalências extraídas
     curso_identificado = "DESCONHECIDO"
     
-    # Flag para controlar quando o parser deve ler os pendentes
+    # Flags para controlar quando o parser deve ler cada seção do texto
     capturando_pendentes = False 
+    capturando_equivalencias = False # Nova flag para controle das equivalências
     
     # Padrão Regex para capturar códigos da UNIFEI (Ex: COM110, XDES01, MAT00A, SIN130)
     padrao_codigo_unifei = r'\b([A-Z]{3,4}[0-9]{2}[0-9A-Z]?)\b'
@@ -51,33 +53,46 @@ def extrair_dados_completos_sigaa(caminho_pdf):
                         })
 
             # -------------------------------------------------------------
-            # ETAPA 2: Extração das Disciplinas Pendentes via Texto e Regex
+            # ETAPA 2: Extração de Pendentes e Equivalências via Texto Puro
             # -------------------------------------------------------------
             texto_pagina = page.extract_text()
             if texto_pagina:
                 linhas_texto = texto_pagina.split('\n')
                 
                 for linha in linhas_texto:
-                    # Gatilho de INÍCIO da captura
+                    # Gatilho de INÍCIO da captura de Pendentes
                     if "Componentes Curriculares Obrigatórios Pendentes" in linha:
                         capturando_pendentes = True
                         continue
                     
-                    # Gatilhos de PARADA da captura (próximas seções do documento)
+                    # Gatilhos de PARADA da captura de Pendentes
                     if capturando_pendentes and any(termo in linha for termo in [
                         "Componentes Curriculares Optativos",
                         "Atividades Complementares",
                         "Atividades de Extensão",
                         "Índice de Rendimento",
-                        "Observações"
+                        "Observações",
+                        "Equivalências"
                     ]):
                         capturando_pendentes = False
+                    
+                    # Gatilho de INÍCIO da captura de Equivalências
+                    if "Equivalências" in linha:
+                        capturando_equivalencias = True
+                        continue
                         
-                    # Se estiver na seção correta, busca o código da disciplina na linha
+                    # Executa a captura de Pendentes
                     if capturando_pendentes:
                         match = re.search(padrao_codigo_unifei, linha)
                         if match:
                             pendentes.append(match.group(1))
+                            
+                    # Executa a captura de Equivalências (Pega ambos os códigos da linha)
+                    if capturando_equivalencias:
+                        codigos_linha = re.findall(padrao_codigo_unifei, linha)
+                        # Garante que pegou exatamente o par (materia_alvo e materia_origem)
+                        if len(codigos_linha) == 2:
+                            codigos_equivalencias.extend(codigos_linha)
 
     # -------------------------------------------------------------
     # CONSOLIDAÇÃO DOS DADOS
@@ -91,37 +106,30 @@ def extrair_dados_completos_sigaa(caminho_pdf):
         df_consolidado = df_bruto.groupby('codigo').agg(
             tentativas=('situacao', 'count'),
             reprovacoes=('situacao', lambda x: (x == 'REP').sum()),
-            # ATUALIZAÇÃO: Adicionado o tratamento para 'CUMP' na lógica de prioridade
             situacao_final=('situacao', lambda x: 'APR' if 'APR' in x.values else ('CUMP' if 'CUMP' in x.values else ('MATR' if 'MATR' in x.values else x.values[-1])))
         ).reset_index()
         
-        # Mapeia as disciplinas que não requerem recomendação de matrícula
+        # Mapeia as disciplinas resolvidas/concluídas iniciais
         disciplinas_resolvidas = df_consolidado[df_consolidado['situacao_final'].isin(['APR', 'MATR', 'CUMP'])]['codigo'].tolist()
     
-    # --- LÓGICA DE EQUIVALÊNCIAS ---
-    
-    # 1. Carrega o banco de equivalências (se o arquivo não existir, ignora graciosamente)
-    mapa_equivalencias = {}
-    try:
-        with open('src/data/equivalencias.json', 'r', encoding='utf-8') as f:
-            mapa_equivalencias = json.load(f)
-    except FileNotFoundError:
-        print("Aviso: Arquivo de equivalências não encontrado. Rodando sem equivalências.")
+    # -------------------------------------------------------------
+    # 3. LÓGICA DE SUBSTITUIÇÃO DAS EQUIVALÊNCIAS DO PDF
+    # -------------------------------------------------------------
+    # O range começa em 1 e pula de 2 em 2 (1, 3, 5...) avaliando apenas matérias cursadas.
+    # Se der Match, substitui pelo índice j-1 (a equivalente correta da grade).
+    for i in range(len(disciplinas_resolvidas)):
+        for j in range(1, len(codigos_equivalencias), 2):
+            if disciplinas_resolvidas[i] == codigos_equivalencias[j]:
+                disciplinas_resolvidas[i] = codigos_equivalencias[j-1]
 
-    # 2. Expande as disciplinas resolvidas adicionando também todas as equivalentes
-    disciplinas_resolvidas_expandidas = set(disciplinas_resolvidas)
-    for disc in disciplinas_resolvidas:
-        if disc in mapa_equivalencias:
-            equivalentes = mapa_equivalencias[disc]
-            disciplinas_resolvidas_expandidas.update(equivalentes)
-
-    # 3. Remove duplicatas da captura via Regex
+    # 3. Remove duplicatas da captura de pendentes
     pendentes_unicos = set(pendentes)
     
-    # 4. Filtra as pendências, subtraindo as disciplinas resolvidas E as equivalentes delas
-    pendentes_reais = [codigo for codigo in pendentes_unicos if codigo not in disciplinas_resolvidas_expandidas]
+    # 4. Filtra as pendências reais subtraindo as disciplinas resolvidas/substituídas
+    pendentes_reais = [codigo for codigo in pendentes_unicos if codigo not in disciplinas_resolvidas]
     
-    return curso_identificado, df_consolidado, pendentes_reais
+    # RETORNO CORRIGIDO: Agora retorna pendentes_reais para casar com a variável do seu print principal
+    return curso_identificado, df_consolidado, disciplinas_resolvidas
 
 # --- Execução Principal ---
 caminho_arquivo = "src/data/Dataset_-_Cenrio_1_-_Recomendao_Matrcula/historico_CCO-5.pdf"
@@ -136,3 +144,4 @@ print("...\n")
 print(f"Total de Disciplinas Obrigatórias Pendentes Encontradas: {len(lista_pendentes)}")
 print("Lista de Pendentes (Pesos P2):")
 print(lista_pendentes)
+
