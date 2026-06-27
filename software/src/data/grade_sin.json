@@ -1,0 +1,556 @@
+{
+    "curso": "SIN",
+    "obrigatorias": {
+        "DES01": {
+            "codigo": "DES01",
+            "periodo_ideal": 0,
+            "ch": 32,
+            "pre_requisitos": [
+                "MAT00A",
+                "IEPG01",
+                "IEPG22",
+                "SAHC05",
+                "SAHC04"
+            ]
+        },
+        "XDES02": {
+            "codigo": "XDES02",
+            "periodo_ideal": 2,
+            "ch": 64,
+            "pre_requisitos": [
+                "XDES01"
+            ]
+        },
+        "XDES03": {
+            "codigo": "XDES03",
+            "periodo_ideal": 3,
+            "ch": 64,
+            "pre_requisitos": [
+                "XDES02"
+            ]
+        },
+        "XPAD01": {
+            "codigo": "XPAD01",
+            "periodo_ideal": 4,
+            "ch": 64,
+            "pre_requisitos": [
+                "STCO02"
+            ]
+        },
+        "SPAD02": {
+            "codigo": "SPAD02",
+            "periodo_ideal": 0,
+            "ch": 32,
+            "pre_requisitos": [
+                "SPAD03",
+                "ADM51E",
+                "XRSC01"
+            ]
+        },
+        "DES06": {
+            "codigo": "DES06",
+            "periodo_ideal": 1,
+            "ch": 48,
+            "pre_requisitos": [
+                "IEPG10",
+                "XMCO01"
+            ]
+        },
+        "SDES07": {
+            "codigo": "SDES07",
+            "periodo_ideal": 3,
+            "ch": 64,
+            "pre_requisitos": [
+                "XAHC02"
+            ]
+        },
+        "XAHC01": {
+            "codigo": "XAHC01",
+            "periodo_ideal": 5,
+            "ch": 48,
+            "pre_requisitos": [
+                "XAHC03",
+                "ADM03E"
+            ]
+        },
+        "SADG01": {
+            "codigo": "SADG01",
+            "periodo_ideal": 7,
+            "ch": 64,
+            "pre_requisitos": []
+        },
+        "XDES01": {
+            "codigo": "XDES01",
+            "periodo_ideal": 1,
+            "ch": 64,
+            "pre_requisitos": []
+        },
+        "XDES04": {
+            "codigo": "XDES04",
+            "periodo_ideal": 2,
+            "ch": 64,
+            "pre_requisitos": []
+        },
+        "SDES05": {
+            "codigo": "SDES05",
+            "periodo_ideal": 3,
+            "ch": 64,
+            "pre_requisitos": [
+                "XDES04"
+            ]
+        },
+        "SRSC02": {
+            "codigo": "SRSC02",
+            "periodo_ideal": 4,
+            "ch": 64,
+            "pre_requisitos": [
+                "SRSC03",
+                "STCO01"
+            ]
+        },
+        "SRSC03": {
+            "codigo": "SRSC03",
+            "periodo_ideal": 3,
+            "ch": 64,
+            "pre_requisitos": []
+        },
+        "STCO01": {
+            "codigo": "STCO01",
+            "periodo_ideal": 2,
+            "ch": 64,
+            "pre_requisitos": [
+                "XDES01"
+            ]
+        },
+        "STCO02": {
+            "codigo": "STCO02",
+            "periodo_ideal": 3,
+            "ch": 64,
+            "pre_requisitos": [
+                "STCO01"
+            ]
+        },
+        "MAT00A": {
+            "codigo": "MAT00A",
+            "periodo_ideal": 1,
+            "ch": 64,
+            "pre_requisitos": []
+        },
+        "XMAC01": {
+            "codigo": "XMAC01",
+            "periodo_ideal": 2,
+            "ch": 64,
+            "pre_requisitos": []
+        },
+        "XMAC02": {
+            "codigo": "XMAC02",
+            "periodo_ideal": 4,
+            "ch": 64,
+            "pre_requisitos": [
+                "MAT00A",
+                "STCO01",
+                "XMAC01"
+            ]
+        },
+        "SMAC03": {
+            "codigo": "SMAC03",
+            "periodo_ideal": 4,
+            "ch": 64,
+            "pre_requisitos": [
+                "STCO01"
+            ]
+        },
+        "IEPG14": {
+            "codigo": "IEPG14",
+            "periodo_ideal": 4,
+            "ch": 32,
+            "pre_requisitos": []
+        },
+        "ECN001": {
+            "codigo": "ECN001",
+            "periodo_ideal": 3,
+            "ch": 48,
+            "pre_requisitos": []
+        },
+        "IEPG01": {
+            "codigo": "IEPG01",
+            "periodo_ideal": 1,
+            "ch": 48,
+            "pre_requisitos": []
+        },
+        "IEPG22": {
+            "codigo": "IEPG22",
+            "periodo_ideal": 1,
+            "ch": 32,
+            "pre_requisitos": []
+        },
+        "IEPG04": {
+            "codigo": "IEPG04",
+            "periodo_ideal": 2,
+            "ch": 32,
+            "pre_requisitos": []
+        },
+        "SAHC04": {
+            "codigo": "SAHC04",
+            "periodo_ideal": 1,
+            "ch": 64,
+            "pre_requisitos": []
+        },
+        "SAHC05": {
+            "codigo": "SAHC05",
+            "periodo_ideal": 1,
+            "ch": 64,
+            "pre_requisitos": []
+        },
+        "XMCO04": {
+            "codigo": "XMCO04",
+            "periodo_ideal": 7,
+            "ch": 64,
+            "pre_requisitos": [
+                "STCO02",
+                "XMAC02"
+            ]
+        },
+        "XMCO08": {
+            "codigo": "XMCO08",
+            "periodo_ideal": 7,
+            "ch": 64,
+            "pre_requisitos": []
+        },
+        "ECOS04": {
+            "codigo": "ECOS04",
+            "periodo_ideal": 0,
+            "ch": 32,
+            "pre_requisitos": [
+                "XRSC09"
+            ]
+        },
+        "XADG03": {
+            "codigo": "XADG03",
+            "periodo_ideal": 0,
+            "ch": 64,
+            "pre_requisitos": []
+        },
+        "XAHC06": {
+            "codigo": "XAHC06",
+            "periodo_ideal": 0,
+            "ch": 64,
+            "pre_requisitos": []
+        },
+        "XAHC08": {
+            "codigo": "XAHC08",
+            "periodo_ideal": 8,
+            "ch": 64,
+            "pre_requisitos": [
+                "XAHC02",
+                "XMAC02"
+            ]
+        }
+    },
+    "optativas": {
+        "SDES06": {
+            "codigo": "SDES06",
+            "periodo_ideal": 6,
+            "ch": 64,
+            "pre_requisitos": [
+                "XDES04"
+            ]
+        },
+        "SDES07": {
+            "codigo": "SDES07",
+            "periodo_ideal": 7,
+            "ch": 64,
+            "pre_requisitos": [
+                "XDES03",
+                "XPAD01",
+                "XDES04"
+            ]
+        },
+        "SPAD02": {
+            "codigo": "SPAD02",
+            "periodo_ideal": 5,
+            "ch": 64,
+            "pre_requisitos": [
+                "XPAD01"
+            ]
+        },
+        "SPAD03": {
+            "codigo": "SPAD03",
+            "periodo_ideal": 5,
+            "ch": 64,
+            "pre_requisitos": [
+                "XPAD01",
+                "XMAC02"
+            ]
+        },
+        "XMCO01": {
+            "codigo": "XMCO01",
+            "periodo_ideal": 6,
+            "ch": 64,
+            "pre_requisitos": [
+                "XMAC02"
+            ]
+        },
+        "XRSC01": {
+            "codigo": "XRSC01",
+            "periodo_ideal": 5,
+            "ch": 64,
+            "pre_requisitos": [
+                "SRSC02"
+            ]
+        },
+        "ADM03E": {
+            "codigo": "ADM03E",
+            "periodo_ideal": 8,
+            "ch": 48,
+            "pre_requisitos": [
+                "IEPG01"
+            ]
+        },
+        "IEPG10": {
+            "codigo": "IEPG10",
+            "periodo_ideal": 6,
+            "ch": 48,
+            "pre_requisitos": []
+        },
+        "ADM51E": {
+            "codigo": "ADM51E",
+            "periodo_ideal": 5,
+            "ch": 48,
+            "pre_requisitos": []
+        },
+        "SADG01": {
+            "codigo": "SADG01",
+            "periodo_ideal": 9,
+            "ch": 64,
+            "pre_requisitos": [
+                "IEPG22"
+            ]
+        },
+        "XAHC01": {
+            "codigo": "XAHC01",
+            "periodo_ideal": 8,
+            "ch": 64,
+            "pre_requisitos": []
+        },
+        "XAHC02": {
+            "codigo": "XAHC02",
+            "periodo_ideal": 7,
+            "ch": 64,
+            "pre_requisitos": [
+                "XDES03"
+            ]
+        },
+        "XAHC03": {
+            "codigo": "XAHC03",
+            "periodo_ideal": 8,
+            "ch": 64,
+            "pre_requisitos": []
+        },
+        "XDES08": {
+            "codigo": "XDES08",
+            "periodo_ideal": 7,
+            "ch": 64,
+            "pre_requisitos": [
+                "XDES04"
+            ]
+        },
+        "XDES10": {
+            "codigo": "XDES10",
+            "periodo_ideal": 6,
+            "ch": 64,
+            "pre_requisitos": [
+                "XDES04"
+            ]
+        },
+        "XDES11": {
+            "codigo": "XDES11",
+            "periodo_ideal": 7,
+            "ch": 64,
+            "pre_requisitos": [
+                "XDES04"
+            ]
+        },
+        "XPAD04": {
+            "codigo": "XPAD04",
+            "periodo_ideal": 6,
+            "ch": 64,
+            "pre_requisitos": [
+                "XPAD01"
+            ]
+        },
+        "XPAD09": {
+            "codigo": "XPAD09",
+            "periodo_ideal": 5,
+            "ch": 64,
+            "pre_requisitos": [
+                "XMAC02"
+            ]
+        },
+        "SPAD05": {
+            "codigo": "SPAD05",
+            "periodo_ideal": 7,
+            "ch": 64,
+            "pre_requisitos": [
+                "XDES03",
+                "XPAD01"
+            ]
+        },
+        "SPAD06": {
+            "codigo": "SPAD06",
+            "periodo_ideal": 6,
+            "ch": 64,
+            "pre_requisitos": [
+                "SPAD03"
+            ]
+        },
+        "SPAD07": {
+            "codigo": "SPAD07",
+            "periodo_ideal": 7,
+            "ch": 64,
+            "pre_requisitos": [
+                "SPAD03"
+            ]
+        },
+        "XPAD08": {
+            "codigo": "XPAD08",
+            "periodo_ideal": 6,
+            "ch": 64,
+            "pre_requisitos": [
+                "XPAD01"
+            ]
+        },
+        "XMCO02": {
+            "codigo": "XMCO02",
+            "periodo_ideal": 6,
+            "ch": 64,
+            "pre_requisitos": [
+                "STCO02",
+                "XMAC02"
+            ]
+        },
+        "XMCO03": {
+            "codigo": "XMCO03",
+            "periodo_ideal": 7,
+            "ch": 64,
+            "pre_requisitos": [
+                "STCO02",
+                "XMAC02"
+            ]
+        },
+        "XRSC06": {
+            "codigo": "XRSC06",
+            "periodo_ideal": 7,
+            "ch": 64,
+            "pre_requisitos": [
+                "XRSC01"
+            ]
+        },
+        "XRSC07": {
+            "codigo": "XRSC07",
+            "periodo_ideal": 6,
+            "ch": 64,
+            "pre_requisitos": [
+                "XRSC01"
+            ]
+        },
+        "XRSC09": {
+            "codigo": "XRSC09",
+            "periodo_ideal": 6,
+            "ch": 64,
+            "pre_requisitos": [
+                "XRSC01"
+            ]
+        },
+        "XRSC10": {
+            "codigo": "XRSC10",
+            "periodo_ideal": 7,
+            "ch": 64,
+            "pre_requisitos": [
+                "XRSC01"
+            ]
+        },
+        "SADG02": {
+            "codigo": "SADG02",
+            "periodo_ideal": 7,
+            "ch": 64,
+            "pre_requisitos": []
+        },
+        "ADM01F": {
+            "codigo": "ADM01F",
+            "periodo_ideal": 7,
+            "ch": 32,
+            "pre_requisitos": []
+        },
+        "IEPG05": {
+            "codigo": "IEPG05",
+            "periodo_ideal": 6,
+            "ch": 48,
+            "pre_requisitos": []
+        },
+        "IEPG13": {
+            "codigo": "IEPG13",
+            "periodo_ideal": 7,
+            "ch": 48,
+            "pre_requisitos": []
+        },
+        "IEPG15": {
+            "codigo": "IEPG15",
+            "periodo_ideal": 6,
+            "ch": 32,
+            "pre_requisitos": []
+        },
+        "XAHC07": {
+            "codigo": "XAHC07",
+            "periodo_ideal": 5,
+            "ch": 64,
+            "pre_requisitos": [
+                "XDES03",
+                "XDES04"
+            ]
+        },
+        "IEPG21": {
+            "codigo": "IEPG21",
+            "periodo_ideal": 6,
+            "ch": 48,
+            "pre_requisitos": []
+        },
+        "LET007": {
+            "codigo": "LET007",
+            "periodo_ideal": 6,
+            "ch": 48,
+            "pre_requisitos": []
+        },
+        "ADM08H": {
+            "codigo": "ADM08H",
+            "periodo_ideal": 7,
+            "ch": 48,
+            "pre_requisitos": []
+        },
+        "ADM52H": {
+            "codigo": "ADM52H",
+            "periodo_ideal": 7,
+            "ch": 32,
+            "pre_requisitos": []
+        },
+        "ADM54H": {
+            "codigo": "ADM54H",
+            "periodo_ideal": 6,
+            "ch": 32,
+            "pre_requisitos": []
+        },
+        "ADM58H": {
+            "codigo": "ADM58H",
+            "periodo_ideal": 6,
+            "ch": 32,
+            "pre_requisitos": []
+        },
+        "ADM51H": {
+            "codigo": "ADM51H",
+            "periodo_ideal": 7,
+            "ch": 48,
+            "pre_requisitos": []
+        }
+    },
+    "trilhas": {}
+}
