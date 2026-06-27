@@ -4,50 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Otimizador - Analisador de Histórico</title>
-    <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="styles3.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="logo-site">
-        Otimizador</div>
-
     <div class="container-sistema">
-        <h2>Enviar Histórico Escolar</h2>
-        <p class="subtitulo">Faça o upload do seu PDF emitido pelo SIGAA para gerar sua grade otimizada.</p>
+        <div class="conteudo-inicial">
+        <div class="topo-row">
+            <div class="marca-topo">
+                Otimizador</div>
+        </div>
+        <div class="centro-coluna">
+            <h1 class="titulo">Envie seu arquivo</h1>
+            <p class="subtitulo">Faça o upload do seu PDF emitido pelo SIGAA para gerar sua grade otimizada.</p>
 
-        <form id="upload-form">
-            <div class="upload-area" id="drop-zone" onclick="document.getElementById('file-input').click()">
-                <div class="upload-icon">
-                    <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    >
-                    <path d="M10 18V16H8V14H10V12H12V14H14V16H12V18H10Z" fill="currentColor" />
-                    <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M6 2C4.34315 2 3 3.34315 3 5V19C3 20.6569 4.34315 22 6 22H18C19.6569 22 21 20.6569 21 19V9C21 5.13401 17.866 2 14 2H6ZM6 4H13V9H19V19C19 19.5523 18.5523 20 18 20H6C5.44772 20 5 19.5523 5 19V5C5 4.44772 5.44772 4 6 4ZM15 4.10002C16.6113 4.4271 17.9413 5.52906 18.584 7H15V4.10002Z"
-                        fill="currentColor"
-                    />
-                    </svg>
+            <form id="upload-form">
+                <div class="upload-area" id="drop-zone" onclick="document.getElementById('file-input').click()">
+                    <div class="upload-icon">
+                        <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        >
+                        <path d="M10 18V16H8V14H10V12H12V14H14V16H12V18H10Z" fill="currentColor" />
+                        <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M6 2C4.34315 2 3 3.34315 3 5V19C3 20.6569 4.34315 22 6 22H18C19.6569 22 21 20.6569 21 19V9C21 5.13401 17.866 2 14 2H6ZM6 4H13V9H19V19C19 19.5523 18.5523 20 18 20H6C5.44772 20 5 19.5523 5 19V5C5 4.44772 5.44772 4 6 4ZM15 4.10002C16.6113 4.4271 17.9413 5.52906 18.584 7H15V4.10002Z"
+                            fill="currentColor"
+                        />
+                        </svg>
 
+                    </div>
+                    <div class="upload-text">arraste o seu histórico PDF aqui</div>
+                    <div class="upload-hint">ou clique para buscar no computador</div>
+                    <input type="file" id="file-input" accept=".pdf">
                 </div>
-                <div class="upload-text">Arraste o seu histórico PDF aqui</div>
-                <div class="upload-hint">ou clique para buscar no computador</div>
-                <input type="file" id="file-input" accept=".pdf">
+
+                <div class="file-info" id="file-info-box">
+                    <span class="file-name" id="selected-file-name">Nenhum arquivo selecionado</span>
+                    <span style="color: #2c38be; font-weight: bold;">✓</span>
+                </div>
+
+                <button type="submit" class="btn-analisar" id="btn-submit" disabled>analisar arquivo</button>
+            </form>
+
+            <a href="/" class="btn-voltar">voltar a página anterior</a>
             </div>
-
-            <div class="file-info" id="file-info-box">
-                <span class="file-name" id="selected-file-name">Nenhum arquivo selecionado</span>
-                <span style="color: #2c38be; font-weight: bold;">✓</span>
-            </div>
-
-            <button type="submit" class="btn-analisar" id="btn-submit" disabled>Analisar Histórico</button>
-        </form>
-
-        <a href="/" class="btn-voltar">← Voltar para a página inicial</a>
+        </div>
+    </div>
+    <div class="container-meio">
+        <h1>  <a href="/resultados.html" class="btn-res">comece agora</a></h1>
+    </div>
+    <div class="container-fim">
+        <div class="image"></div>
+        <div class="entenda-projeto">
+            <h2 class="titulo">Entenda o projeto</h2>
+            <p class="paragrafo-ex">Projeto de estruturação e análise curricular para os cursos de  Ciência da Computação (CCO) e Sistemas
+                de Informação (SIN).  Esta ferramenta utiliza algoritmos de grafos para processar seu histórico escolar,
+                identificar matérias pendentes,verificar equivalências automáticas e sugerir a melhor  combinação de
+                disciplinas para os próximos períodos.</p>
+        </div>
     </div>
 
     <script>
@@ -101,7 +123,7 @@
             const formData = new FormData();
             formData.append('historico', fileInput.files[0]);
 
-            btnSubmit.textContent = "Processando...";
+            btnSubmit.textContent = "processando...";
             btnSubmit.disabled = true;
 
             try {

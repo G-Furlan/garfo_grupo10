@@ -1,0 +1,215 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+    }
+
+        .container-sistema {
+            display: flex;
+            min-height: 90vh;
+            background-image: url('assets/fundo3.jpg'); 
+            background-repeat: no-repeat;
+            background-size:cover; 
+            justify-content: center;
+            .conteudo-inicial {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column; /* Alinha o Topo e o Centro verticalmente */
+            padding: 40px; /* Margem de segurança nas bordas da tela */
+            box-sizing: border-box;
+
+            /* A LINHA DO TOPO */
+            .topo-row {
+                width: 100%;
+                display: flex;
+                flex-direction: row; /* Elementos um ao lado do outro */
+                
+                .marca-topo {
+                    color: rgba(255, 255, 255, 0.9);
+                    font-size: 1.4rem;
+                    /* O SEGREDO: Empurra tudo que estiver à direita dele para o extremo oposto */
+                    margin-right: auto; 
+                }
+            }
+                .pdf-preview-container{
+                background-color: red;
+                padding: 20px;
+                }
+
+
+        .centro-coluna {
+            flex: 1; /* Faz esse bloco ocupar todo o espaço restante da tela */
+            display: flex;
+            flex-direction: column; /* Empilha o título, descrição e botão */
+            align-items: center;    /* Centraliza na horizontal */
+            justify-content: center; /* Centraliza na vertical */
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto; /* Centraliza o bloco inteiro no meio da tela */
+            width: 100%;
+            margin-top: 200px;
+            
+
+            /* Subiu o bloco ligeiramente para compensar a altura do topo */
+
+            .titulo{
+                color: #000000; /* Azul escuro elegante para o título */
+                font-size: 54px;
+                font-family: "DM Serif Display", serif;
+                margin-bottom: 10px;
+                font-weight: 1px;
+            }
+
+            .subtitulo {
+                color: #000000; /* Texto secundário grafite */
+                font-size: 24px;
+                margin-bottom: 30px;
+                max-width: 440px;
+                font-family: 'DM Sans', sans-serif;
+            }
+
+            /* Área de Upload (Drag and Drop) */
+            .upload-area {
+                border: 2px dashed #131313; /* Linha tracejada em azul */
+                padding: 50px 80px;
+                background: rgba(44, 56, 190, 0.02); /* Fundo sutil azulado */
+                cursor: pointer;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+
+            .upload-area:hover, .upload-area.dragover {
+                background: rgba(31, 61, 143, 0.2);
+                border-color: #1a237e;
+            }
+
+            .upload-icon {
+                font-size: 3rem;
+                color: #2c38be;
+                margin-bottom: 15px;
+            }
+
+            .upload-text {
+                font-size: 1.1rem;
+                color: #333333;
+                margin-bottom: 5px;
+                font-weight: 500;
+            }
+
+            .upload-hint {
+                font-size: 0.85rem;
+                color: #666666;
+            }
+
+            #file-input {
+                display: none;
+            }
+
+            .file-info {
+                margin-top: 20px;
+                display: none; 
+                background: #f8f9fa; 
+                padding: 15px;
+                align-items: center;
+                justify-content: space-between;
+                border-left: 4px solid #2c38be;
+            }
+
+            .file-name {
+                font-weight: 500;
+                color: #333333;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                max-width: 80%;
+            }
+
+            .btn-analisar {
+                margin-top: 30px;
+                width: 100%;
+                font-family: 'DM Sans', sans-serif;
+                background-color: #2c38bee3; 
+                color: #ffffff;
+                border: none;
+                padding: 15px;
+                font-size: 1.1rem;
+                font-weight: 5px;
+                cursor: pointer;
+                box-shadow: 0 4px 15px rgba(44, 56, 190, 0.2);
+                transition: all 0.3s ease;
+            }
+
+            .btn-analisar:hover {
+                background-color: #1a237e;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(44, 56, 190, 0.3);
+            }
+
+            .btn-analisar:disabled {
+                background-color: #484ED8;
+                color: #ffffff;
+                cursor: not-allowed;
+                transform: none;
+                box-shadow: none;
+            }
+            
+            .btn-voltar {
+                display: inline-block;
+                margin-top: 20px;
+                color: #666666;
+                text-decoration: none;
+                font-size: 0.9rem;
+                transition: color 0.2s;
+            }
+            .btn-voltar:hover {
+                color: #2c38be;
+            }
+        }
+    }
+}
+.container-meio {
+    align-items: center;
+    display: flex;
+    font-size: 12px;
+    justify-content: center;
+    min-height: 320px;
+    background-color: rgb(255, 255, 255);
+    .btn-res{
+        background-color: #1d1c1c;
+        color: #f8f9fa;
+        padding: 16px;
+    }
+}
+.container-fim {
+    background-color: #1d1c1c;
+    color: #ffffff;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-start;
+    gap: 40px;
+    justify-content: center;
+    .entenda-projeto {
+        margin-top: 180px;
+        display: flex;
+        flex-direction: column; 
+        max-width: 658px;
+        cursor: pointer;
+        .titulo {
+            font-size: 48px;
+            margin-bottom: 16px; 
+            margin-top: 32px;
+            font-family: "DM Serif Display", serif;
+        }
+
+        .paragrafo-ex {
+            font-size: 24px;
+            max-width: 562px;
+            font-family: 'DM Sans', sans-serif;
+        }
+    }
+}
