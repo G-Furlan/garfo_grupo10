@@ -2,6 +2,8 @@ import pdfplumber
 import pandas as pd
 import re
 import json
+import os
+import glob
 
 def extrair_dados_completos_sigaa(caminho_pdf):
     disciplinas_brutas = []
@@ -122,26 +124,64 @@ def extrair_dados_completos_sigaa(caminho_pdf):
             if disciplinas_resolvidas[i] == codigos_equivalencias[j]:
                 disciplinas_resolvidas[i] = codigos_equivalencias[j-1]
 
+    mapa_equivalencias = {}
+    try:
+
+        diretorio_script = os.path.dirname(os.path.abspath(__file__))
+        caminho_json = os.path.join(diretorio_script, "data", "equivalencias.json")
+        with open(caminho_json, 'r', encoding='utf-8') as f:
+            mapa_equivalencias = json.load(f)
+    except FileNotFoundError:
+        print("Aviso: Arquivo de equivalências JSON não encontrado. Rodando apenas com as do PDF.")
+
+    # 2. Expande as disciplinas resolvidas adicionando também todas as equivalentes do JSON
+    disciplinas_resolvidas_expandidas = set(disciplinas_resolvidas)
+    for disc in disciplinas_resolvidas:
+        if disc in mapa_equivalencias:
+            equivalentes = mapa_equivalencias[disc]
+            disciplinas_resolvidas_expandidas.update(equivalentes)
+
     # 3. Remove duplicatas da captura de pendentes
     pendentes_unicos = set(pendentes)
     
     # 4. Filtra as pendências reais subtraindo as disciplinas resolvidas/substituídas
-    pendentes_reais = [codigo for codigo in pendentes_unicos if codigo not in disciplinas_resolvidas]
+    pendentes_reais = [codigo for codigo in pendentes_unicos if codigo not in disciplinas_resolvidas_expandidas]
     
     # RETORNO CORRIGIDO: Agora retorna pendentes_reais para casar com a variável do seu print principal
-    return curso_identificado, df_consolidado, disciplinas_resolvidas
+    return curso_identificado, df_consolidado, pendentes_reais
 
 # --- Execução Principal ---
-caminho_arquivo = "src/data/Dataset_-_Cenrio_1_-_Recomendao_Matrcula/historico_CCO-5.pdf"
-curso, df_historico, lista_pendentes = extrair_dados_completos_sigaa(caminho_arquivo)
 
-print(f"Curso Identificado: {curso}\n")
+# 1. Defina o caminho da pasta onde os uploads ou os arquivos de histórico são salvos
+# Mudamos para apontar para o diretório (pasta) e não para um arquivo fixo
+# 1. Pega o caminho absoluto da pasta onde este script (parser_historico.py) está salvo
+diretorio_atual = os.path.dirname(os.path.abspath(__file__))
 
-print("Tabela Consolidada para Alimentação do Grafo (Pesos P3):")
-print(df_historico.head(10).to_string(index=False))
-print("...\n")
+# 2. Constrói o caminho subindo ou navegando até a pasta do Dataset
 
-print(f"Total de Disciplinas Obrigatórias Pendentes Encontradas: {len(lista_pendentes)}")
-print("Lista de Pendentes (Pesos P2):")
-print(lista_pendentes)
+diretorio_historicos = os.path.join(diretorio_atual, "data", "Dataset-Cenario1-RecomendacaoMatricula")
 
+# 3. Busca todos os arquivos .pdf dentro desta pasta
+arquivos_pdf = glob.glob(os.path.join(diretorio_historicos, "*.pdf"))
+
+if not arquivos_pdf:
+    print(f"Erro: Nenhum arquivo PDF encontrado no diretório mapeado:\n-> {diretorio_historicos}\nPor favor, verifique o caminho ou faça o upload.")
+else:
+    # 4. Encontra o arquivo mais recente baseado na data de modificação
+    caminho_arquivo = max(arquivos_pdf, key=os.path.getmtime)
+    
+    print(f"Arquivo detectado automaticamente para análise: {os.path.basename(caminho_arquivo)}")
+    
+    # 5. Executa a sua função de extração com o arquivo mais recente
+    curso, df_historico, lista_pendentes = extrair_dados_completos_sigaa(caminho_arquivo)
+
+    # --- Print dos Resultados ---
+    print(f"\nCurso Identificado: {curso}\n")
+
+    print("Tabela Consolidada para Alimentação do Grafo:")
+    print(df_historico.head(10).to_string(index=False))
+    print("...\n")
+
+    print(f"Total de Disciplinas Obrigatórias Pendentes Encontradas: {len(lista_pendentes)}")
+    print("Lista de Pendentes:")
+    print(lista_pendentes)
