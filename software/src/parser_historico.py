@@ -122,17 +122,31 @@ def extrair_dados_completos_sigaa(caminho_pdf):
             if disciplinas_resolvidas[i] == codigos_equivalencias[j]:
                 disciplinas_resolvidas[i] = codigos_equivalencias[j-1]
 
+    mapa_equivalencias = {}
+    try:
+        with open('src/data/equivalencias.json', 'r', encoding='utf-8') as f:
+            mapa_equivalencias = json.load(f)
+    except FileNotFoundError:
+        print("Aviso: Arquivo de equivalências JSON não encontrado. Rodando apenas com as do PDF.")
+
+    # 2. Expande as disciplinas resolvidas adicionando também todas as equivalentes do JSON
+    disciplinas_resolvidas_expandidas = set(disciplinas_resolvidas)
+    for disc in disciplinas_resolvidas:
+        if disc in mapa_equivalencias:
+            equivalentes = mapa_equivalencias[disc]
+            disciplinas_resolvidas_expandidas.update(equivalentes)
+
     # 3. Remove duplicatas da captura de pendentes
     pendentes_unicos = set(pendentes)
     
     # 4. Filtra as pendências reais subtraindo as disciplinas resolvidas/substituídas
-    pendentes_reais = [codigo for codigo in pendentes_unicos if codigo not in disciplinas_resolvidas]
+    pendentes_reais = [codigo for codigo in pendentes_unicos if codigo not in disciplinas_resolvidas_expandidas]
     
     # RETORNO CORRIGIDO: Agora retorna pendentes_reais para casar com a variável do seu print principal
-    return curso_identificado, df_consolidado, disciplinas_resolvidas
+    return curso_identificado, df_consolidado, pendentes_reais
 
 # --- Execução Principal ---
-caminho_arquivo = "src/data/Dataset_-_Cenrio_1_-_Recomendao_Matrcula/historico_CCO-5.pdf"
+caminho_arquivo = "src/data/Dataset_-_Cenrio_1_-_Recomendao_Matrcula/historico_2024003683.pdf"
 curso, df_historico, lista_pendentes = extrair_dados_completos_sigaa(caminho_arquivo)
 
 print(f"Curso Identificado: {curso}\n")
@@ -144,4 +158,3 @@ print("...\n")
 print(f"Total de Disciplinas Obrigatórias Pendentes Encontradas: {len(lista_pendentes)}")
 print("Lista de Pendentes (Pesos P2):")
 print(lista_pendentes)
-
