@@ -1,6 +1,7 @@
 import json
 import networkx as nx
 import pandas as pd
+from datetime import datetime
 
 def carregar_grade(curso):
     """Carrega o banco de dados da estrutura curricular do curso correspondente."""
@@ -102,6 +103,31 @@ def calcular_p6_penalizacao(G, codigo_disciplina):
         return PENALIDADE_OPTATIVA
     return 0
 
+def calcular_periodo_atual_aluno(periodo_ingresso, suspensoes):
+    """
+    Calcula o período real do discente baseado no tempo decorrido
+    desde o ingresso, descontando os semestres suspensos.
+    """
+    if not periodo_ingresso:
+        return 1
+        
+    ano_ingresso, sem_ingresso = map(int, periodo_ingresso.split('.'))
+    
+    # Obtém a data real do sistema em que o código está sendo executado
+    hoje = datetime.now()
+    ano_atual = hoje.year
+    # No Brasil, meses de 1 a 6 são semestre 1. Meses de 7 a 12 são semestre 2.
+    sem_atual = 1 if hoje.month <= 6 else 2
+    
+    # Diferença algébrica total de semestres
+    periodos_decorridos = ((ano_atual - ano_ingresso) * 2) + (sem_atual - sem_ingresso) + 1
+    
+    # Abate os semestres trancados/suspensos
+    periodo_real = periodos_decorridos - len(suspensoes)
+    
+    # Retorna no mínimo 1 para evitar períodos negativos em casos de anomalias no PDF
+    return max(1, periodo_real)
+
 # -------------------------------------------------------------
 # ALGORITMO DE RECOMENDAÇÃO
 # -------------------------------------------------------------
@@ -161,8 +187,8 @@ if __name__ == "__main__":
         caminho_historico = max(arquivos_pdf, key=os.path.getmtime)
         print(f"Gerando recomendação baseada no arquivo: {os.path.basename(caminho_historico)}\n")
         
-        # 2. Extração via Parser
-        curso, df_historico, disciplinas_resolvidas = extrair_dados_completos_sigaa(caminho_historico)
+        # 2. Extração via Parser (ATUALIZADO COM OS NOVOS DADOS)
+        curso, df_historico, disciplinas_resolvidas, periodo_ingresso, suspensoes = extrair_dados_completos_sigaa(caminho_historico)
         
         # 3. Inicialização do Grafo
         grade = carregar_grade(curso)
@@ -170,7 +196,10 @@ if __name__ == "__main__":
         
         # 4. Determinação de Variáveis Externas
         disciplinas_aptas = obter_disciplinas_disponiveis(DAG, disciplinas_resolvidas)
-        periodo_estimado_aluno = 5  # Requer extração dinâmica do SIGAA posteriormente
+        
+        # CÁLCULO DINÂMICO DO PERÍODO DO ALUNO 
+        periodo_estimado_aluno = calcular_periodo_atual_aluno(periodo_ingresso, suspensoes)
+        
         carga_horaria_maxima = 384  # Limite aproximado de 6 disciplinas de 64h
         
         # 5. Geração da Recomendação
@@ -184,6 +213,7 @@ if __name__ == "__main__":
         
         # 6. Apresentação de Resultados
         print(f"--- RECOMENDAÇÃO DE MATRÍCULA ({curso}) ---")
+        print(f"Ingresso: {periodo_ingresso} | Suspensões Detectadas: {len(suspensoes)}")
         print(f"Período Atual Estimado: {periodo_estimado_aluno} | Carga Horária Máxima: {carga_horaria_maxima}h\n")
         
         print(f"{'CÓDIGO':<10} | {'CH':<5} | {'W (TOTAL)':<10} | {'P1':<5} | {'P2':<5} | {'P3':<5} | {'P5':<5} | {'P6':<5}")
