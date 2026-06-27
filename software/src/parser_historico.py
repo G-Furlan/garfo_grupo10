@@ -182,8 +182,8 @@ def extrair_dados_completos_sigaa(caminho_pdf):
     
     # 4. Filtra as pendências reais subtraindo as disciplinas resolvidas/substituídas
     pendentes_reais = [codigo for codigo in pendentes_unicos if codigo not in disciplinas_resolvidas_expandidas]
-    
-    return curso_identificado, df_consolidado, pendentes_reais, periodo_ingresso, codigos_suspensoes
+
+    return curso_identificado, df_consolidado, list(disciplinas_resolvidas_expandidas), pendentes_reais, periodo_ingresso, codigos_suspensoes
 
 # --- Execução Principal ---
 if __name__ == "__main__":
@@ -207,8 +207,8 @@ if __name__ == "__main__":
         
         print(f"Arquivo detectado automaticamente para análise: {os.path.basename(caminho_arquivo)}")
         
-    # 5. Executa a sua função de extração com o arquivo mais recente
-        curso, df_historico, lista_pendentes, periodo_ingresso, suspensoes = extrair_dados_completos_sigaa(caminho_arquivo)
+        # 5. Executa a extração recebendo as 6 variáveis
+        curso, df_historico, disciplinas_resolvidas, lista_pendentes, periodo_ingresso, suspensoes = extrair_dados_completos_sigaa(caminho_arquivo)
 
         # --- Print dos Resultados ---
         print(f"\nCurso Identificado: {curso}\n")

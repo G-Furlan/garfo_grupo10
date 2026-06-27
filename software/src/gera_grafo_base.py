@@ -187,8 +187,8 @@ if __name__ == "__main__":
         caminho_historico = max(arquivos_pdf, key=os.path.getmtime)
         print(f"Gerando recomendação baseada no arquivo: {os.path.basename(caminho_historico)}\n")
         
-        # 2. Extração via Parser (ATUALIZADO COM OS NOVOS DADOS)
-        curso, df_historico, disciplinas_resolvidas, periodo_ingresso, suspensoes = extrair_dados_completos_sigaa(caminho_historico)
+        # 2. Extração via Parser (ATUALIZADO PARA RECEBER AS RESOLVIDAS NA POSIÇÃO CORRETA)
+        curso, df_historico, disciplinas_resolvidas, lista_pendentes, periodo_ingresso, suspensoes = extrair_dados_completos_sigaa(caminho_historico)
         
         # 3. Inicialização do Grafo
         grade = carregar_grade(curso)
