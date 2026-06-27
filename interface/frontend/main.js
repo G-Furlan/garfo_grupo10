@@ -194,3 +194,34 @@ async function calcularGradeNoBackend() {
         tbodyRanking.innerHTML = `<tr><td colspan="6" style="text-align: center; color: red;">Não foi possível conectar ao servidor Node.js. Ligue o backend.</td></tr>`;
     }
 }
+
+function atualizarInterface(nomeArquivo) {
+    selectedFileName.textContent = nomeArquivo;
+    fileInfoBox.style.display = 'flex';
+    btnSubmit.disabled = false;
+
+    // LÓGICA DO PREVIEW
+    const arquivo = fileInput.files[0];
+    if (arquivo) {
+        // Cria uma URL temporária apontando para o arquivo local
+        const urlProvisoria = URL.createObjectURL(arquivo);
+        
+        const previewContainer = document.getElementById('pdf-preview-container');
+        const iframePreview = document.getElementById('pdf-preview');
+        
+        // Coloca a URL no iframe e exibe a caixinha lateral
+        iframePreview.src = urlProvisoria;
+        previewContainer.style.display = 'block';
+    }
+}
+
+dropZone.addEventListener('drop', (e) => {
+    const dt = e.dataTransfer;
+    const files = dt.files;
+    if (files.length > 0 && files[0].type === "application/pdf") {
+        fileInput.files = files; // Associa o arquivo dropado ao input
+        atualizarInterface(files[0].name);
+    } else {
+        alert("Por favor, envie apenas arquivos em formato PDF.");
+    }
+});

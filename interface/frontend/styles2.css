@@ -1,0 +1,149 @@
+body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #f4f6f9; /* Fundo claro acinzentado suave */
+            color: #333333; /* Texto principal escuro */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative; /* Necessário para ancorar elementos posicionados absolutamente */
+        }
+
+        /* ---- LOGO NO TOPO ESQUERDO ---- */
+        .logo-site {
+            font-family: "DM Serif Display", serif;
+            position: absolute;
+            top: 25px; /* Distância do topo */
+            left: 40px; /* Distância da esquerda */
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffffff; /* O tom de azul principal do projeto */
+            letter-spacing: 0.5px;
+            text-transform: capitalize; /* Garante que apenas a primeira letra fique maiúscula */
+            user-select: none; /* Evita que o usuário selecione o texto da logo sem querer */
+            background-image: url('assets/header.jpg') ;
+
+        }
+
+        .container-sistema {
+            width: 90%;
+            max-width: 650px;
+            background: #ffffff; /* Card totalmente branco */
+            padding: 40px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08); /* Sombra suave */
+            text-align: center;
+                .pdf-preview-container{
+                background-color: red;
+                padding: 20px;
+                }
+        }
+
+        h2 {
+            color: #2c38be; /* Azul escuro elegante para o título */
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        p.subtitulo {
+            color: #666666; /* Texto secundário grafite */
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        /* Área de Upload (Drag and Drop) */
+        .upload-area {
+            border: 2px dashed #2c38be; /* Linha tracejada em azul */
+            padding: 50px 20px;
+            background: rgba(44, 56, 190, 0.02); /* Fundo sutil azulado */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .upload-area:hover, .upload-area.dragover {
+            background: rgba(44, 56, 190, 0.06);
+            border-color: #1a237e;
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: #2c38be;
+            margin-bottom: 15px;
+        }
+
+        .upload-text {
+            font-size: 1.1rem;
+            color: #333333;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .upload-hint {
+            font-size: 0.85rem;
+            color: #666666;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        .file-info {
+            margin-top: 20px;
+            display: none; 
+            background: #f8f9fa; 
+            padding: 15px;
+            align-items: center;
+            justify-content: space-between;
+            border-left: 4px solid #2c38be;
+        }
+
+        .file-name {
+            font-weight: 500;
+            color: #333333;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 80%;
+        }
+
+        .btn-analisar {
+            margin-top: 30px;
+            width: 100%;
+            background-color: #2c38be; 
+            color: #ffffff;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(44, 56, 190, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-analisar:hover {
+            background-color: #1a237e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 56, 190, 0.3);
+        }
+
+        .btn-analisar:disabled {
+            background-color: #ced4da;
+            color: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-voltar {
+            display: inline-block;
+            margin-top: 20px;
+            color: #666666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .btn-voltar:hover {
+            color: #2c38be;
+        }
