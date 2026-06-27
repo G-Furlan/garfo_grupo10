@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Grafo - Cores Fortes</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
+    <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
+    <script src="https://unpkg.com/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #cy {
+            width: 800px;
+            height: 600px;
+            background-color: white;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class = "container-inicial">
+        <h2>Visualização de Pré-requisitos (Paleta de Cores Fortes)</h2>
+        
+        <div id="cy"></div>
+    </div>
+    <script>
+        // NOVA FUNÇÃO: Sorteia a partir de uma lista de cores fortes
+        function gerarCorForte() {
+            const coresVibrantes = [
+                '#E74C3C', // Vermelho
+                '#8E44AD', // Roxo
+                '#2980B9', // Azul
+                '#27AE60', // Verde
+                '#F39C12', // Laranja
+                '#D35400', // Laranja Escuro
+                '#16A085'  // Verde Água (Teal)
+            ];
+            
+            // Escolhe um índice aleatório baseado no tamanho da lista
+            const indiceSorteado = Math.floor(Math.random() * coresVibrantes.length);
+            return coresVibrantes[indiceSorteado];
+        }
+
+        var cy = cytoscape({
+            container: document.getElementById('cy'), 
+
+            elements: [
+                // Chamando a nova função gerarCorForte()
+                { data: { id: 'calc1', nome: 'Cálculo I', cor: gerarCorForte() } },
+                { data: { id: 'calc2', nome: 'Cálculo II', cor: gerarCorForte() } },
+                { data: { id: 'fis1', nome: 'Física I', cor: gerarCorForte() } },
+                { data: { id: 'gaal', nome: 'Geometria Analítica', cor: gerarCorForte() } },
+                { data: { id: 'mec', nome: 'Mecânica Clássica', cor: gerarCorForte() } },
+
+                { data: { source: 'calc1', target: 'calc2' } },
+                { data: { source: 'calc1', target: 'fis1' } },
+                { data: { source: 'gaal', target: 'fis1' } },
+                { data: { source: 'fis1', target: 'mec' } },
+                { data: { source: 'calc2', target: 'mec' } }
+            ],
+
+            style: [
+                {
+                    selector: 'node', 
+                    style: {
+                        'background-color': 'data(cor)', 
+                        'label': 'data(nome)', 
+                        'color': '#ffffff', // Texto branco fixo
+                        'font-weight': 'bold', // Deixei o texto em negrito para destacar mais
+                        'font-size': '14px',
+                        'text-valign': 'center', 
+                        'text-halign': 'center', 
+                        'shape': 'rectangle', 
+                        'width': '120px', 
+                        'height': '60px', 
+                    }
+                },
+                {
+                    selector: 'edge', 
+                    style: {
+                        'width': 3,
+                        'line-color': '#b3b3b3', // Deixei a linha um pouco mais clara
+                        'target-arrow-color': '#b3b3b3',
+                        'target-arrow-shape': 'triangle', 
+                        'curve-style': 'bezier' 
+                    }
+                }
+            ],
+
+            layout: {
+                name: 'dagre',
+                rankDir: 'LR', 
+                padding: 30,
+                spacingFactor: 1.3 
+            }
+        });
+    </script>
+    
+</body>
+</html>
