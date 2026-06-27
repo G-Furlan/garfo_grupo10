@@ -47,7 +47,7 @@ app.post('/calcular-grade', (req, res) => {
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         // Define o caminho completo da pasta
-        const pastaDestino = path.join(__dirname, '../../software/src/data/Dataset_-_Cenrio_1_-_Recomendao_Matrcula');
+        const pastaDestino = path.join(__dirname, '../../software/src/data/Dataset-Cenario1-RecomendacaoMatricula');
         
         // NOVO: Verifica se a pasta existe. Se não existir, cria ela automaticamente!
         if (!fs.existsSync(pastaDestino)) {
