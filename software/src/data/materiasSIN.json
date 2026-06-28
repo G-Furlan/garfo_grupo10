@@ -1,157 +1,18 @@
 {
-  "IEPG01": {
-    "codigo": "IEPG01",
-    "disciplina": "EMPREENDEDORISMO E INOVAÇÃO",
-    "tipo": "Obrigatória",
-    "periodo": "1",
-    "carga_horaria": "48h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
-    "pre_requisitos": [],
-    "equivalentes": [
-      [
-        "EPR301"
-      ]
-    ],
-    "periodo_ofertado": "2026-1",
-    "horario": "3N345"
-  },
-  "IEPG22": {
-    "codigo": "IEPG22",
-    "disciplina": "ADMINISTRAÇÃO APLICADA",
-    "tipo": "Obrigatória",
-    "periodo": "1",
-    "carga_horaria": "32h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
-    "pre_requisitos": [],
-    "equivalentes": [
-      [
-        "SIN310"
-      ],
-      [
-        "EPR002"
-      ]
-    ],
-    "periodo_ofertado": "2026-1",
-    "horario": "4N12"
-  },
-  "MAT00A": {
-    "codigo": "MAT00A",
-    "disciplina": "CÁLCULO A",
-    "tipo": "Obrigatória",
-    "periodo": "1",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [],
-    "equivalentes": [
-      [
-        "MAT004"
-      ],
-      [
-        "MAT001"
-      ],
-      [
-        "MATI2301"
-      ],
-      [
-        "MATI01"
-      ]
-    ],
-    "periodo_ofertado": "2026-1",
-    "horario": "2N12 4N34"
-  },
-  "SAHC04": {
-    "codigo": "SAHC04",
-    "disciplina": "PROJETO INTEGRADO",
-    "tipo": "Obrigatória",
-    "periodo": "1",
-    "carga_horaria": "32h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [],
-    "equivalentes": [],
-    "periodo_ofertado": "2026-1",
-    "horario": "6N12"
-  },
-  "SAHC05": {
-    "codigo": "SAHC05",
-    "disciplina": "FUNDAMENTOS DE SISTEMAS DE INFORMAÇÃO",
-    "tipo": "Obrigatória",
-    "periodo": "1",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [],
-    "equivalentes": [
-      [
-        "SIN410"
-      ]
-    ],
-    "periodo_ofertado": "2026-1",
-    "horario": "25N34"
-  },
   "XDES01": {
     "codigo": "XDES01",
     "disciplina": "FUNDAMENTOS DE PROGRAMAÇÃO",
     "tipo": "Obrigatória",
     "periodo": "1",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [],
-    "equivalentes": [
-      [
-        "COM110"
-      ],
-      [
-        "ECOP11A"
-      ],
-      [
-        "ECOP01",
-        "ECOP11"
-      ]
-    ],
-    "periodo_ofertado": "2026-1 / 2026-2",
-    "horario": "35N12 (2026-1) / 2N12 3N34 (2026-2)"
-  },
-  "IEPG04": {
-    "codigo": "IEPG04",
-    "disciplina": "MAPEAMENTO DE PROCESSOS",
-    "tipo": "Obrigatória",
-    "periodo": "2",
-    "carga_horaria": "32h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [],
     "equivalentes": [],
-    "periodo_ofertado": "2026-2",
-    "horario": "3N12"
-  },
-  "STCO01": {
-    "codigo": "STCO01",
-    "disciplina": "ALGORITMOS E PROGRAMAÇÃO I",
-    "tipo": "Obrigatória",
-    "periodo": "2",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [
-      [
-        "XDES01",
-        "COM110"
-      ]
-    ],
-    "equivalentes": [
-      [
-        "CTCO01"
-      ],
-      [
-        "COM111"
-      ],
-      [
-        "ECOP02",
-        "ECOP12"
-      ],
-      [
-        "ECOP02A"
-      ]
-    ],
-    "periodo_ofertado": "2026-2",
-    "horario": "56N12"
+    "periodo_ofertado": "2026-1 / 2026-2",
+    "horario": {
+      "2026-1": "35N12",
+      "2026-2": "2N12 3N34"
+    }
   },
   "XDES02": {
     "codigo": "XDES02",
@@ -159,169 +20,17 @@
     "tipo": "Obrigatória",
     "periodo": "2",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
       [
-        "XDES01",
-        "COM111",
-        "ECOP11A"
+        "XDES01"
       ]
     ],
-    "equivalentes": [
-      [
-        "COM220"
-      ],
-      [
-        "ECOP13A"
-      ],
-      [
-        "ECOP03",
-        "ECOP13"
-      ]
-    ],
+    "equivalentes": [],
     "periodo_ofertado": "2026-2",
-    "horario": "4N12 5N34"
-  },
-  "XDES04": {
-    "codigo": "XDES04",
-    "disciplina": "ENGENHARIA DE SOFTWARE I",
-    "tipo": "Obrigatória",
-    "periodo": "2",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [],
-    "equivalentes": [
-      [
-        "COM210"
-      ],
-      [
-        "ECOT01A",
-        "ECOT11A"
-      ],
-      [
-        "ECOT01",
-        "ECOT11"
-      ]
-    ],
-    "periodo_ofertado": "2026-2",
-    "horario": "2N1234"
-  },
-  "XMAC01": {
-    "codigo": "XMAC01",
-    "disciplina": "MATEMÁTICA DISCRETA",
-    "tipo": "Obrigatória",
-    "periodo": "2",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [],
-    "equivalentes": [
-      [
-        "MAT015"
-      ],
-      [
-        "MAT017"
-      ],
-      [
-        "ECOM01A",
-        "ECOM11A"
-      ],
-      [
-        "ECOM01",
-        "ECOM11"
-      ],
-      [
-        "MAT057"
-      ]
-    ],
-    "periodo_ofertado": "2026-2",
-    "horario": "34N34"
-  },
-  "ECN001": {
-    "codigo": "ECN001",
-    "disciplina": "ECONOMIA",
-    "tipo": "Obrigatória",
-    "periodo": "3",
-    "carga_horaria": "48h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
-    "pre_requisitos": [],
-    "equivalentes": [
-      [
-        "EPRI04"
-      ],
-      [
-        "IEPG20"
-      ]
-    ],
-    "periodo_ofertado": "2026-1 (Ofertada como IEPG20)",
-    "horario": "4N345"
-  },
-  "SDES05": {
-    "codigo": "SDES05",
-    "disciplina": "ENGENHARIA DE SOFTWARE II",
-    "tipo": "Obrigatória",
-    "periodo": "3",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [
-      [
-        "XDES04",
-        "COM210"
-      ]
-    ],
-    "equivalentes": [
-      [
-        "COM211"
-      ]
-    ],
-    "periodo_ofertado": "2026-1",
-    "horario": "23N12"
-  },
-  "SRSC03": {
-    "codigo": "SRSC03",
-    "disciplina": "ORGANIZAÇÃO E ARQUITETURA DE COMPUTADORES",
-    "tipo": "Obrigatória",
-    "periodo": "3",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [],
-    "equivalentes": [
-      [
-        "SIN120"
-      ],
-      [
-        "CRSC04"
-      ],
-      [
-        "ECOX01"
-      ]
-    ],
-    "periodo_ofertado": "2026-1",
-    "horario": "3N34 6N12"
-  },
-  "STCO02": {
-    "codigo": "STCO02",
-    "disciplina": "ALGORITMOS E PROGRAMAÇÃO II",
-    "tipo": "Obrigatória",
-    "periodo": "3",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [
-      [
-        "STCO01",
-        "CTCO01",
-        "COM111"
-      ]
-    ],
-    "equivalentes": [
-      [
-        "CTCO02"
-      ],
-      [
-        "COM112"
-      ]
-    ],
-    "periodo_ofertado": "2026-1",
-    "horario": "26N34"
+    "horario": {
+      "2026-2": "4N12 5N34"
+    }
   },
   "XDES03": {
     "codigo": "XDES03",
@@ -329,293 +38,49 @@
     "tipo": "Obrigatória",
     "periodo": "3",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
       [
         "XDES02"
-      ],
-      [
-        "COM220"
-      ],
-      [
-        "ECOP13A",
-        "ECOT03A"
-      ]
-    ],
-    "equivalentes": [
-      [
-        "COM222"
-      ],
-      [
-        "ECOX05"
-      ]
-    ],
-    "periodo_ofertado": "2026-1",
-    "horario": "45N12"
-  },
-  "IEPG14": {
-    "codigo": "IEPG14",
-    "disciplina": "COMPORTAMENTO ORGANIZACIONAL I",
-    "tipo": "Obrigatória",
-    "periodo": "4",
-    "carga_horaria": "32h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
-    "pre_requisitos": [],
-    "equivalentes": [
-      [
-        "SIN411"
-      ]
-    ],
-    "periodo_ofertado": "2026-2",
-    "horario": "6N12"
-  },
-  "SMAC03": {
-    "codigo": "SMAC03",
-    "disciplina": "GRAFOS",
-    "tipo": "Obrigatória",
-    "periodo": "4",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [
-      [
-        "STCO01",
-        "CTCO01",
-        "COM111"
-      ]
-    ],
-    "equivalentes": [
-      [
-        "SIN110"
-      ],
-      [
-        "CMAC03"
-      ]
-    ],
-    "periodo_ofertado": "2026-2",
-    "horario": "23N34"
-  },
-  "SRSC02": {
-    "codigo": "SRSC02",
-    "disciplina": "SISTEMAS OPERACIONAIS",
-    "tipo": "Obrigatória",
-    "periodo": "4",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [
-      [
-        "STCO01",
-        "SIN120",
-        "ECOP02A"
-      ],
-      [
-        "STCO01",
-        "SIN120",
-        "ECOX01"
-      ],
-      [
-        "CTCO01",
-        "SIN120",
-        "ECOP02A"
-      ],
-      [
-        "CTCO01",
-        "SIN120",
-        "ECOX01"
-      ],
-      [
-        "SRSC03",
-        "SIN120",
-        "ECOP02A"
-      ],
-      [
-        "SRSC03",
-        "SIN120",
-        "ECOX01"
-      ]
-    ],
-    "equivalentes": [
-      [
-        "COM120"
-      ],
-      [
-        "ECOS01A",
-        "ECOS11A"
-      ],
-      [
-        "ECOS01"
-      ]
-    ],
-    "periodo_ofertado": "2026-2",
-    "horario": "23N12"
-  },
-  "XMAC02": {
-    "codigo": "XMAC02",
-    "disciplina": "MÉTODOS MATEMÁTICOS PARA ANÁLISE DE DADOS",
-    "tipo": "Obrigatória",
-    "periodo": "4",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [
-      [
-        "MAT00A"
-      ],
-      [
-        "XMAC01",
-        "ECOM01A"
-      ],
-      [
-        "STCO01",
-        "CTCO01",
-        "ECOP02A"
-      ]
-    ],
-    "equivalentes": [
-      [
-        "MAT013"
-      ]
-    ],
-    "periodo_ofertado": "2026-2",
-    "horario": "4N34 5N12"
-  },
-  "XPAD01": {
-    "codigo": "XPAD01",
-    "disciplina": "BANCO DE DADOS I",
-    "tipo": "Obrigatória",
-    "periodo": "4",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [
-      [
-        "STCO02",
-        "CTCO02",
-        "COM112",
-        "ECOT02A",
-        "ECOT12A"
-      ]
-    ],
-    "equivalentes": [
-      [
-        "COM230"
-      ],
-      [
-        "ECOT03A",
-        "ECOT13A"
-      ],
-      [
-        "ECOT03",
-        "ECOT13"
-      ]
-    ],
-    "periodo_ofertado": "2026-2",
-    "horario": "4N12 5N34"
-  },
-  "ADM51E": {
-    "codigo": "ADM51E",
-    "disciplina": "GESTÃO DO CONHECIMENTO",
-    "tipo": "Obrigatória",
-    "periodo": "5",
-    "carga_horaria": "48h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
-    "pre_requisitos": [],
-    "equivalentes": [],
-    "periodo_ofertado": "2026-1",
-    "horario": "2N12"
-  },
-  "SPAD02": {
-    "codigo": "SPAD02",
-    "disciplina": "BANCO DE DADOS II",
-    "tipo": "Obrigatória",
-    "periodo": "5",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [
-      [
-        "XPAD01",
-        "COM230"
-      ]
-    ],
-    "equivalentes": [
-      [
-        "COM231"
-      ]
-    ],
-    "periodo_ofertado": "2026-1",
-    "horario": "3N34 5N12"
-  },
-  "SPAD03": {
-    "codigo": "SPAD03",
-    "disciplina": "INTRODUÇÃO À ANÁLISE DE DADOS",
-    "tipo": "Obrigatória",
-    "periodo": "5",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [
-      [
-        "XMAC02",
-        "MAT013"
-      ],
-      [
-        "XPAD01",
-        "COM230"
       ]
     ],
     "equivalentes": [],
     "periodo_ofertado": "2026-1",
-    "horario": "3N12 5N34"
+    "horario": {
+      "2026-1": "45N12"
+    }
   },
-  "XRSC01": {
-    "codigo": "XRSC01",
-    "disciplina": "REDES DE COMPUTADORES",
+  "XDES04": {
+    "codigo": "XDES04",
+    "disciplina": "ENGENHARIA DE SOFTWARE I",
     "tipo": "Obrigatória",
-    "periodo": "5",
+    "periodo": "2",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "2N1234"
+    }
+  },
+  "SDES05": {
+    "codigo": "SDES05",
+    "disciplina": "ENGENHARIA DE SOFTWARE II",
+    "tipo": "Obrigatória",
+    "periodo": "3",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
       [
-        "SRSC02",
-        "CRSC02",
-        "COM120",
-        "ECOS01A",
-        "ECOS11A"
+        "XDES04"
       ]
     ],
-    "equivalentes": [
-      [
-        "COM240"
-      ],
-      [
-        "TELC03A",
-        "TELC13A"
-      ],
-      [
-        "TELC03",
-        "TELC13"
-      ]
-    ],
+    "equivalentes": [],
     "periodo_ofertado": "2026-1",
-    "horario": "2N34 4N12"
-  },
-  "IEPG10": {
-    "codigo": "IEPG10",
-    "disciplina": "ENGENHARIA ECONÔMICA",
-    "tipo": "Obrigatória",
-    "periodo": "6",
-    "carga_horaria": "48h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
-    "pre_requisitos": [],
-    "equivalentes": [
-      [
-        "EPR502"
-      ],
-      [
-        "EPR003"
-      ],
-      [
-        "COM311"
-      ]
-    ],
-    "periodo_ofertado": "2026-2",
-    "horario": "4N12"
+    "horario": {
+      "2026-1": "23N12"
+    }
   },
   "SDES06": {
     "codigo": "SDES06",
@@ -623,46 +88,17 @@
     "tipo": "Obrigatória",
     "periodo": "6",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
       [
-        "XDES04",
-        "COM210",
-        "ECOT01A",
-        "ECOT11A"
+        "XDES04"
       ]
     ],
-    "equivalentes": [
-      [
-        "COM212"
-      ]
-    ],
+    "equivalentes": [],
     "periodo_ofertado": "2026-2",
-    "horario": "3N12 5N34"
-  },
-  "XMCO01": {
-    "codigo": "XMCO01",
-    "disciplina": "INTELIGÊNCIA ARTIFICIAL",
-    "tipo": "Obrigatória",
-    "periodo": "6",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [
-      [
-        "XMAC02",
-        "MAT013"
-      ]
-    ],
-    "equivalentes": [
-      [
-        "CIC260"
-      ],
-      [
-        "SIN260"
-      ]
-    ],
-    "periodo_ofertado": "2026-2",
-    "horario": "3N34 5N12"
+    "horario": {
+      "2026-2": "3N12 5N34"
+    }
   },
   "SDES07": {
     "codigo": "SDES07",
@@ -670,65 +106,285 @@
     "tipo": "Obrigatória",
     "periodo": "7",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
       [
-        "XDES04",
-        "COM220"
-      ],
-      [
-        "XPAD01",
-        "COM230"
-      ],
-      [
         "XDES03",
-        "COM222"
+        "XDES04",
+        "XPAD01"
       ]
     ],
-    "equivalentes": [
-      [
-        "SIN412"
-      ]
-    ],
+    "equivalentes": [],
     "periodo_ofertado": "2026-1",
-    "horario": "3N1234"
+    "horario": {
+      "2026-1": "3N1234"
+    }
   },
-  "XAHC02": {
-    "codigo": "XAHC02",
-    "disciplina": "INTERAÇÃO HUMANO-COMPUTADOR",
+  "XPAD01": {
+    "codigo": "XPAD01",
+    "disciplina": "BANCO DE DADOS I",
     "tipo": "Obrigatória",
-    "periodo": "7",
+    "periodo": "4",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
       [
-        "XDES03",
-        "COM210",
-        "ECOX05"
-      ],
-      [
-        "XDES03",
-        "COM222",
-        "ECOX05"
-      ],
-      [
-        "XDES04",
-        "COM210",
-        "ECOX05"
-      ],
-      [
-        "XDES04",
-        "COM222",
-        "ECOX05"
+        "STCO02"
       ]
     ],
-    "equivalentes": [
+    "equivalentes": [],
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "4N12 5N34"
+    }
+  },
+  "SPAD02": {
+    "codigo": "SPAD02",
+    "disciplina": "BANCO DE DADOS II",
+    "tipo": "Obrigatória",
+    "periodo": "5",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [
       [
-        "COM213"
+        "XPAD01"
       ]
     ],
+    "equivalentes": [],
     "periodo_ofertado": "2026-1",
-    "horario": "5N1234"
+    "horario": {
+      "2026-1": "3N34 5N12"
+    }
+  },
+  "SPAD03": {
+    "codigo": "SPAD03",
+    "disciplina": "INTRODUÇÃO À ANÁLISE DE DADOS",
+    "tipo": "Obrigatória",
+    "periodo": "5",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [
+      [
+        "XMAC02",
+        "XPAD01"
+      ]
+    ],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "3N12 5N34"
+    }
+  },
+  "XMCO01": {
+    "codigo": "XMCO01",
+    "disciplina": "INTELIGÊNCIA ARTIFICIAL",
+    "tipo": "Obrigatória",
+    "periodo": "6",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [
+      [
+        "XMAC02"
+      ]
+    ],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "3N34 5N12"
+    }
+  },
+  "XRSC01": {
+    "codigo": "XRSC01",
+    "disciplina": "REDES DE COMPUTADORES",
+    "tipo": "Obrigatória",
+    "periodo": "5",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [
+      [
+        "SRSC02"
+      ]
+    ],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "2N34 4N12"
+    }
+  },
+  "SRSC02": {
+    "codigo": "SRSC02",
+    "disciplina": "SISTEMAS OPERACIONAIS",
+    "tipo": "Obrigatória",
+    "periodo": "4",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [
+      [
+        "STCO01",
+        "SRSC03"
+      ]
+    ],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "23N12"
+    }
+  },
+  "SRSC03": {
+    "codigo": "SRSC03",
+    "disciplina": "ORGANIZAÇÃO E ARQUITETURA DE COMPUTADORES",
+    "tipo": "Obrigatória",
+    "periodo": "3",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "3N34 6N12"
+    }
+  },
+  "STCO01": {
+    "codigo": "STCO01",
+    "disciplina": "ALGORITMOS E PROGRAMAÇÃO I",
+    "tipo": "Obrigatória",
+    "periodo": "2",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [
+      [
+        "XDES01"
+      ]
+    ],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "56N12"
+    }
+  },
+  "STCO02": {
+    "codigo": "STCO02",
+    "disciplina": "ALGORITMOS E PROGRAMAÇÃO II",
+    "tipo": "Obrigatória",
+    "periodo": "3",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [
+      [
+        "STCO01"
+      ]
+    ],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "26N34"
+    }
+  },
+  "MAT00A": {
+    "codigo": "MAT00A",
+    "disciplina": "CÁLCULO A",
+    "tipo": "Obrigatória",
+    "periodo": "1",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "2N12 4N34"
+    }
+  },
+  "XMAC01": {
+    "codigo": "XMAC01",
+    "disciplina": "MATEMÁTICA DISCRETA",
+    "tipo": "Obrigatória",
+    "periodo": "2",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "34N34"
+    }
+  },
+  "XMAC02": {
+    "codigo": "XMAC02",
+    "disciplina": "MÉTODOS MATEMÁTICOS PARA ANÁLISE DE DADOS",
+    "tipo": "Obrigatória",
+    "periodo": "4",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [
+      [
+        "MAT00A",
+        "XMAC01",
+        "STCO01"
+      ]
+    ],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "4N34 5N12"
+    }
+  },
+  "SMAC03": {
+    "codigo": "SMAC03",
+    "disciplina": "GRAFOS",
+    "tipo": "Obrigatória",
+    "periodo": "4",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [
+      [
+        "STCO01"
+      ]
+    ],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "23N34"
+    }
+  },
+  "IEPG14": {
+    "codigo": "IEPG14",
+    "disciplina": "COMPORTAMENTO ORGANIZACIONAL I",
+    "tipo": "Obrigatória",
+    "periodo": "4",
+    "carga_horaria": "32h",
+    "unidade_responsavel": "IEPG",
+    "pre_requisitos": [],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "6N12"
+    }
+  },
+  "ECN001": {
+    "codigo": "ECN001",
+    "disciplina": "ECONOMIA",
+    "tipo": "Obrigatória",
+    "periodo": "3",
+    "carga_horaria": "48h",
+    "unidade_responsavel": "IEPG",
+    "pre_requisitos": [],
+    "equivalentes": [],
+    "periodo_ofertado": "",
+    "horario": {}
+  },
+  "IEPG01": {
+    "codigo": "IEPG01",
+    "disciplina": "EMPREENDEDORISMO E INOVAÇÃO",
+    "tipo": "Obrigatória",
+    "periodo": "1",
+    "carga_horaria": "48h",
+    "unidade_responsavel": "IEPG",
+    "pre_requisitos": [],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "3N345"
+    }
   },
   "ADM03E": {
     "codigo": "ADM03E",
@@ -736,93 +392,45 @@
     "tipo": "Obrigatória",
     "periodo": "8",
     "carga_horaria": "48h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+    "unidade_responsavel": "IEPG",
     "pre_requisitos": [
       [
         "IEPG01"
       ]
     ],
-    "equivalentes": [
-      [
-        "SIN312"
-      ]
-    ],
-    "periodo_ofertado": "2026-2",
-    "horario": "3N345"
-  },
-  "TCC1-144H-SIN": {
-    "codigo": "TCC1-144H-SIN",
-    "disciplina": "TRABALHO DE CONCLUSÃO DE CURSO 1 - SIN",
-    "tipo": "Obrigatória",
-    "periodo": "8",
-    "carga_horaria": "144h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [],
-    "co_requisitos": [
-      "XAHC03"
-    ],
     "equivalentes": [],
-    "periodo_ofertado": "Não listado",
-    "horario": "Não listado"
-  },
-  "XAHC01": {
-    "codigo": "XAHC01",
-    "disciplina": "COMPUTAÇÃO E SOCIEDADE",
-    "tipo": "Obrigatória",
-    "periodo": "8",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [
-      [
-        "XRSC01"
-      ],
-      [
-        "XDES04"
-      ],
-      [
-        "IEPG21",
-        "ADM08H",
-        "ADM51H",
-        "ADM52H",
-        "ADM54H",
-        "ADM58H",
-        "LET007",
-        "XAHC06",
-        "XAHC07",
-        "XAHC08"
-      ]
-    ],
-    "equivalentes": [
-      [
-        "COM312"
-      ]
-    ],
     "periodo_ofertado": "2026-2",
-    "horario": "45N34"
+    "horario": {
+      "2026-2": "3N345"
+    }
   },
-  "XAHC03": {
-    "codigo": "XAHC03",
-    "disciplina": "METODOLOGIA CIENTÍFICA",
+  "IEPG10": {
+    "codigo": "IEPG10",
+    "disciplina": "ENGENHARIA ECONÔMICA",
     "tipo": "Obrigatória",
-    "periodo": "8",
-    "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [
-      [
-        "XRSC01"
-      ],
-      [
-        "CTCO04",
-        "ADM51E"
-      ]
-    ],
-    "equivalentes": [
-      [
-        "COM310"
-      ]
-    ],
+    "periodo": "6",
+    "carga_horaria": "48h",
+    "unidade_responsavel": "IEPG",
+    "pre_requisitos": [],
+    "equivalentes": [],
     "periodo_ofertado": "2026-2",
-    "horario": "35N12"
+    "horario": {
+      "2026-2": "4N12"
+    }
+  },
+  "ADM51E": {
+    "codigo": "ADM51E",
+    "disciplina": "GESTÃO DO CONHECIMENTO",
+    "tipo": "Obrigatória",
+    "periodo": "5",
+    "carga_horaria": "48h",
+    "unidade_responsavel": "IEPG",
+    "pre_requisitos": [],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "2N12"
+    }
   },
   "SADG01": {
     "codigo": "SADG01",
@@ -830,190 +438,340 @@
     "tipo": "Obrigatória",
     "periodo": "9",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
       [
-        "IEPG22",
-        "XDES04"
+        "IEPG22"
       ]
     ],
-    "equivalentes": [
-      [
-        "SIN210"
-      ]
-    ],
+    "equivalentes": [],
     "periodo_ofertado": "2026-1",
-    "horario": "3N34 5N12"
+    "horario": {
+      "2026-1": "3N34 5N12"
+    }
   },
-  "TCC2-216H-SIN": {
-    "codigo": "TCC2-216H-SIN",
-    "disciplina": "TRABALHO DE CONCLUSÃO DE CURSO 2 - 216H - SIN",
+  "IEPG22": {
+    "codigo": "IEPG22",
+    "disciplina": "ADMINISTRAÇÃO APLICADA",
+    "tipo": "Obrigatória",
+    "periodo": "1",
+    "carga_horaria": "32h",
+    "unidade_responsavel": "IEPG",
+    "pre_requisitos": [],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "4N12"
+    }
+  },
+  "IEPG04": {
+    "codigo": "IEPG04",
+    "disciplina": "MAPEAMENTO DE PROCESSOS",
+    "tipo": "Obrigatória",
+    "periodo": "2",
+    "carga_horaria": "32h",
+    "unidade_responsavel": "IEPG",
+    "pre_requisitos": [],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "3N12"
+    }
+  },
+  "XAHC01": {
+    "codigo": "XAHC01",
+    "disciplina": "COMPUTAÇÃO E SOCIEDADE",
+    "tipo": "Obrigatória",
+    "periodo": "8",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "45N34"
+    }
+  },
+  "XAHC02": {
+    "codigo": "XAHC02",
+    "disciplina": "INTERAÇÃO HUMANO-COMPUTADOR",
+    "tipo": "Obrigatória",
+    "periodo": "7",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [
+      [
+        "XDES03"
+      ]
+    ],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "5N1234"
+    }
+  },
+  "XAHC03": {
+    "codigo": "XAHC03",
+    "disciplina": "METODOLOGIA CIENTÍFICA",
+    "tipo": "Obrigatória",
+    "periodo": "8",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [
+      [
+        "TCC1"
+      ]
+    ],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "35N12"
+    }
+  },
+  "SAHC04": {
+    "codigo": "SAHC04",
+    "disciplina": "PROJETO INTEGRADO",
+    "tipo": "Obrigatória",
+    "periodo": "1",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "6N12"
+    }
+  },
+  "SAHC05": {
+    "codigo": "SAHC05",
+    "disciplina": "FUNDAMENTOS DE SISTEMAS DE INFORMAÇÃO",
+    "tipo": "Obrigatória",
+    "periodo": "1",
+    "carga_horaria": "64h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [],
+    "equivalentes": [],
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "25N34"
+    }
+  },
+  "TCC1": {
+    "codigo": "TCC1",
+    "disciplina": "TRABALHO DE CONCLUSÃO DE CURSO 1",
+    "tipo": "Obrigatória",
+    "periodo": "8",
+    "carga_horaria": "144h",
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [],
+    "equivalentes": [],
+    "periodo_ofertado": "",
+    "horario": {}
+  },
+  "TCC2": {
+    "codigo": "TCC2",
+    "disciplina": "TRABALHO DE CONCLUSÃO DE CURSO 2",
     "tipo": "Obrigatória",
     "periodo": "9",
     "carga_horaria": "216h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTACÃO",
-    "pre_requisitos": [],
-    "co_requisitos": [],
+    "unidade_responsavel": "IMC",
+    "pre_requisitos": [
+      [
+        "TCC1"
+      ]
+    ],
     "equivalentes": [],
-    "periodo_ofertado": "Não listado",
-    "horario": "Não listado"
+    "periodo_ofertado": "",
+    "horario": {}
   },
   "XDES08": {
     "codigo": "XDES08",
     "disciplina": "ARQUITETURA DE SOFTWARE",
     "tipo": "Optativa",
-    "periodo": "7, 9",
+    "periodo": "7",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XDES04"
+      [
+        "XDES04"
+      ]
     ],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "XDES10": {
     "codigo": "XDES10",
     "disciplina": "ENGENHARIA DE SOFTWARE EXPERIMENTAL",
     "tipo": "Optativa",
-    "periodo": "6, 8",
+    "periodo": "6",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XDES04"
+      [
+        "XDES04"
+      ]
     ],
     "equivalentes": [],
-    "periodo_ofertado": "",
-    "horario": ""
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "35T34"
+    }
   },
   "XDES11": {
     "codigo": "XDES11",
     "disciplina": "TÓPICOS EM DES",
     "tipo": "Optativa",
-    "periodo": "7, 9",
+    "periodo": "7",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XDES04"
+      [
+        "XDES04"
+      ]
     ],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "XPAD04": {
     "codigo": "XPAD04",
     "disciplina": "BANCOS DE DADOS NOSQL",
     "tipo": "Optativa",
-    "periodo": "6, 8",
+    "periodo": "6",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XPAD01"
+      [
+        "XPAD01"
+      ]
     ],
     "equivalentes": [],
-    "periodo_ofertado": "",
-    "horario": ""
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "6N1234"
+    }
   },
   "XPAD09": {
     "codigo": "XPAD09",
     "disciplina": "ANÁLISE E PREVISÃO DE SÉRIES TEMPORAIS",
     "tipo": "Optativa",
-    "periodo": "5, 7",
+    "periodo": "5",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XMAC02"
+      [
+        "XMAC02"
+      ]
     ],
     "equivalentes": [],
-    "periodo_ofertado": "",
-    "horario": ""
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "4N1234"
+    }
   },
   "SPAD05": {
     "codigo": "SPAD05",
     "disciplina": "ANÁLISE DE DADOS GEOESPACIAIS",
     "tipo": "Optativa",
-    "periodo": "7, 9",
+    "periodo": "7",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XPAD01",
-      "XDES03"
+      [
+        "XPAD01",
+        "XDES03"
+      ]
     ],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "SPAD06": {
     "codigo": "SPAD06",
     "disciplina": "MINERAÇÃO DE DADOS",
     "tipo": "Optativa",
-    "periodo": "6, 8",
+    "periodo": "6",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "SPAD03"
+      [
+        "SPAD03"
+      ]
     ],
     "equivalentes": [],
-    "periodo_ofertado": "",
-    "horario": ""
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "3N12 5N34"
+    }
   },
   "SPAD07": {
     "codigo": "SPAD07",
     "disciplina": "ARMAZÉM DE DADOS",
     "tipo": "Optativa",
-    "periodo": "7, 9",
+    "periodo": "7",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "SPAD03"
+      [
+        "SPAD03"
+      ]
     ],
     "equivalentes": [],
-    "periodo_ofertado": "",
-    "horario": ""
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "24N12"
+    }
   },
   "XPAD08": {
     "codigo": "XPAD08",
     "disciplina": "TÓPICOS EM PAD",
     "tipo": "Optativa",
-    "periodo": "6, 7, 8, 9",
+    "periodo": "6",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XPAD01"
+      [
+        "XPAD01"
+      ]
     ],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "XMCO02": {
     "codigo": "XMCO02",
     "disciplina": "MÉTODOS EXATOS",
     "tipo": "Optativa",
-    "periodo": "6, 8",
+    "periodo": "6",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XMAC02",
-      "STCO02"
+      [
+        "XMAC02",
+        "STCO02"
+      ]
     ],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "XMCO03": {
     "codigo": "XMCO03",
     "disciplina": "METAHEURÍSTICAS",
     "tipo": "Optativa",
-    "periodo": "7, 9",
+    "periodo": "7",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XMAC02",
-      "STCO02"
+      [
+        "XMAC02",
+        "STCO02"
+      ]
     ],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "XMCO04": {
     "codigo": "XMCO04",
@@ -1021,14 +779,16 @@
     "tipo": "Optativa",
     "periodo": "7",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XMAC02",
-      "STCO02"
+      [
+        "XMAC02",
+        "STCO02"
+      ]
     ],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "XMCO08": {
     "codigo": "XMCO08",
@@ -1036,182 +796,206 @@
     "tipo": "Optativa",
     "periodo": "7",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XMAC1"
+      [
+        "XMAC01"
+      ]
     ],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "XRSC06": {
     "codigo": "XRSC06",
     "disciplina": "AUDITORIA E SEGURANÇA DE SI",
     "tipo": "Optativa",
-    "periodo": "7, 9",
+    "periodo": "7",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XRSC01"
+      [
+        "XRSC01"
+      ]
     ],
     "equivalentes": [],
-    "periodo_ofertado": "",
-    "horario": ""
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "2N1234"
+    }
   },
   "XRSC07": {
     "codigo": "XRSC07",
     "disciplina": "COMPUTAÇÃO EM NUVEM",
     "tipo": "Optativa",
-    "periodo": "6, 8",
+    "periodo": "6",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XRSC01"
+      [
+        "XRSC01"
+      ]
     ],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "XRSC09": {
     "codigo": "XRSC09",
     "disciplina": "SISTEMAS DISTRIBUÍDOS",
     "tipo": "Optativa",
-    "periodo": "6, 8",
+    "periodo": "6",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XRSC01"
+      [
+        "XRSC01"
+      ]
     ],
     "equivalentes": [],
-    "periodo_ofertado": "",
-    "horario": ""
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "6N1234"
+    }
   },
   "XRSC10": {
     "codigo": "XRSC10",
     "disciplina": "TÓPICOS EM RSC",
     "tipo": "Optativa",
-    "periodo": "7, 9",
+    "periodo": "7",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XRSC01"
+      [
+        "XRSC01"
+      ]
     ],
     "equivalentes": [],
-    "periodo_ofertado": "",
-    "horario": ""
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "24N34"
+    }
   },
   "ECOS04": {
     "codigo": "ECOS04",
     "disciplina": "SIMULAÇÃO E AVALIAÇÃO DE DESEMPENHO",
     "tipo": "Optativa",
-    "periodo": "",
+    "periodo": "0",
     "carga_horaria": "32h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE SISTEMAS E TECNOLOGIA DA INFORMAÇÃO",
+    "unidade_responsavel": "IESTI",
     "pre_requisitos": [
-      "XRSC09"
+      [
+        "XRSC09"
+      ]
     ],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "SADG02": {
     "codigo": "SADG02",
     "disciplina": "ECONOMIA DA INFORMAÇÃO",
     "tipo": "Optativa",
-    "periodo": "7, 9",
+    "periodo": "7",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [],
     "equivalentes": [],
-    "periodo_ofertado": "",
-    "horario": ""
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "4N1234"
+    }
   },
   "XADG03": {
     "codigo": "XADG03",
     "disciplina": "TÓPICOS EM ADG",
     "tipo": "Optativa",
-    "periodo": "",
+    "periodo": "0",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "ADM01F": {
     "codigo": "ADM01F",
     "disciplina": "FINANÇAS: CONCEITOS E APLICAÇÕES",
     "tipo": "Optativa",
-    "periodo": "7, 9",
+    "periodo": "7",
     "carga_horaria": "32h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+    "unidade_responsavel": "IEPG",
     "pre_requisitos": [],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "IEPG05": {
     "codigo": "IEPG05",
     "disciplina": "FINANÇAS PARA EXECUTIVOS",
     "tipo": "Optativa",
-    "periodo": "6, 8",
+    "periodo": "6",
     "carga_horaria": "48h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+    "unidade_responsavel": "IEPG",
     "pre_requisitos": [],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "IEPG13": {
     "codigo": "IEPG13",
     "disciplina": "CUSTOS EMPRESARIAIS",
     "tipo": "Optativa",
-    "periodo": "7, 9",
+    "periodo": "7",
     "carga_horaria": "48h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+    "unidade_responsavel": "IEPG",
     "pre_requisitos": [],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "IEPG15": {
     "codigo": "IEPG15",
     "disciplina": "LOGÍSTICA E GESTÃO DA CADEIA DE SUPRIMENTOS",
     "tipo": "Optativa",
-    "periodo": "6, 8",
+    "periodo": "6",
     "carga_horaria": "32h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+    "unidade_responsavel": "IEPG",
     "pre_requisitos": [],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "XAHC06": {
     "codigo": "XAHC06",
     "disciplina": "TÓPICOS EM AHC",
     "tipo": "Optativa",
-    "periodo": "",
+    "periodo": "0",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+    "unidade_responsavel": "IEPG",
     "pre_requisitos": [],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "XAHC07": {
     "codigo": "XAHC07",
     "disciplina": "COMPUTAÇÃO APLICADA À EDUCAÇÃO",
     "tipo": "Optativa",
-    "periodo": "5, 7",
+    "periodo": "5",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XDES03",
-      "XDES04"
+      [
+        "XDES03",
+        "XDES04"
+      ]
     ],
     "equivalentes": [],
-    "periodo_ofertado": "",
-    "horario": ""
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "6N1234"
+    }
   },
   "XAHC08": {
     "codigo": "XAHC08",
@@ -1219,97 +1003,106 @@
     "tipo": "Optativa",
     "periodo": "8",
     "carga_horaria": "64h",
-    "unidade_responsavel": "INSTITUTO DE MATEMÁTICA E COMPUTAÇÃO",
+    "unidade_responsavel": "IMC",
     "pre_requisitos": [
-      "XMAC02",
-      "XAHC02"
+      [
+        "XMAC02",
+        "XAHC02"
+      ]
     ],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "IEPG21": {
     "codigo": "IEPG21",
     "disciplina": "CIÊNCIAS HUMANAS E SOCIAIS",
     "tipo": "Optativa",
-    "periodo": "6, 7, 8, 9",
+    "periodo": "6",
     "carga_horaria": "48h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+    "unidade_responsavel": "IEPG",
     "pre_requisitos": [],
     "equivalentes": [],
-    "periodo_ofertado": "",
-    "horario": ""
+    "periodo_ofertado": "2026-1 / 2026-2",
+    "horario": {
+      "2026-1": "3T345",
+      "2026-2": "3T345"
+    }
   },
   "LET007": {
     "codigo": "LET007",
-    "disciplina": "LIBRAS - LÍNGUA BRASILEIRA DE SINAIS",
+    "disciplina": "LIBRAS: LÍNGUA BRASILEIRA DE SINAIS",
     "tipo": "Optativa",
-    "periodo": "6, 7, 8, 9",
+    "periodo": "6",
     "carga_horaria": "48h",
-    "unidade_responsavel": "INSTITUTO DE FÍSICA E QUÍMICA",
+    "unidade_responsavel": "IFQ",
     "pre_requisitos": [],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "ADM08H": {
     "codigo": "ADM08H",
     "disciplina": "PSICOLOGIA: AS RELAÇÕES INDIVÍDUO-GRUPO",
     "tipo": "Optativa",
-    "periodo": "7, 9",
+    "periodo": "7",
     "carga_horaria": "48h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+    "unidade_responsavel": "IEPG",
     "pre_requisitos": [],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "ADM52H": {
     "codigo": "ADM52H",
     "disciplina": "COMPORTAMENTO ORGANIZACIONAL II",
     "tipo": "Optativa",
-    "periodo": "7, 9",
+    "periodo": "7",
     "carga_horaria": "32h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+    "unidade_responsavel": "IEPG",
     "pre_requisitos": [],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "ADM54H": {
     "codigo": "ADM54H",
     "disciplina": "GESTÃO DE CARREIRA",
     "tipo": "Optativa",
-    "periodo": "6, 8",
+    "periodo": "6",
     "carga_horaria": "32h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+    "unidade_responsavel": "IEPG",
     "pre_requisitos": [],
     "equivalentes": [],
-    "periodo_ofertado": "",
-    "horario": ""
+    "periodo_ofertado": "2026-2",
+    "horario": {
+      "2026-2": "4N34"
+    }
   },
   "ADM58H": {
     "codigo": "ADM58H",
     "disciplina": "PSICOLOGIA ORGANIZACIONAL E DO TRABALHO",
     "tipo": "Optativa",
-    "periodo": "6, 8",
+    "periodo": "6",
     "carga_horaria": "32h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+    "unidade_responsavel": "IEPG",
     "pre_requisitos": [],
     "equivalentes": [],
     "periodo_ofertado": "",
-    "horario": ""
+    "horario": {}
   },
   "ADM51H": {
     "codigo": "ADM51H",
     "disciplina": "CIÊNCIAS, TECNOLOGIAS E ORGANIZAÇÕES",
     "tipo": "Optativa",
-    "periodo": "7, 9",
+    "periodo": "7",
     "carga_horaria": "48h",
-    "unidade_responsavel": "INSTITUTO DE ENGENHARIA DE PRODUÇÃO E GESTÃO",
+    "unidade_responsavel": "IEPG",
     "pre_requisitos": [],
     "equivalentes": [],
-    "periodo_ofertado": "",
-    "horario": ""
+    "periodo_ofertado": "2026-1",
+    "horario": {
+      "2026-1": "4T345"
+    }
   }
 }
