@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.join(RAIZ, 'src'))
 
 from parser_historico import extrair_dados_completos_sigaa          # noqa: E402
 from grafo_pendentes import carregar_grade, construir_grafo_dependencias, eh_obrigatoria  # noqa: E402
-from grafo_pesos import atribuir_pesos                              # noqa: E402
+from grafo_pesos import atribuir_pesos, esta_disponivel                  # noqa: E402
 from recomendar_semestre import recomendar_semestre                 # noqa: E402
 
 MAX_MATERIAS_TETO = 8     # teto de matérias por semestre (evita orçamento irreal)
@@ -76,6 +76,13 @@ def para_cytoscape(grafo, meta):
     return {"elements": {"nodes": nodes, "edges": edges}, "meta": meta}
 
 
+def _ch_int(ch_raw):
+    try:
+        return int(str(ch_raw).replace('h', '').strip())
+    except (ValueError, AttributeError):
+        return 64
+
+
 def gerar(caminho_pdf=None, max_horas=None):
     pasta = os.path.join(RAIZ, 'src', 'data', 'Dataset-Cenario1-RecomendacaoMatricula')
     if not caminho_pdf:
@@ -88,17 +95,10 @@ def gerar(caminho_pdf=None, max_horas=None):
         extrair_dados_completos_sigaa(caminho_pdf)
 
     grade = carregar_grade(curso)
-
-    # Inclui as optativas na análise: candidatas = optativas da grade ainda não cursadas.
-    # (Obrigatória pendente vem do parser; optativa "pendente" é tudo que falta do catálogo.)
     resolvidas_set = set(resolvidas)
-    optativas_candidatas = [
-        cod for cod, dados in grade.items()
-        if not eh_obrigatoria(dados) and cod not in resolvidas_set
-    ]
-    pendentes = list(pendentes_obrig) + optativas_candidatas
 
-    grafo = construir_grafo_dependencias(pendentes, grade, curso=curso)
+    # O GRAFO contém apenas as obrigatórias pendentes (espinha dorsal).
+    grafo = construir_grafo_dependencias(pendentes_obrig, grade, curso=curso)
     periodo_atual = calcular_periodo_atual_aluno(periodo_ingresso, suspensoes)
     grafo = atribuir_pesos(grafo, resolvidas, df_historico, periodo_atual)
 
@@ -106,9 +106,34 @@ def gerar(caminho_pdf=None, max_horas=None):
     if max_horas is None:
         max_horas = orcamento_por_media(media)
 
-    # PARTE 3 (passo 1): knapsack para CADA semestre-alvo (1=ímpar, 2=par).
-    rec1 = recomendar_semestre(grafo, max_horas, semestre_alvo=1)
-    rec2 = recomendar_semestre(grafo, max_horas, semestre_alvo=2)
+    # Recomendação por semestre (só obrigatórias). O que sobrar do orçamento
+    # vira "vagas de optativa" (slots), não disciplinas optativas específicas.
+    def recomendar(sem):
+        r = recomendar_semestre(grafo, max_horas, semestre_alvo=sem)
+        horas_livres = max(0, max_horas - r['total_horas'])
+        return {
+            "codigos": r['recomendadas'],
+            "horas": r['total_horas'],
+            "w": r['total_w'],
+            "horas_livres": horas_livres,
+            "slots_optativa": horas_livres // CH_REFERENCIA,  # vagas de ~64h para optativa
+        }
+
+    # Lista de optativas (catálogo ainda não cursado): sigla, nome, período, CH, oferta
+    # e se os pré-requisitos já estão satisfeitos. NÃO entram no grafo.
+    lista_optativas = []
+    for cod, dados in grade.items():
+        if eh_obrigatoria(dados) or cod in resolvidas_set:
+            continue
+        lista_optativas.append({
+            "codigo": cod,
+            "nome": dados.get('disciplina', cod),
+            "periodo": int(dados.get('periodo', 0) or 0),
+            "ch": _ch_int(dados.get('carga_horaria', '64h')),
+            "periodo_ofertado": dados.get('periodo_ofertado', ''),
+            "disponivel": esta_disponivel({'pre_requisitos': dados.get('pre_requisitos', [])}, resolvidas_set),
+        })
+    lista_optativas.sort(key=lambda o: (o['periodo'], o['codigo']))
 
     meta = {
         "curso": curso,
@@ -116,15 +141,11 @@ def gerar(caminho_pdf=None, max_horas=None):
         "periodo_ingresso": periodo_ingresso,
         "total": len(grafo['nos']),
         "disponiveis": sum(1 for d in grafo['nos'].values() if d['disponivel']),
-        "obrigatorias": sum(1 for d in grafo['nos'].values() if d['tipo'] == 'Obrigatoria'),
-        "optativas": sum(1 for d in grafo['nos'].values() if d['tipo'] == 'Optativa'),
         "max_horas": max_horas,
         "media_aprovacoes": round(media, 1) if media else 0,
         "orcamento_materias": max_horas // CH_REFERENCIA,
-        "recomendacao": {
-            "1": {"codigos": rec1['recomendadas'], "horas": rec1['total_horas'], "w": rec1['total_w']},
-            "2": {"codigos": rec2['recomendadas'], "horas": rec2['total_horas'], "w": rec2['total_w']},
-        },
+        "recomendacao": {"1": recomendar(1), "2": recomendar(2)},
+        "lista_optativas": lista_optativas,
         "fantasmas": grafo.get('fantasmas', []),
         "arquivo": os.path.basename(caminho_pdf),
     }
