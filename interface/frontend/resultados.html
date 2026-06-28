@@ -27,7 +27,9 @@
         .dot { width:14px; height:14px; border-radius:3px; display:inline-block; }
         .layout { display:flex; gap:16px; padding:16px 24px; align-items:flex-start; }
         #cy { flex:1; height:70vh; min-height:480px; background:#fff; border:1px solid var(--borda); border-radius:8px; }
-        #painel { width:300px; background:#fff; border:1px solid var(--borda); border-radius:8px; padding:16px; min-height:200px; }
+        .coluna-dir { width:300px; display:flex; flex-direction:column; gap:16px; }
+        .card-painel { background:#fff; border:1px solid var(--borda); border-radius:8px; padding:16px; }
+        #painel { min-height:160px; }
         #painel h3 { margin:0 0 4px; font-size:16px; }
         #painel .cod { color:#888; font-size:12px; }
         #painel .status { font-weight:bold; margin:8px 0; }
@@ -60,6 +62,23 @@
         .card .c-nome { font-size:15px; margin:4px 0 10px; line-height:1.25; }
         .card .c-meta { display:flex; justify-content:space-between; font-size:12px; color:#666; }
         .card .c-w { font-weight:bold; color:#b8860b; }
+        /* Card cinza de vaga livre para optativa */
+        .card.card-vazio { border:2px dashed #bbb; border-left:2px dashed #bbb; background:#fafafa; box-shadow:none; }
+        .card.card-vazio .c-cod { color:#888; }
+        .card.card-vazio .c-nome { color:#999; font-style:italic; }
+        .card.card-vazio .c-meta { color:#aaa; }
+        /* Lista de optativas (coluna direita) */
+        #painel-optativas .opt-titulo { margin:0 0 2px; font-size:15px; }
+        #painel-optativas .opt-sub { color:#888; font-size:12px; margin-bottom:10px; }
+        #opt-lista { max-height:40vh; overflow-y:auto; }
+        .opt-row { padding:8px 0; border-bottom:1px solid #f0f0f0; }
+        .opt-row:last-child { border-bottom:0; }
+        .opt-top { display:flex; justify-content:space-between; align-items:baseline; }
+        .opt-cod { font-weight:bold; color:var(--roxo); font-size:13px; }
+        .opt-ch { font-size:12px; color:#666; }
+        .opt-nome { font-size:13px; line-height:1.25; margin:2px 0; }
+        .opt-per { font-size:11px; color:#999; }
+        .opt-vazio { color:#999; font-size:13px; padding:8px 0; }
         .recs-vazio { color:#999; margin-top:16px; }
     </style>
 </head>
@@ -83,9 +102,16 @@
 
     <div class="layout">
         <div id="cy"></div>
-        <aside id="painel">
-            <div class="vazio" id="painel-vazio">Clique em uma disciplina para ver a composição do peso.</div>
-            <div id="painel-conteudo" style="display:none;"></div>
+        <aside class="coluna-dir">
+            <div id="painel" class="card-painel">
+                <div class="vazio" id="painel-vazio">Clique em uma disciplina para ver a composição do peso.</div>
+                <div id="painel-conteudo" style="display:none;"></div>
+            </div>
+            <div id="painel-optativas" class="card-painel">
+                <h3 class="opt-titulo">Optativas disponíveis</h3>
+                <div class="opt-sub" id="opt-sub"></div>
+                <div id="opt-lista"></div>
+            </div>
         </aside>
     </div>
 
@@ -231,23 +257,27 @@
             <span>Recomendadas: <b>${recs.codigos.length}</b> (${recs.horas}h)</span>`;
 
         montarCards(recs, sem);
+        montarListaOptativas(sem);
     }
 
     function montarCards(recs, sem) {
         const sec = document.getElementById('recs');
         sec.style.display = 'block';
         document.getElementById('recs-titulo').textContent = `Recomendadas para 2026.${sem}`;
+        const slots = recs.slots_optativa || 0;
         document.getElementById('recs-resumo').textContent =
-            recs.codigos.length ? `${recs.codigos.length} disciplinas · ${recs.horas}h · prioridade somada ${recs.w}` : '';
+            `${recs.codigos.length} obrigatória(s) · ${recs.horas}h`
+            + (slots ? ` · ${slots} vaga(s) livre(s) p/ optativa` : '');
 
         const cont = document.getElementById('recs-cards');
-        if (!recs.codigos.length) {
-            cont.innerHTML = `<div class="recs-vazio">Nenhuma disciplina disponível e ofertada em 2026.${sem}.</div>`;
+        if (!recs.codigos.length && !slots) {
+            cont.innerHTML = `<div class="recs-vazio">Nada disponível e ofertado em 2026.${sem}.</div>`;
             return;
         }
         const dados = {};
         GRAFO.elements.nodes.forEach(n => dados[n.data.codigo] = n.data);
-        cont.innerHTML = recs.codigos.map((c, i) => {
+
+        let html = recs.codigos.map((c, i) => {
             const d = dados[c];
             return `<div class="card" style="transition-delay:${i * 60}ms">
                 <div class="c-cod">${d.codigo}</div>
@@ -256,12 +286,42 @@
             </div>`;
         }).join('');
 
+        // Vagas livres: cards cinza apontando espaço para optativa
+        for (let s = 0; s < slots; s++) {
+            const i = recs.codigos.length + s;
+            html += `<div class="card card-vazio" style="transition-delay:${i * 60}ms">
+                <div class="c-cod">Optativa</div>
+                <div class="c-nome">Espaço livre</div>
+                <div class="c-meta"><span>escolha da lista ao lado</span><span>~64h</span></div>
+            </div>`;
+        }
+        cont.innerHTML = html;
+
         // Revela os cards ao rolar
         if (OBS) OBS.disconnect();
         OBS = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visivel'); });
         }, { threshold: 0.15 });
         cont.querySelectorAll('.card').forEach(c => OBS.observe(c));
+    }
+
+    // Lista de optativas liberadas (prereq ok) e ofertadas no semestre selecionado
+    function montarListaOptativas(sem) {
+        const lista = (GRAFO.meta.lista_optativas || [])
+            .filter(o => o.disponivel && ofertadaEm(o.periodo_ofertado, sem));
+        document.getElementById('opt-sub').textContent =
+            `${lista.length} liberada(s) e ofertada(s) em 2026.${sem}`;
+        const cont = document.getElementById('opt-lista');
+        if (!lista.length) {
+            cont.innerHTML = `<div class="opt-vazio">Nenhuma optativa liberada neste semestre.</div>`;
+            return;
+        }
+        cont.innerHTML = lista.map(o => `
+            <div class="opt-row">
+                <div class="opt-top"><span class="opt-cod">${o.codigo}</span><span class="opt-ch">${o.ch}h</span></div>
+                <div class="opt-nome">${o.nome}</div>
+                <div class="opt-per">período ${o.periodo}</div>
+            </div>`).join('');
     }
 
     function mostrarPainel(d) {
