@@ -20,6 +20,9 @@ sys.path.insert(0, os.path.join(RAIZ, 'src'))
 from parser_historico import extrair_dados_completos_sigaa          # noqa: E402
 from grafo_pendentes import carregar_grade, construir_grafo_dependencias  # noqa: E402
 from grafo_pesos import atribuir_pesos                              # noqa: E402
+from recomendar_semestre import recomendar_semestre                 # noqa: E402
+
+MAX_HORAS_PADRAO = 384  # limite de carga horária do semestre (6 x 64h)
 
 
 def calcular_periodo_atual_aluno(periodo_ingresso, suspensoes):
@@ -43,6 +46,7 @@ def para_cytoscape(grafo, meta):
             "ch": d.get('ch'),
             "periodo": d.get('periodo_ideal'),
             "disponivel": bool(d.get('disponivel')),
+            "periodo_ofertado": d.get('periodo_ofertado', ''),
             "W": d.get('W', 0),
             "P1": d.get('P1', 0), "P2": d.get('P2', 0), "P3": d.get('P3', 0),
             "P4": d.get('P4', 0), "P5": d.get('P5', 0),
@@ -56,7 +60,7 @@ def para_cytoscape(grafo, meta):
     return {"elements": {"nodes": nodes, "edges": edges}, "meta": meta}
 
 
-def gerar(caminho_pdf=None):
+def gerar(caminho_pdf=None, max_horas=MAX_HORAS_PADRAO):
     pasta = os.path.join(RAIZ, 'src', 'data', 'Dataset-Cenario1-RecomendacaoMatricula')
     if not caminho_pdf:
         pdfs = glob.glob(os.path.join(pasta, '*.pdf'))
@@ -72,12 +76,22 @@ def gerar(caminho_pdf=None):
     periodo_atual = calcular_periodo_atual_aluno(periodo_ingresso, suspensoes)
     grafo = atribuir_pesos(grafo, resolvidas, df_historico, periodo_atual)
 
+    # PARTE 3 (passo 1): knapsack para CADA semestre-alvo (1=ímpar, 2=par).
+    # Cada um filtra por disponibilidade E oferta no semestre. O front alterna entre eles.
+    rec1 = recomendar_semestre(grafo, max_horas, semestre_alvo=1)
+    rec2 = recomendar_semestre(grafo, max_horas, semestre_alvo=2)
+
     meta = {
         "curso": curso,
         "periodo_atual": periodo_atual,
         "periodo_ingresso": periodo_ingresso,
         "total": len(grafo['nos']),
         "disponiveis": sum(1 for d in grafo['nos'].values() if d['disponivel']),
+        "max_horas": max_horas,
+        "recomendacao": {
+            "1": {"codigos": rec1['recomendadas'], "horas": rec1['total_horas'], "w": rec1['total_w']},
+            "2": {"codigos": rec2['recomendadas'], "horas": rec2['total_horas'], "w": rec2['total_w']},
+        },
         "fantasmas": grafo.get('fantasmas', []),
         "arquivo": os.path.basename(caminho_pdf),
     }
