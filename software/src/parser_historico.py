@@ -8,8 +8,8 @@ import glob
 def extrair_dados_completos_sigaa(caminho_pdf):
     disciplinas_brutas = []
     pendentes = []
-    codigos_equivalencias = [] # 1. Lista única para reunir as equivalências extraídas
-    codigos_suspensoes = [] # 2. Lista única para reunir as suspensões extraídas
+    codigos_equivalencias = [] 
+    codigos_suspensoes = [] 
     curso_identificado = "DESCONHECIDO"
     
     # Flags para controlar quando o parser deve ler cada seção do texto
@@ -17,16 +17,14 @@ def extrair_dados_completos_sigaa(caminho_pdf):
     capturando_suspensoes = False 
     capturando_equivalencias = False 
     
-    # Padrão Regex para capturar:
-    # 1. Códigos da UNIFEI (Ex: COM110, XDES01, MAT00A, SIN130)
+    # Padrões Regex
     padrao_codigo_unifei = r'\b([A-Z]{3,4}[0-9]{2}[0-9A-Z]?)\b'
-    # 2. Códigos de suspensão da UNIFEI (Ex: 2025.1, 2025.2)
     padrao_suspensao_unifei = r'\b([0-9]{4}[.]{1}[1-2]{1}?)\b'
 
     with pdfplumber.open(caminho_pdf) as pdf:
         
         # -------------------------------------------------------------
-        # ETAPA 0: Extração do Curso (Apenas na primeira página)
+        # ETAPA 0: Extração do Curso e Ingresso
         # -------------------------------------------------------------
         texto_cabecalho = pdf.pages[0].extract_text()
         periodo_ingresso = "2024.1"
@@ -42,6 +40,8 @@ def extrair_dados_completos_sigaa(caminho_pdf):
             if match_ingresso:
                 periodo_ingresso = match_ingresso.group(1)
 
+        ultimo_semestre_visto = "Desconhecido" # Variável para lidar com células mescladas no PDF
+
         for page in pdf.pages:
             
             # -------------------------------------------------------------
@@ -53,6 +53,12 @@ def extrair_dados_completos_sigaa(caminho_pdf):
                     if not linha or len(linha) < 11:
                         continue
                     
+                    # 1.1 Captura do Semestre
+                    coluna_semestre = str(linha[0]).strip()
+                    match_sem = re.search(r'([0-9]{4}\.[1-2])', coluna_semestre)
+                    if match_sem:
+                        ultimo_semestre_visto = match_sem.group(1)
+                    
                     codigo = str(linha[2]).strip()
                     situacao = str(linha[10]).strip()
                     
@@ -60,7 +66,9 @@ def extrair_dados_completos_sigaa(caminho_pdf):
                         if situacao in ['REP', 'REPMF']:
                             situacao = 'REP'
                         
+                        # Adicionamos o semestre no dicionário
                         disciplinas_brutas.append({
+                            'semestre': ultimo_semestre_visto,
                             'codigo': codigo,
                             'situacao': situacao
                         })
@@ -74,88 +82,90 @@ def extrair_dados_completos_sigaa(caminho_pdf):
                 
                 for linha in linhas_texto:
                     
-                    # 1. Gatilho de LIGAR
                     if "Suspensões" in linha:
                         capturando_suspensoes = True
-                        # O 'continue' foi removido para não pular a leitura desta linha
                         
-                    # 2. Executa a EXTRAÇÃO imediatamente
                     if capturando_suspensoes:
-                        # Regex otimizado para o padrão AAAA.S (ex: 2025.1)
                         suspensoes_linha = re.findall(r'\b([0-9]{4}\.[1-2])\b', linha)
                         codigos_suspensoes.extend(suspensoes_linha)
 
-                    # 3. Gatilho de DESLIGAR
                     if capturando_suspensoes and any(termo in linha for termo in [
-                        "Prorrogações",
-                        "Componentes Curriculares Cursados",
-                        "Componentes Curriculares Optativos",
-                        "Atividades Complementares",
-                        "Atividades de Extensão",
-                        "Índice de Rendimento",
-                        "Observações",
-                        "Equivalências"
+                        "Prorrogações", "Componentes Curriculares Cursados", 
+                        "Componentes Curriculares Optativos", "Atividades Complementares", 
+                        "Atividades de Extensão", "Índice de Rendimento", "Observações", "Equivalências"
                     ]):
                         capturando_suspensoes = False
                         
-
-                    # Gatilho de INÍCIO da captura de Pendentes
                     if "Componentes Curriculares Obrigatórios Pendentes" in linha:
                         capturando_pendentes = True
                         continue
                     
-                    # Gatilhos de PARADA da captura de Pendentes
                     if capturando_pendentes and any(termo in linha for termo in [
-                        "Componentes Curriculares Optativos",
-                        "Atividades Complementares",
-                        "Atividades de Extensão",
-                        "Índice de Rendimento",
-                        "Observações",
-                        "Equivalências"
+                        "Componentes Curriculares Optativos", "Atividades Complementares", 
+                        "Atividades de Extensão", "Índice de Rendimento", "Observações", "Equivalências"
                     ]):
                         capturando_pendentes = False
                     
-                    # Gatilho de INÍCIO da captura de Equivalências
                     if "Equivalências" in linha:
                         capturando_equivalencias = True
                         continue
                         
-                    # Executa a captura de Pendentes
                     if capturando_pendentes:
                         match = re.search(padrao_codigo_unifei, linha)
                         if match:
                             pendentes.append(match.group(1))
                             
-                    # Executa a captura de Equivalências (Pega ambos os códigos da linha)
                     if capturando_equivalencias:
                         codigos_linha = re.findall(padrao_codigo_unifei, linha)
-                        # Garante que pegou exatamente o par (materia_alvo e materia_origem)
                         if len(codigos_linha) == 2:
                             codigos_equivalencias.extend(codigos_linha)
 
-    # -------------------------------------------------------------
-    # CONSOLIDAÇÃO DOS DADOS
+ # -------------------------------------------------------------
+    # ETAPA 3: CONSOLIDAÇÃO E ANÁLISE DOS DADOS
     # -------------------------------------------------------------
     df_bruto = pd.DataFrame(disciplinas_brutas)
+    media_aprovacao_semestre = 0.0
     
     if df_bruto.empty:
         df_consolidado = pd.DataFrame()
         disciplinas_resolvidas = []
     else:
+        # --- NOVO CÁLCULO DA MÉDIA (Desconsiderando o semestre em andamento) ---
+        status_sucesso = ['APR', 'APRN', 'CUMP', 'DISP']
+        
+        # 1. Lista todos os semestres reais (ignora erros de leitura) e ordena cronologicamente
+        semestres_unicos = sorted(df_bruto[df_bruto['semestre'] != 'Desconhecido']['semestre'].unique())
+        
+        # 2. Remove o semestre mais recente da conta (último da lista)
+        if len(semestres_unicos) > 1:
+            semestres_fechados = semestres_unicos[:-1] # Corta o último fora
+        else:
+            # Se o aluno for calouro e só tiver 1 semestre no histórico, usa ele mesmo 
+            # para não zerar a conta, mas o ideal é que ele já tenha histórico finalizado.
+            semestres_fechados = semestres_unicos 
+            
+        # 3. Filtra o histórico para olhar APENAS para os semestres que já terminaram
+        df_historico_fechado = df_bruto[df_bruto['semestre'].isin(semestres_fechados)]
+        
+        # 4. Faz o cálculo real
+        total_aprovacoes = len(df_historico_fechado[df_historico_fechado['situacao'].isin(status_sucesso)])
+        total_semestres_avaliados = len(semestres_fechados)
+        
+        if total_semestres_avaliados > 0:
+            media_aprovacao_semestre = total_aprovacoes / total_semestres_avaliados
+        # -----------------------------------------------------------------------
+
+        # Agrupamento da tabela do histórico (Restante do código igual...)
         df_consolidado = df_bruto.groupby('codigo').agg(
             tentativas=('situacao', 'count'),
             reprovacoes=('situacao', lambda x: (x == 'REP').sum()),
             situacao_final=('situacao', lambda x: 'APR' if 'APR' in x.values else ('CUMP' if 'CUMP' in x.values else ('MATR' if 'MATR' in x.values else x.values[-1])))
         ).reset_index()
         
-        # Mapeia as disciplinas resolvidas/concluídas iniciais
         disciplinas_resolvidas = df_consolidado[df_consolidado['situacao_final'].isin(['APR', 'MATR', 'CUMP'])]['codigo'].tolist()
-    
     # -------------------------------------------------------------
-    # 3. LÓGICA DE SUBSTITUIÇÃO DAS EQUIVALÊNCIAS DO PDF
+    # 3. LÓGICA DE SUBSTITUIÇÃO DAS EQUIVALÊNCIAS
     # -------------------------------------------------------------
-    # O range começa em 1 e pula de 2 em 2 (1, 3, 5...) avaliando apenas matérias cursadas.
-    # Se der Match, substitui pelo índice j-1 (a equivalente correta da grade).
     for i in range(len(disciplinas_resolvidas)):
         for j in range(1, len(codigos_equivalencias), 2):
             if disciplinas_resolvidas[i] == codigos_equivalencias[j]:
@@ -168,50 +178,41 @@ def extrair_dados_completos_sigaa(caminho_pdf):
         with open(caminho_json, 'r', encoding='utf-8') as f:
             mapa_equivalencias = json.load(f)
     except FileNotFoundError:
-        print("Aviso: Arquivo de equivalências JSON não encontrado. Rodando apenas com as do PDF.")
+        pass # Silenciado o print para não sujar o log principal
 
-    # 2. Expande as disciplinas resolvidas adicionando também todas as equivalentes do JSON
     disciplinas_resolvidas_expandidas = set(disciplinas_resolvidas)
     for disc in disciplinas_resolvidas:
         if disc in mapa_equivalencias:
             equivalentes = mapa_equivalencias[disc]
             disciplinas_resolvidas_expandidas.update(equivalentes)
 
-    # 3. Remove duplicatas da captura de pendentes
     pendentes_unicos = set(pendentes)
-    
-    # 4. Filtra as pendências reais subtraindo as disciplinas resolvidas/substituídas
     pendentes_reais = [codigo for codigo in pendentes_unicos if codigo not in disciplinas_resolvidas_expandidas]
 
-    return curso_identificado, df_consolidado, list(disciplinas_resolvidas_expandidas), pendentes_reais, periodo_ingresso, codigos_suspensoes
+    # Agora a função retorna a 'media_aprovacao_semestre' como o 7º item
+    return curso_identificado, df_consolidado, list(disciplinas_resolvidas_expandidas), pendentes_reais, periodo_ingresso, codigos_suspensoes, media_aprovacao_semestre
+
 
 # --- Execução Principal ---
 if __name__ == "__main__":
-    # 1. Defina o caminho da pasta onde os uploads ou os arquivos de histórico são salvos
-    # Mudamos para apontar para o diretório (pasta) e não para um arquivo fixo
-    # 1. Pega o caminho absoluto da pasta onde este script (parser_historico.py) está salvo
     diretorio_atual = os.path.dirname(os.path.abspath(__file__))
-
-    # 2. Constrói o caminho subindo ou navegando até a pasta do Dataset
-
     diretorio_historicos = os.path.join(diretorio_atual, "data", "Dataset-Cenario1-RecomendacaoMatricula")
-
-    # 3. Busca todos os arquivos .pdf dentro desta pasta
     arquivos_pdf = glob.glob(os.path.join(diretorio_historicos, "*.pdf"))
 
     if not arquivos_pdf:
         print(f"Erro: Nenhum arquivo PDF encontrado no diretório mapeado:\n-> {diretorio_historicos}\nPor favor, verifique o caminho ou faça o upload.")
     else:
-        # 4. Encontra o arquivo mais recente baseado na data de modificação
         caminho_arquivo = max(arquivos_pdf, key=os.path.getmtime)
-        
         print(f"Arquivo detectado automaticamente para análise: {os.path.basename(caminho_arquivo)}")
         
-        # 5. Executa a extração recebendo as 6 variáveis
-        curso, df_historico, disciplinas_resolvidas, lista_pendentes, periodo_ingresso, suspensoes = extrair_dados_completos_sigaa(caminho_arquivo)
+        # Recebendo a 7ª variável: media_aprovacoes
+        curso, df_historico, disciplinas_resolvidas, lista_pendentes, periodo_ingresso, suspensoes, media_aprovacoes = extrair_dados_completos_sigaa(caminho_arquivo)
 
-        # --- Print dos Resultados ---
-        print(f"\nCurso Identificado: {curso}\n")
+        print(f"\n===== RESULTADOS DA ANÁLISE =====")
+        print(f"Curso Identificado: {curso}")
+        print(f"Período de Ingresso: {periodo_ingresso}")
+        print(f"Média Histórica de Aprovações: {media_aprovacoes:.2f} matérias / semestre")
+        print(f"=================================\n")
 
         print("Tabela Consolidada para Alimentação do Grafo:")
         print(df_historico.head(10).to_string(index=False))
@@ -220,3 +221,5 @@ if __name__ == "__main__":
         print(f"Total de Disciplinas Obrigatórias Pendentes Encontradas: {len(lista_pendentes)}")
         print("Lista de Pendentes:")
         print(lista_pendentes)
+
+        print(f"Media de Aprovação por Semestre: {media_aprovacoes}")
