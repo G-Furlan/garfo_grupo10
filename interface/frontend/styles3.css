@@ -7,16 +7,14 @@ body {
 
         .container-sistema {
             display: flex;
-            min-height: 90vh;
-            background-image: url('assets/fundo3.jpg'); 
+            background-image: url('assets/fundo2.jpg'); 
             background-repeat: no-repeat;
             background-size:cover; 
             justify-content: center;
             .conteudo-inicial {
             position: relative;
-            z-index: 2;
             width: 100%;
-            min-height: 80vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column; /* Alinha o Topo e o Centro verticalmente */
             padding: 40px; /* Margem de segurança nas bordas da tela */
@@ -32,7 +30,6 @@ body {
                     color: rgba(255, 255, 255, 0.9);
                     font-size: 1.4rem;
                     /* O SEGREDO: Empurra tudo que estiver à direita dele para o extremo oposto */
-                    margin-right: auto; 
                 }
             }
                 .pdf-preview-container{
@@ -42,23 +39,29 @@ body {
 
 
         .centro-coluna {
-            flex: 1; /* Faz esse bloco ocupar todo o espaço restante da tela */
+            background-color: rgb(255, 255, 255);
+            padding-top: 2vh;
+            flex: 1;
             display: flex;
-            flex-direction: column; /* Empilha o título, descrição e botão */
-            align-items: center;    /* Centraliza na horizontal */
-            justify-content: center; /* Centraliza na vertical */
+            flex-direction: column; 
+            max-height: 85vh;
+            min-height: 77vh;
+            align-items: center;    
             text-align: center;
-            max-width: 750px;
-            margin: 0 auto; /* Centraliza o bloco inteiro no meio da tela */
+            max-width: 120vh;
+            margin: 1vh auto;
             width: 100%;
-            margin-top: 200px;
-            
-
-            /* Subiu o bloco ligeiramente para compensar a altura do topo */
-
+            .seguir{
+                background-color: #131313;
+                color: #f8f9fa;
+                text-decoration: none;
+                margin:1vh 0 0 90vh ;
+                padding: 1vh;
+                font-size: 16px;
+            }
             .titulo{
-                color: #000000; /* Azul escuro elegante para o título */
-                font-size: 54px;
+                color: #000000; 
+                font-size: 6vh;
                 font-family: "DM Serif Display", serif;
                 margin-bottom: 10px;
                 font-weight: 1px;
@@ -66,9 +69,9 @@ body {
 
             .subtitulo {
                 color: #000000; /* Texto secundário grafite */
-                font-size: 24px;
+                font-size: 2.5vh;
                 margin-bottom: 30px;
-                max-width: 440px;
+                max-width: 460px;
                 font-family: 'DM Sans', sans-serif;
             }
 
@@ -168,48 +171,6 @@ body {
             .btn-voltar:hover {
                 color: #2c38be;
             }
-        }
-    }
-}
-.container-meio {
-    align-items: center;
-    display: flex;
-    font-size: 12px;
-    justify-content: center;
-    min-height: 320px;
-    background-color: rgb(255, 255, 255);
-    .btn-res{
-        background-color: #1d1c1c;
-        color: #f8f9fa;
-        padding: 16px;
-    }
-}
-.container-fim {
-    background-color: #1d1c1c;
-    color: #ffffff;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: row; 
-    align-items: flex-start;
-    gap: 40px;
-    justify-content: center;
-    .entenda-projeto {
-        margin-top: 180px;
-        display: flex;
-        flex-direction: column; 
-        max-width: 658px;
-        cursor: pointer;
-        .titulo {
-            font-size: 48px;
-            margin-bottom: 16px; 
-            margin-top: 32px;
-            font-family: "DM Serif Display", serif;
-        }
-
-        .paragrafo-ex {
-            font-size: 24px;
-            max-width: 562px;
-            font-family: 'DM Sans', sans-serif;
         }
     }
 }
