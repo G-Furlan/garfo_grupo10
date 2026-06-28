@@ -227,7 +227,8 @@
             <span>Curso: <b>${m.curso ?? '—'}</b></span>
             <span>Período atual: <b>${m.periodo_atual ?? '—'}</b></span>
             <span>Disponíveis em 2026.${sem}: <b>${nDisp}</b></span>
-            <span>Recomendadas: <b>${recs.codigos.length}</b> (${recs.horas}h / ${m.max_horas}h)</span>`;
+            <span>Limite: <b>${m.max_horas}h</b> (≈ ${m.orcamento_materias} matérias · média ${m.media_aprovacoes ?? '—'}/sem)</span>
+            <span>Recomendadas: <b>${recs.codigos.length}</b> (${recs.horas}h)</span>`;
 
         montarCards(recs, sem);
     }

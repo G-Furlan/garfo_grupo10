@@ -22,7 +22,22 @@ from grafo_pendentes import carregar_grade, construir_grafo_dependencias  # noqa
 from grafo_pesos import atribuir_pesos                              # noqa: E402
 from recomendar_semestre import recomendar_semestre                 # noqa: E402
 
-MAX_HORAS_PADRAO = 384  # limite de carga horária do semestre (6 x 64h)
+MAX_MATERIAS_TETO = 8     # teto de matérias por semestre (evita orçamento irreal)
+MATERIAS_FALLBACK = 4     # usado quando o aluno não tem histórico fechado (média < 1)
+CH_REFERENCIA = 64        # carga horária de referência por matéria
+
+
+def orcamento_por_media(media):
+    """
+    Orçamento de carga horária do semestre a partir da média de matérias aprovadas
+    por semestre (vinda do parser). Ex.: média 4.3 -> 4 matérias -> 256h.
+    Calouro/sem histórico fechado (média < 1) cai no fallback.
+    """
+    if not media or media < 1:
+        n = MATERIAS_FALLBACK
+    else:
+        n = min(MAX_MATERIAS_TETO, round(media))
+    return n * CH_REFERENCIA
 
 
 def calcular_periodo_atual_aluno(periodo_ingresso, suspensoes):
@@ -60,7 +75,7 @@ def para_cytoscape(grafo, meta):
     return {"elements": {"nodes": nodes, "edges": edges}, "meta": meta}
 
 
-def gerar(caminho_pdf=None, max_horas=MAX_HORAS_PADRAO):
+def gerar(caminho_pdf=None, max_horas=None):
     pasta = os.path.join(RAIZ, 'src', 'data', 'Dataset-Cenario1-RecomendacaoMatricula')
     if not caminho_pdf:
         pdfs = glob.glob(os.path.join(pasta, '*.pdf'))
@@ -76,8 +91,11 @@ def gerar(caminho_pdf=None, max_horas=MAX_HORAS_PADRAO):
     periodo_atual = calcular_periodo_atual_aluno(periodo_ingresso, suspensoes)
     grafo = atribuir_pesos(grafo, resolvidas, df_historico, periodo_atual)
 
+    # Orçamento do semestre: personalizado pela média de aprovações do aluno
+    if max_horas is None:
+        max_horas = orcamento_por_media(media)
+
     # PARTE 3 (passo 1): knapsack para CADA semestre-alvo (1=ímpar, 2=par).
-    # Cada um filtra por disponibilidade E oferta no semestre. O front alterna entre eles.
     rec1 = recomendar_semestre(grafo, max_horas, semestre_alvo=1)
     rec2 = recomendar_semestre(grafo, max_horas, semestre_alvo=2)
 
@@ -88,6 +106,8 @@ def gerar(caminho_pdf=None, max_horas=MAX_HORAS_PADRAO):
         "total": len(grafo['nos']),
         "disponiveis": sum(1 for d in grafo['nos'].values() if d['disponivel']),
         "max_horas": max_horas,
+        "media_aprovacoes": round(media, 1) if media else 0,
+        "orcamento_materias": max_horas // CH_REFERENCIA,
         "recomendacao": {
             "1": {"codigos": rec1['recomendadas'], "horas": rec1['total_horas'], "w": rec1['total_w']},
             "2": {"codigos": rec2['recomendadas'], "horas": rec2['total_horas'], "w": rec2['total_w']},
