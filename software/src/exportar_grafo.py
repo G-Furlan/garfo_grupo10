@@ -18,7 +18,7 @@ os.chdir(RAIZ)
 sys.path.insert(0, os.path.join(RAIZ, 'src'))
 
 from parser_historico import extrair_dados_completos_sigaa          # noqa: E402
-from grafo_pendentes import carregar_grade, construir_grafo_dependencias  # noqa: E402
+from grafo_pendentes import carregar_grade, construir_grafo_dependencias, eh_obrigatoria  # noqa: E402
 from grafo_pesos import atribuir_pesos                              # noqa: E402
 from recomendar_semestre import recomendar_semestre                 # noqa: E402
 
@@ -58,6 +58,7 @@ def para_cytoscape(grafo, meta):
             "id": cod,
             "codigo": cod,
             "nome": d.get('nome', cod),
+            "tipo": d.get('tipo', 'Obrigatoria'),
             "ch": d.get('ch'),
             "periodo": d.get('periodo_ideal'),
             "disponivel": bool(d.get('disponivel')),
@@ -83,10 +84,20 @@ def gerar(caminho_pdf=None, max_horas=None):
             raise FileNotFoundError("Nenhum PDF de histórico encontrado.")
         caminho_pdf = max(pdfs, key=os.path.getmtime)
 
-    curso, df_historico, resolvidas, pendentes, periodo_ingresso, suspensoes, media = \
+    curso, df_historico, resolvidas, pendentes_obrig, periodo_ingresso, suspensoes, media = \
         extrair_dados_completos_sigaa(caminho_pdf)
 
     grade = carregar_grade(curso)
+
+    # Inclui as optativas na análise: candidatas = optativas da grade ainda não cursadas.
+    # (Obrigatória pendente vem do parser; optativa "pendente" é tudo que falta do catálogo.)
+    resolvidas_set = set(resolvidas)
+    optativas_candidatas = [
+        cod for cod, dados in grade.items()
+        if not eh_obrigatoria(dados) and cod not in resolvidas_set
+    ]
+    pendentes = list(pendentes_obrig) + optativas_candidatas
+
     grafo = construir_grafo_dependencias(pendentes, grade, curso=curso)
     periodo_atual = calcular_periodo_atual_aluno(periodo_ingresso, suspensoes)
     grafo = atribuir_pesos(grafo, resolvidas, df_historico, periodo_atual)
@@ -105,6 +116,8 @@ def gerar(caminho_pdf=None, max_horas=None):
         "periodo_ingresso": periodo_ingresso,
         "total": len(grafo['nos']),
         "disponiveis": sum(1 for d in grafo['nos'].values() if d['disponivel']),
+        "obrigatorias": sum(1 for d in grafo['nos'].values() if d['tipo'] == 'Obrigatoria'),
+        "optativas": sum(1 for d in grafo['nos'].values() if d['tipo'] == 'Optativa'),
         "max_horas": max_horas,
         "media_aprovacoes": round(media, 1) if media else 0,
         "orcamento_materias": max_horas // CH_REFERENCIA,

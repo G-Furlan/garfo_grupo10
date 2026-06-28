@@ -78,7 +78,7 @@ def _montar_no(codigo, grade):
 
     return {
         'nome': dados.get('disciplina', codigo),
-        'tipo': 'Obrigatoria',
+        'tipo': 'Obrigatoria' if eh_obrigatoria(dados) else 'Optativa',
         'ch': ch,
         'periodo_ideal': periodo_ideal,
         'periodo_ofertado': dados.get('periodo_ofertado', ''),
@@ -109,10 +109,11 @@ def construir_grafo_dependencias(pendentes, grade, curso=None):
     """
     pendentes_unicos = list(dict.fromkeys(pendentes))  # remove duplicatas, preserva ordem
 
-    # Conjunto de nós: pendentes que existem na grade e são obrigatórias
+    # Conjunto de nós: pendentes que existem na grade (obrigatória OU optativa).
+    # O escopo (incluir ou não optativas) é decidido por quem monta a lista `pendentes`.
     nos_validos = {
         cod for cod in pendentes_unicos
-        if cod in grade and eh_obrigatoria(grade[cod])
+        if cod in grade
     }
 
     # Pendentes que o parser trouxe mas não existem na grade (ruído de regex, grade antiga)

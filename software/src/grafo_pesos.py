@@ -79,9 +79,11 @@ def calcular_p4(node):
 def calcular_p5(node, periodo_atual_aluno):
     """
     P5 — Atraso: bônus quando o período ideal da disciplina já chegou ou passou.
+    Aplica-se SÓ a obrigatórias — optativas não têm prazo, então não acumulam atraso.
     Disciplina do período atual recebe 1*PESO_ATRASO; cada período de atraso soma mais.
-    Disciplina de período futuro recebe 0.
     """
+    if node.get('tipo') != 'Obrigatoria':
+        return 0
     periodo_ideal = node.get('periodo_ideal', 0)
     if periodo_ideal <= 0 or periodo_ideal > periodo_atual_aluno:
         return 0

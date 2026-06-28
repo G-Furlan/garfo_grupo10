@@ -286,7 +286,7 @@
                 <span class="val">${v}</span></div>`).join('');
 
         cont.innerHTML = `
-            <div class="cod">${d.codigo} · ${d.ch}h · período ${d.periodo} · oferta ${d.periodo_ofertado || '—'}</div>
+            <div class="cod">${d.codigo} · ${d.tipo === 'Optativa' ? 'Optativa' : 'Obrigatória'} · ${d.ch}h · período ${d.periodo} · oferta ${d.periodo_ofertado || '—'}</div>
             <h3>${d.nome}</h3>
             <div class="status ${cls}">${status}</div>
             <div class="pesos">${linhas}</div>
