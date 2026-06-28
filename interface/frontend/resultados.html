@@ -3,110 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste de Grafo - Cores Fortes</title>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
-    <script src="https://unpkg.com/dagre@0.8.5/dist/dagre.min.js"></script>
-    <script src="https://unpkg.com/cytoscape-dagre@2.5.0/cytoscape-dagre.js"></script>
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    <title>Grafo de Recomendação — Resultados</title>
 
-        #cy {
-            width: 800px;
-            height: 600px;
-            background-color: white;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            margin-top: 20px;
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
+
+    <style>
+        :root { --roxo:#6a1b9a; --cinza:#95a5a6; --borda:#e0e0e0; }
+        * { box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif; margin: 0; background:#f4f4f9; color:#222;
         }
+        header {
+            background:#fff; border-bottom:2px solid var(--borda);
+            padding:14px 24px; display:flex; align-items:center; gap:24px; flex-wrap:wrap;
+        }
+        header h2 { margin:0; font-size:18px; }
+        .meta { display:flex; gap:18px; font-size:13px; color:#555; flex-wrap:wrap; }
+        .meta b { color:#222; }
+        .legenda { display:flex; gap:16px; font-size:12px; margin-left:auto; align-items:center; }
+        .pill { display:inline-flex; align-items:center; gap:6px; }
+        .dot { width:14px; height:14px; border-radius:3px; display:inline-block; }
+        .layout { display:flex; gap:16px; padding:16px 24px; align-items:flex-start; }
+        #cy {
+            flex:1; height:70vh; min-height:480px; background:#fff;
+            border:1px solid var(--borda); border-radius:8px;
+        }
+        #painel {
+            width:300px; background:#fff; border:1px solid var(--borda);
+            border-radius:8px; padding:16px; min-height:200px;
+        }
+        #painel h3 { margin:0 0 4px; font-size:16px; }
+        #painel .cod { color:#888; font-size:12px; }
+        #painel .status { font-weight:bold; margin:8px 0; }
+        #painel .ok { color:#1e7a3a; } #painel .no { color:#c0392b; }
+        .pesos { margin-top:12px; }
+        .peso-row { display:flex; align-items:center; gap:8px; margin:5px 0; font-size:13px; }
+        .peso-row .nome { width:118px; color:#555; }
+        .bar { flex:1; height:10px; background:#eee; border-radius:5px; overflow:hidden; }
+        .bar > span { display:block; height:100%; background:var(--roxo); }
+        .peso-row .val { width:24px; text-align:right; font-weight:bold; }
+        .total { margin-top:10px; padding-top:8px; border-top:1px solid var(--borda);
+                 font-size:15px; font-weight:bold; }
+        .vazio { text-align:center; padding:60px 20px; color:#777; }
+        .vazio a { color:var(--roxo); }
+        .hint { color:#999; font-size:12px; }
     </style>
 </head>
 <body>
+    <header>
+        <h2>Grafo de Recomendação de Matrícula</h2>
+        <div class="meta" id="meta"></div>
+        <div class="legenda">
+            <span class="pill">peso:
+                <span class="dot" style="background:hsl(130,72%,45%)"></span>
+                <span class="dot" style="background:hsl(65,72%,45%)"></span>
+                <span class="dot" style="background:hsl(0,72%,45%)"></span>
+                menor → maior</span>
+            <span class="pill"><span class="dot" style="background:#95a5a6"></span> bloqueada (falta pré-requisito)</span>
+        </div>
+    </header>
 
-    <div class = "container-inicial">
-        <h2>Visualização de Pré-requisitos (Paleta de Cores Fortes)</h2>
-        
+    <div class="layout">
         <div id="cy"></div>
+        <aside id="painel">
+            <div class="vazio" id="painel-vazio">Clique em uma disciplina para ver a composição do peso.</div>
+            <div id="painel-conteudo" style="display:none;"></div>
+        </aside>
     </div>
+
     <script>
-        // NOVA FUNÇÃO: Sorteia a partir de uma lista de cores fortes
-        function gerarCorForte() {
-            const coresVibrantes = [
-                '#E74C3C', // Vermelho
-                '#8E44AD', // Roxo
-                '#2980B9', // Azul
-                '#27AE60', // Verde
-                '#F39C12', // Laranja
-                '#D35400', // Laranja Escuro
-                '#16A085'  // Verde Água (Teal)
-            ];
-            
-            // Escolhe um índice aleatório baseado no tamanho da lista
-            const indiceSorteado = Math.floor(Math.random() * coresVibrantes.length);
-            return coresVibrantes[indiceSorteado];
+    const API = 'http://localhost:3000';
+
+    async function carregar() {
+        const cyDiv = document.getElementById('cy');
+        try {
+            const resp = await fetch(`${API}/grafo-atual`);
+            if (!resp.ok) {
+                cyDiv.innerHTML = `<div class="vazio">Nenhum histórico processado ainda.<br>
+                    <a href="/sistema.html">Enviar um histórico PDF</a></div>`;
+                return;
+            }
+            const grafo = await resp.json();
+            desenhar(grafo);
+        } catch (e) {
+            cyDiv.innerHTML = `<div class="vazio">Não foi possível conectar ao servidor.<br>
+                <span class="hint">Confira se o backend (porta 3000) está rodando.</span></div>`;
         }
+    }
 
-        var cy = cytoscape({
-            container: document.getElementById('cy'), 
+    // Cor por peso: rampa verde (baixo) -> amarelo -> vermelho (alto).
+    function corPorPeso(W, minW, maxW) {
+        const t = maxW > minW ? (W - minW) / (maxW - minW) : 0.5; // normaliza 0..1
+        const hue = 130 * (1 - t);                                // 130=verde, 0=vermelho
+        return `hsl(${Math.round(hue)}, 72%, 45%)`;
+    }
 
-            elements: [
-                // Chamando a nova função gerarCorForte()
-                { data: { id: 'calc1', nome: 'Cálculo I', cor: gerarCorForte() } },
-                { data: { id: 'calc2', nome: 'Cálculo II', cor: gerarCorForte() } },
-                { data: { id: 'fis1', nome: 'Física I', cor: gerarCorForte() } },
-                { data: { id: 'gaal', nome: 'Geometria Analítica', cor: gerarCorForte() } },
-                { data: { id: 'mec', nome: 'Mecânica Clássica', cor: gerarCorForte() } },
+    function desenhar(grafo) {
+        const nodes = grafo.elements.nodes;
+        const edges = grafo.elements.edges;
+        const m = grafo.meta || {};
 
-                { data: { source: 'calc1', target: 'calc2' } },
-                { data: { source: 'calc1', target: 'fis1' } },
-                { data: { source: 'gaal', target: 'fis1' } },
-                { data: { source: 'fis1', target: 'mec' } },
-                { data: { source: 'calc2', target: 'mec' } }
-            ],
+        document.getElementById('meta').innerHTML = `
+            <span>Curso: <b>${m.curso ?? '—'}</b></span>
+            <span>Período atual: <b>${m.periodo_atual ?? '—'}</b></span>
+            <span>Disponíveis: <b>${m.disponiveis ?? '—'} de ${m.total ?? nodes.length}</b></span>`;
 
+        const ws = nodes.map(n => n.data.W);
+        const minW = Math.min(...ws), maxW = Math.max(...ws);
+
+        // Rótulo (código + peso) e cor (por peso; bloqueada = cinza) de cada disciplina
+        nodes.forEach(n => {
+            n.data.rotulo = `${n.data.codigo}\n(W ${n.data.W})`;
+            n.data.cor = n.data.disponivel ? corPorPeso(n.data.W, minW, maxW) : '#95a5a6';
+        });
+
+        // Posiciona em COLUNAS por período (ordenadas por peso dentro da coluna)
+        const COL_W = 210, ROW_H = 92;
+        const grupos = {};
+        nodes.forEach(n => { const p = n.data.periodo ?? 0; (grupos[p] = grupos[p] || []).push(n); });
+        const periodos = Object.keys(grupos).map(Number).sort((a, b) => a - b);
+
+        const cabecalhos = [];
+        periodos.forEach((p, col) => {
+            const x = col * COL_W;
+            grupos[p].sort((a, b) => b.data.W - a.data.W); // mais importante no topo da coluna
+            grupos[p].forEach((n, row) => { n.position = { x, y: row * ROW_H }; });
+            cabecalhos.push({
+                data: { id: `hdr-${p}`, rotulo: `Período ${p}`, header: true, cor: 'transparent', W: 0 },
+                position: { x, y: -ROW_H }, selectable: false, grabbable: false
+            });
+        });
+
+        const cy = cytoscape({
+            container: document.getElementById('cy'),
+            elements: { nodes: nodes.concat(cabecalhos), edges },
             style: [
                 {
-                    selector: 'node', 
+                    selector: 'node',
                     style: {
-                        'background-color': 'data(cor)', 
-                        'label': 'data(nome)', 
-                        'color': '#ffffff', // Texto branco fixo
-                        'font-weight': 'bold', // Deixei o texto em negrito para destacar mais
-                        'font-size': '14px',
-                        'text-valign': 'center', 
-                        'text-halign': 'center', 
-                        'shape': 'rectangle', 
-                        'width': '120px', 
-                        'height': '60px', 
+                        'label': 'data(rotulo)', 'text-wrap': 'wrap', 'text-valign': 'center',
+                        'text-halign': 'center', 'color': '#fff', 'font-size': '11px',
+                        'font-weight': 'bold', 'shape': 'round-rectangle',
+                        'background-color': 'data(cor)',
+                        'width': `mapData(W, ${minW}, ${maxW}, 54, 104)`,
+                        'height': `mapData(W, ${minW}, ${maxW}, 38, 66)`,
+                        'border-width': 2, 'border-color': '#fff'
                     }
                 },
                 {
-                    selector: 'edge', 
+                    selector: 'node[!disponivel]',
+                    style: { 'border-style': 'dashed', 'border-color': '#7f8c8d', 'color': '#eee' }
+                },
+                {
+                    selector: 'node[?header]',  // cabeçalhos de coluna (Período N)
                     style: {
-                        'width': 3,
-                        'line-color': '#b3b3b3', // Deixei a linha um pouco mais clara
-                        'target-arrow-color': '#b3b3b3',
-                        'target-arrow-shape': 'triangle', 
-                        'curve-style': 'bezier' 
+                        'background-opacity': 0, 'border-width': 0, 'color': '#555',
+                        'font-size': '13px', 'shape': 'rectangle', 'width': 'label', 'height': 18
                     }
-                }
+                },
+                {
+                    selector: 'edge',
+                    style: {
+                        'width': 2.5, 'line-color': '#c4c4c4', 'target-arrow-color': '#c4c4c4',
+                        'target-arrow-shape': 'triangle', 'curve-style': 'bezier'
+                    }
+                },
+                { selector: '.destacado', style: { 'line-color': '#6a1b9a',
+                    'target-arrow-color': '#6a1b9a', 'width': 4 } },
+                { selector: 'node.foco', style: { 'border-color': '#6a1b9a', 'border-width': 4 } }
             ],
-
-            layout: {
-                name: 'dagre',
-                rankDir: 'LR', 
-                padding: 30,
-                spacingFactor: 1.3 
-            }
+            layout: { name: 'preset', fit: true, padding: 30 }
         });
+
+        // Ao clicar: mostra detalhes e destaca o que a disciplina destrava
+        cy.on('tap', 'node', (evt) => {
+            const n = evt.target;
+            if (n.data('header')) return;          // ignora cabeçalhos de coluna
+            cy.elements().removeClass('destacado foco');
+            n.addClass('foco');
+            n.outgoers('edge').addClass('destacado');
+            n.outgoers('node').addClass('foco');
+            mostrarPainel(n.data());
+        });
+        cy.on('tap', (evt) => { if (evt.target === cy) cy.elements().removeClass('destacado foco'); });
+    }
+
+    function mostrarPainel(d) {
+        document.getElementById('painel-vazio').style.display = 'none';
+        const cont = document.getElementById('painel-conteudo');
+        cont.style.display = 'block';
+
+        const pesos = [
+            ['P1 caminho crítico', d.P1], ['P2 obrigatoriedade', d.P2],
+            ['P3 retenção', d.P3], ['P4 sazonalidade', d.P4], ['P5 atraso', d.P5],
+        ];
+        const maxP = Math.max(1, ...pesos.map(p => p[1]));
+        const linhas = pesos.map(([nome, v]) => `
+            <div class="peso-row">
+                <span class="nome">${nome}</span>
+                <span class="bar"><span style="width:${(v / maxP) * 100}%"></span></span>
+                <span class="val">${v}</span>
+            </div>`).join('');
+
+        cont.innerHTML = `
+            <div class="cod">${d.codigo} · ${d.ch}h · período ${d.periodo}</div>
+            <h3>${d.nome}</h3>
+            <div class="status ${d.disponivel ? 'ok' : 'no'}">
+                ${d.disponivel ? '✓ Disponível para matrícula' : '✗ Bloqueada (falta pré-requisito)'}
+            </div>
+            <div class="pesos">${linhas}</div>
+            <div class="total">W total: ${d.W}</div>`;
+    }
+
+    carregar();
     </script>
-    
 </body>
 </html>

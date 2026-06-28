@@ -147,6 +147,11 @@
                 btnSubmit.textContent = "Analisar Histórico";
                 btnSubmit.disabled = false;
             }
+            if (response.ok) {
+                window.location.href = "/resultados.html";   // vai direto para o grafo
+            } else {
+                alert("Erro: " + resultado.error);
+            }
         });
     </script>
 </body>
