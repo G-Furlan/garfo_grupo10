@@ -20,6 +20,24 @@ sys.path.insert(0, os.path.join(RAIZ, 'src'))
 from parser_historico import extrair_dados_completos_sigaa          # noqa: E402
 from grafo_pendentes import carregar_grade, construir_grafo_dependencias  # noqa: E402
 from grafo_pesos import atribuir_pesos                              # noqa: E402
+from recomendar_semestre import recomendar_semestre                 # noqa: E402
+
+MAX_MATERIAS_TETO = 8     # teto de matérias por semestre (evita orçamento irreal)
+MATERIAS_FALLBACK = 4     # usado quando o aluno não tem histórico fechado (média < 1)
+CH_REFERENCIA = 64        # carga horária de referência por matéria
+
+
+def orcamento_por_media(media):
+    """
+    Orçamento de carga horária do semestre a partir da média de matérias aprovadas
+    por semestre (vinda do parser). Ex.: média 4.3 -> 4 matérias -> 256h.
+    Calouro/sem histórico fechado (média < 1) cai no fallback.
+    """
+    if not media or media < 1:
+        n = MATERIAS_FALLBACK
+    else:
+        n = min(MAX_MATERIAS_TETO, round(media))
+    return n * CH_REFERENCIA
 
 
 def calcular_periodo_atual_aluno(periodo_ingresso, suspensoes):
@@ -43,6 +61,7 @@ def para_cytoscape(grafo, meta):
             "ch": d.get('ch'),
             "periodo": d.get('periodo_ideal'),
             "disponivel": bool(d.get('disponivel')),
+            "periodo_ofertado": d.get('periodo_ofertado', ''),
             "W": d.get('W', 0),
             "P1": d.get('P1', 0), "P2": d.get('P2', 0), "P3": d.get('P3', 0),
             "P4": d.get('P4', 0), "P5": d.get('P5', 0),
@@ -56,7 +75,7 @@ def para_cytoscape(grafo, meta):
     return {"elements": {"nodes": nodes, "edges": edges}, "meta": meta}
 
 
-def gerar(caminho_pdf=None):
+def gerar(caminho_pdf=None, max_horas=None):
     pasta = os.path.join(RAIZ, 'src', 'data', 'Dataset-Cenario1-RecomendacaoMatricula')
     if not caminho_pdf:
         pdfs = glob.glob(os.path.join(pasta, '*.pdf'))
@@ -72,12 +91,27 @@ def gerar(caminho_pdf=None):
     periodo_atual = calcular_periodo_atual_aluno(periodo_ingresso, suspensoes)
     grafo = atribuir_pesos(grafo, resolvidas, df_historico, periodo_atual)
 
+    # Orçamento do semestre: personalizado pela média de aprovações do aluno
+    if max_horas is None:
+        max_horas = orcamento_por_media(media)
+
+    # PARTE 3 (passo 1): knapsack para CADA semestre-alvo (1=ímpar, 2=par).
+    rec1 = recomendar_semestre(grafo, max_horas, semestre_alvo=1)
+    rec2 = recomendar_semestre(grafo, max_horas, semestre_alvo=2)
+
     meta = {
         "curso": curso,
         "periodo_atual": periodo_atual,
         "periodo_ingresso": periodo_ingresso,
         "total": len(grafo['nos']),
         "disponiveis": sum(1 for d in grafo['nos'].values() if d['disponivel']),
+        "max_horas": max_horas,
+        "media_aprovacoes": round(media, 1) if media else 0,
+        "orcamento_materias": max_horas // CH_REFERENCIA,
+        "recomendacao": {
+            "1": {"codigos": rec1['recomendadas'], "horas": rec1['total_horas'], "w": rec1['total_w']},
+            "2": {"codigos": rec2['recomendadas'], "horas": rec2['total_horas'], "w": rec2['total_w']},
+        },
         "fantasmas": grafo.get('fantasmas', []),
         "arquivo": os.path.basename(caminho_pdf),
     }

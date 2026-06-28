@@ -4,62 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grafo de Recomendação — Resultados</title>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
-
     <style>
-        :root { --roxo:#6a1b9a; --cinza:#95a5a6; --borda:#e0e0e0; }
+        :root { --roxo:#6a1b9a; --ouro:#f0a500; --borda:#e0e0e0; }
         * { box-sizing: border-box; }
-        body {
-            font-family: Arial, sans-serif; margin: 0; background:#f4f4f9; color:#222;
-        }
+        body { font-family: Arial, sans-serif; margin: 0; background:#f4f4f9; color:#222; }
         header {
             background:#fff; border-bottom:2px solid var(--borda);
-            padding:14px 24px; display:flex; align-items:center; gap:24px; flex-wrap:wrap;
+            padding:14px 24px; display:flex; align-items:center; gap:20px; flex-wrap:wrap;
         }
         header h2 { margin:0; font-size:18px; }
-        .meta { display:flex; gap:18px; font-size:13px; color:#555; flex-wrap:wrap; }
+        .seletor { display:flex; gap:0; border:1px solid var(--roxo); border-radius:6px; overflow:hidden; }
+        .seletor button {
+            border:0; background:#fff; color:var(--roxo); padding:7px 14px; cursor:pointer;
+            font-weight:bold; font-size:13px;
+        }
+        .seletor button.ativo { background:var(--roxo); color:#fff; }
+        .meta { display:flex; gap:16px; font-size:13px; color:#555; flex-wrap:wrap; }
         .meta b { color:#222; }
-        .legenda { display:flex; gap:16px; font-size:12px; margin-left:auto; align-items:center; }
+        .legenda { display:flex; gap:14px; font-size:12px; margin-left:auto; align-items:center; flex-wrap:wrap; }
         .pill { display:inline-flex; align-items:center; gap:6px; }
         .dot { width:14px; height:14px; border-radius:3px; display:inline-block; }
         .layout { display:flex; gap:16px; padding:16px 24px; align-items:flex-start; }
-        #cy {
-            flex:1; height:70vh; min-height:480px; background:#fff;
-            border:1px solid var(--borda); border-radius:8px;
-        }
-        #painel {
-            width:300px; background:#fff; border:1px solid var(--borda);
-            border-radius:8px; padding:16px; min-height:200px;
-        }
+        #cy { flex:1; height:70vh; min-height:480px; background:#fff; border:1px solid var(--borda); border-radius:8px; }
+        #painel { width:300px; background:#fff; border:1px solid var(--borda); border-radius:8px; padding:16px; min-height:200px; }
         #painel h3 { margin:0 0 4px; font-size:16px; }
         #painel .cod { color:#888; font-size:12px; }
         #painel .status { font-weight:bold; margin:8px 0; }
-        #painel .ok { color:#1e7a3a; } #painel .no { color:#c0392b; }
+        #painel .ok { color:#1e7a3a; } #painel .no { color:#c0392b; } #painel .rec { color:#b8860b; }
         .pesos { margin-top:12px; }
         .peso-row { display:flex; align-items:center; gap:8px; margin:5px 0; font-size:13px; }
         .peso-row .nome { width:118px; color:#555; }
         .bar { flex:1; height:10px; background:#eee; border-radius:5px; overflow:hidden; }
         .bar > span { display:block; height:100%; background:var(--roxo); }
         .peso-row .val { width:24px; text-align:right; font-weight:bold; }
-        .total { margin-top:10px; padding-top:8px; border-top:1px solid var(--borda);
-                 font-size:15px; font-weight:bold; }
+        .total { margin-top:10px; padding-top:8px; border-top:1px solid var(--borda); font-size:15px; font-weight:bold; }
         .vazio { text-align:center; padding:60px 20px; color:#777; }
         .vazio a { color:var(--roxo); }
         .hint { color:#999; font-size:12px; }
+
+        /* Seção de recomendadas (aparece ao rolar) */
+        #recs { padding:8px 24px 48px; }
+        #recs .cabecalho { display:flex; align-items:baseline; gap:12px; border-top:3px solid var(--ouro);
+            padding-top:18px; margin-top:8px; }
+        #recs h3 { margin:0; font-size:20px; }
+        #recs .resumo { color:#777; font-size:13px; }
+        .cards { display:flex; flex-wrap:wrap; gap:14px; margin-top:16px; }
+        .card {
+            width:220px; background:#fff; border:1px solid var(--borda); border-left:5px solid var(--ouro);
+            border-radius:8px; padding:14px; box-shadow:0 1px 3px rgba(0,0,0,.06);
+            opacity:0; transform:translateY(14px); transition:opacity .45s ease, transform .45s ease;
+        }
+        .card.visivel { opacity:1; transform:none; }
+        .card .c-cod { font-weight:bold; color:var(--roxo); font-size:13px; }
+        .card .c-nome { font-size:15px; margin:4px 0 10px; line-height:1.25; }
+        .card .c-meta { display:flex; justify-content:space-between; font-size:12px; color:#666; }
+        .card .c-w { font-weight:bold; color:#b8860b; }
+        .recs-vazio { color:#999; margin-top:16px; }
     </style>
 </head>
 <body>
     <header>
-        <h2>Grafo de Recomendação de Matrícula</h2>
+        <h2>Grafo de Recomendação</h2>
+        <div class="seletor" id="seletor">
+            <button data-sem="1">2026.1</button>
+            <button data-sem="2">2026.2</button>
+        </div>
         <div class="meta" id="meta"></div>
         <div class="legenda">
             <span class="pill">peso:
                 <span class="dot" style="background:hsl(130,72%,45%)"></span>
                 <span class="dot" style="background:hsl(65,72%,45%)"></span>
-                <span class="dot" style="background:hsl(0,72%,45%)"></span>
-                menor → maior</span>
-            <span class="pill"><span class="dot" style="background:#95a5a6"></span> bloqueada (falta pré-requisito)</span>
+                <span class="dot" style="background:hsl(0,72%,45%)"></span> menor → maior</span>
+            <span class="pill"><span class="dot" style="background:#95a5a6"></span> indisponível</span>
+            <span class="pill"><span class="dot" style="background:#117a55;border:3px solid #f0a500"></span> recomendada</span>
         </div>
     </header>
 
@@ -71,8 +89,17 @@
         </aside>
     </div>
 
+    <section id="recs" style="display:none;">
+        <div class="cabecalho">
+            <h3 id="recs-titulo">Recomendadas para o próximo semestre</h3>
+            <span class="resumo" id="recs-resumo"></span>
+        </div>
+        <div class="cards" id="recs-cards"></div>
+    </section>
+
     <script>
     const API = 'http://localhost:3000';
+    let GRAFO = null, CY = null, SEM = 2, OBS = null;   // SEM = semestre selecionado (1 ou 2)
 
     async function carregar() {
         const cyDiv = document.getElementById('cy');
@@ -83,109 +110,158 @@
                     <a href="/sistema.html">Enviar um histórico PDF</a></div>`;
                 return;
             }
-            const grafo = await resp.json();
-            desenhar(grafo);
+            GRAFO = await resp.json();
+            desenhar(GRAFO);
         } catch (e) {
             cyDiv.innerHTML = `<div class="vazio">Não foi possível conectar ao servidor.<br>
                 <span class="hint">Confira se o backend (porta 3000) está rodando.</span></div>`;
         }
     }
 
-    // Cor por peso: rampa verde (baixo) -> amarelo -> vermelho (alto).
+    // Cor por peso: verde (baixo) -> amarelo -> vermelho (alto)
     function corPorPeso(W, minW, maxW) {
-        const t = maxW > minW ? (W - minW) / (maxW - minW) : 0.5; // normaliza 0..1
-        const hue = 130 * (1 - t);                                // 130=verde, 0=vermelho
-        return `hsl(${Math.round(hue)}, 72%, 45%)`;
+        const t = maxW > minW ? (W - minW) / (maxW - minW) : 0.5;
+        return `hsl(${Math.round(130 * (1 - t))}, 72%, 45%)`;
+    }
+
+    // A disciplina é ofertada no semestre sem (1 ou 2)?
+    function ofertadaEm(po, sem) {
+        if (!po || po.includes('/')) return true;          // desconhecida ou ambos
+        try { return parseInt(po.split('-')[1][0], 10) === sem; }
+        catch (e) { return true; }
     }
 
     function desenhar(grafo) {
         const nodes = grafo.elements.nodes;
         const edges = grafo.elements.edges;
-        const m = grafo.meta || {};
-
-        document.getElementById('meta').innerHTML = `
-            <span>Curso: <b>${m.curso ?? '—'}</b></span>
-            <span>Período atual: <b>${m.periodo_atual ?? '—'}</b></span>
-            <span>Disponíveis: <b>${m.disponiveis ?? '—'} de ${m.total ?? nodes.length}</b></span>`;
 
         const ws = nodes.map(n => n.data.W);
         const minW = Math.min(...ws), maxW = Math.max(...ws);
+        window._minW = minW; window._maxW = maxW;
 
-        // Rótulo (código + peso) e cor (por peso; bloqueada = cinza) de cada disciplina
-        nodes.forEach(n => {
-            n.data.rotulo = `${n.data.codigo}\n(W ${n.data.W})`;
-            n.data.cor = n.data.disponivel ? corPorPeso(n.data.W, minW, maxW) : '#95a5a6';
-        });
+        nodes.forEach(n => { n.data.rotulo = `${n.data.codigo}\n(W ${n.data.W})`; n.data.cor = '#95a5a6'; });
 
-        // Posiciona em COLUNAS por período (ordenadas por peso dentro da coluna)
+        // Colunas por período (ordenadas por W dentro da coluna)
         const COL_W = 210, ROW_H = 92;
         const grupos = {};
         nodes.forEach(n => { const p = n.data.periodo ?? 0; (grupos[p] = grupos[p] || []).push(n); });
         const periodos = Object.keys(grupos).map(Number).sort((a, b) => a - b);
-
         const cabecalhos = [];
         periodos.forEach((p, col) => {
             const x = col * COL_W;
-            grupos[p].sort((a, b) => b.data.W - a.data.W); // mais importante no topo da coluna
+            grupos[p].sort((a, b) => b.data.W - a.data.W);
             grupos[p].forEach((n, row) => { n.position = { x, y: row * ROW_H }; });
-            cabecalhos.push({
-                data: { id: `hdr-${p}`, rotulo: `Período ${p}`, header: true, cor: 'transparent', W: 0 },
-                position: { x, y: -ROW_H }, selectable: false, grabbable: false
-            });
+            cabecalhos.push({ data: { id: `hdr-${p}`, rotulo: `Período ${p}`, header: true, cor: 'transparent' },
+                position: { x, y: -ROW_H }, selectable: false, grabbable: false });
         });
 
-        const cy = cytoscape({
+        CY = cytoscape({
             container: document.getElementById('cy'),
             elements: { nodes: nodes.concat(cabecalhos), edges },
             style: [
-                {
-                    selector: 'node',
-                    style: {
-                        'label': 'data(rotulo)', 'text-wrap': 'wrap', 'text-valign': 'center',
-                        'text-halign': 'center', 'color': '#fff', 'font-size': '11px',
-                        'font-weight': 'bold', 'shape': 'round-rectangle',
-                        'background-color': 'data(cor)',
-                        'width': `mapData(W, ${minW}, ${maxW}, 54, 104)`,
-                        'height': `mapData(W, ${minW}, ${maxW}, 38, 66)`,
-                        'border-width': 2, 'border-color': '#fff'
-                    }
-                },
-                {
-                    selector: 'node[!disponivel]',
-                    style: { 'border-style': 'dashed', 'border-color': '#7f8c8d', 'color': '#eee' }
-                },
-                {
-                    selector: 'node[?header]',  // cabeçalhos de coluna (Período N)
-                    style: {
-                        'background-opacity': 0, 'border-width': 0, 'color': '#555',
-                        'font-size': '13px', 'shape': 'rectangle', 'width': 'label', 'height': 18
-                    }
-                },
-                {
-                    selector: 'edge',
-                    style: {
-                        'width': 2.5, 'line-color': '#c4c4c4', 'target-arrow-color': '#c4c4c4',
-                        'target-arrow-shape': 'triangle', 'curve-style': 'bezier'
-                    }
-                },
-                { selector: '.destacado', style: { 'line-color': '#6a1b9a',
-                    'target-arrow-color': '#6a1b9a', 'width': 4 } },
+                { selector: 'node', style: {
+                    'label': 'data(rotulo)', 'text-wrap': 'wrap', 'text-valign': 'center', 'text-halign': 'center',
+                    'color': '#fff', 'font-size': '11px', 'font-weight': 'bold', 'shape': 'round-rectangle',
+                    'background-color': 'data(cor)',
+                    'width': `mapData(W, ${minW}, ${maxW}, 54, 104)`,
+                    'height': `mapData(W, ${minW}, ${maxW}, 38, 66)`,
+                    'border-width': 2, 'border-color': '#fff' } },
+                { selector: 'node.indisponivel', style: { 'border-style': 'dashed', 'border-color': '#7f8c8d', 'color': '#eee' } },
+                { selector: 'node.recomendada', style: { 'border-color': '#f0a500', 'border-width': 5, 'border-style': 'solid' } },
+                { selector: 'node[?header]', style: {
+                    'background-opacity': 0, 'border-width': 0, 'color': '#555',
+                    'font-size': '13px', 'shape': 'rectangle', 'width': 'label', 'height': 18 } },
+                { selector: 'edge', style: {
+                    'width': 2.5, 'line-color': '#c4c4c4', 'target-arrow-color': '#c4c4c4',
+                    'target-arrow-shape': 'triangle', 'curve-style': 'bezier' } },
+                { selector: '.destacado', style: { 'line-color': '#6a1b9a', 'target-arrow-color': '#6a1b9a', 'width': 4 } },
                 { selector: 'node.foco', style: { 'border-color': '#6a1b9a', 'border-width': 4 } }
             ],
             layout: { name: 'preset', fit: true, padding: 30 }
         });
 
-        // Ao clicar: mostra detalhes e destaca o que a disciplina destrava
-        cy.on('tap', 'node', (evt) => {
+        CY.on('tap', 'node', (evt) => {
             const n = evt.target;
-            if (n.data('header')) return;          // ignora cabeçalhos de coluna
-            cy.elements().removeClass('destacado foco');
+            if (n.data('header')) return;
+            CY.elements().removeClass('destacado foco');
             n.addClass('foco');
             n.outgoers('edge').addClass('destacado');
             n.outgoers('node').addClass('foco');
             mostrarPainel(n.data());
         });
-        cy.on('tap', (evt) => { if (evt.target === cy) cy.elements().removeClass('destacado foco'); });
+        CY.on('tap', (evt) => { if (evt.target === CY) CY.elements().removeClass('destacado foco'); });
+
+        // botões de semestre
+        document.querySelectorAll('#seletor button').forEach(b =>
+            b.addEventListener('click', () => aplicarSemestre(parseInt(b.dataset.sem, 10))));
+
+        aplicarSemestre(SEM);
+    }
+
+    // Aplica o semestre escolhido: recolore, marca indisponíveis/recomendadas e atualiza os cards
+    function aplicarSemestre(sem) {
+        SEM = sem;
+        const recs = (GRAFO.meta.recomendacao && GRAFO.meta.recomendacao[String(sem)]) || { codigos: [], horas: 0, w: 0 };
+        const recSet = new Set(recs.codigos);
+        let nDisp = 0;
+
+        CY.batch(() => {
+            CY.nodes().forEach(n => {
+                if (n.data('header')) return;
+                const d = n.data();
+                const ofertada = ofertadaEm(d.periodo_ofertado, sem);
+                const efetiva = d.disponivel && ofertada;     // disponível de fato neste semestre
+                if (efetiva) nDisp++;
+                n.data('cor', efetiva ? corPorPeso(d.W, window._minW, window._maxW) : '#95a5a6');
+                n.removeClass('indisponivel recomendada');
+                if (!efetiva) n.addClass('indisponivel');
+                if (recSet.has(d.codigo)) n.addClass('recomendada');
+            });
+        });
+
+        document.querySelectorAll('#seletor button').forEach(b =>
+            b.classList.toggle('ativo', parseInt(b.dataset.sem, 10) === sem));
+
+        const m = GRAFO.meta;
+        document.getElementById('meta').innerHTML = `
+            <span>Curso: <b>${m.curso ?? '—'}</b></span>
+            <span>Período atual: <b>${m.periodo_atual ?? '—'}</b></span>
+            <span>Disponíveis em 2026.${sem}: <b>${nDisp}</b></span>
+            <span>Limite: <b>${m.max_horas}h</b> (≈ ${m.orcamento_materias} matérias · média ${m.media_aprovacoes ?? '—'}/sem)</span>
+            <span>Recomendadas: <b>${recs.codigos.length}</b> (${recs.horas}h)</span>`;
+
+        montarCards(recs, sem);
+    }
+
+    function montarCards(recs, sem) {
+        const sec = document.getElementById('recs');
+        sec.style.display = 'block';
+        document.getElementById('recs-titulo').textContent = `Recomendadas para 2026.${sem}`;
+        document.getElementById('recs-resumo').textContent =
+            recs.codigos.length ? `${recs.codigos.length} disciplinas · ${recs.horas}h · prioridade somada ${recs.w}` : '';
+
+        const cont = document.getElementById('recs-cards');
+        if (!recs.codigos.length) {
+            cont.innerHTML = `<div class="recs-vazio">Nenhuma disciplina disponível e ofertada em 2026.${sem}.</div>`;
+            return;
+        }
+        const dados = {};
+        GRAFO.elements.nodes.forEach(n => dados[n.data.codigo] = n.data);
+        cont.innerHTML = recs.codigos.map((c, i) => {
+            const d = dados[c];
+            return `<div class="card" style="transition-delay:${i * 60}ms">
+                <div class="c-cod">${d.codigo}</div>
+                <div class="c-nome">${d.nome}</div>
+                <div class="c-meta"><span>${d.ch}h · período ${d.periodo}</span><span class="c-w">W ${d.W}</span></div>
+            </div>`;
+        }).join('');
+
+        // Revela os cards ao rolar
+        if (OBS) OBS.disconnect();
+        OBS = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visivel'); });
+        }, { threshold: 0.15 });
+        cont.querySelectorAll('.card').forEach(c => OBS.observe(c));
     }
 
     function mostrarPainel(d) {
@@ -193,24 +269,26 @@
         const cont = document.getElementById('painel-conteudo');
         cont.style.display = 'block';
 
-        const pesos = [
-            ['P1 caminho crítico', d.P1], ['P2 obrigatoriedade', d.P2],
-            ['P3 retenção', d.P3], ['P4 sazonalidade', d.P4], ['P5 atraso', d.P5],
-        ];
+        const ofertada = ofertadaEm(d.periodo_ofertado, SEM);
+        const recomendada = ((GRAFO.meta.recomendacao[String(SEM)] || {}).codigos || []).includes(d.codigo);
+        let status, cls;
+        if (recomendada)            { status = '★ Recomendada para 2026.' + SEM; cls = 'rec'; }
+        else if (!d.disponivel)     { status = '✗ Bloqueada (falta pré-requisito)'; cls = 'no'; }
+        else if (!ofertada)         { status = '✗ Não ofertada em 2026.' + SEM; cls = 'no'; }
+        else                        { status = '✓ Disponível em 2026.' + SEM; cls = 'ok'; }
+
+        const pesos = [['P1 caminho crítico', d.P1], ['P2 obrigatoriedade', d.P2],
+            ['P3 retenção', d.P3], ['P4 sazonalidade', d.P4], ['P5 atraso', d.P5]];
         const maxP = Math.max(1, ...pesos.map(p => p[1]));
         const linhas = pesos.map(([nome, v]) => `
-            <div class="peso-row">
-                <span class="nome">${nome}</span>
+            <div class="peso-row"><span class="nome">${nome}</span>
                 <span class="bar"><span style="width:${(v / maxP) * 100}%"></span></span>
-                <span class="val">${v}</span>
-            </div>`).join('');
+                <span class="val">${v}</span></div>`).join('');
 
         cont.innerHTML = `
-            <div class="cod">${d.codigo} · ${d.ch}h · período ${d.periodo}</div>
+            <div class="cod">${d.codigo} · ${d.ch}h · período ${d.periodo} · oferta ${d.periodo_ofertado || '—'}</div>
             <h3>${d.nome}</h3>
-            <div class="status ${d.disponivel ? 'ok' : 'no'}">
-                ${d.disponivel ? '✓ Disponível para matrícula' : '✗ Bloqueada (falta pré-requisito)'}
-            </div>
+            <div class="status ${cls}">${status}</div>
             <div class="pesos">${linhas}</div>
             <div class="total">W total: ${d.W}</div>`;
     }
