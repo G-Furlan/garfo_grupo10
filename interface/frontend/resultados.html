@@ -2,18 +2,23 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grafo de Recomendação — Resultados</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
     <style>
-        :root { --roxo:#6a1b9a; --ouro:#f0a500; --borda:#e0e0e0; }
+        :root { --roxo:#2c38be; --ouro:#687edf; --borda:#e0e0e0; }
         * { box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; margin: 0; background:#f4f4f9; color:#222; }
+        body { font-family: "DM Sans", serif; margin: 0; background:#f4f4f9; color:#222; }
         header {
             background:#fff; border-bottom:2px solid var(--borda);
             padding:14px 24px; display:flex; align-items:center; gap:20px; flex-wrap:wrap;
         }
-        header h2 { margin:0; font-size:18px; }
+        .voltar{text-decoration: none; font-size: 24px; padding: 1vh; color: black;}
+        header h2 { margin:0; font-size:24px; font-family: "DM Serif Display", serif;}
         .seletor { display:flex; gap:0; border:1px solid var(--roxo); border-radius:6px; overflow:hidden; }
         .seletor button {
             border:0; background:#fff; color:var(--roxo); padding:7px 14px; cursor:pointer;
@@ -84,6 +89,7 @@
 </head>
 <body>
     <header>
+        <a href="/sistema.html" class="voltar">&#60;</a>
         <h2>Grafo de Recomendação</h2>
         <div class="seletor" id="seletor">
             <button data-sem="1">2026.1</button>
@@ -200,12 +206,12 @@
                 { selector: 'edge', style: {
                     'width': 2.5, 'line-color': '#c4c4c4', 'target-arrow-color': '#c4c4c4',
                     'target-arrow-shape': 'triangle', 'curve-style': 'bezier' } },
-                { selector: '.destacado', style: { 'line-color': '#6a1b9a', 'target-arrow-color': '#6a1b9a', 'width': 4 } },
-                { selector: 'node.foco', style: { 'border-color': '#6a1b9a', 'border-width': 4 } }
+                { selector: '.destacado', style: { 'line-color': '#000000', 'target-arrow-color': '#000000', 'width': 4 } },
+                { selector: 'node.foco', style: { 'border-color': '#000000', 'border-width': 4 } }
             ],
             layout: { name: 'preset', fit: true, padding: 30 }
         });
-
+        
         CY.on('tap', 'node', (evt) => {
             const n = evt.target;
             if (n.data('header')) return;
