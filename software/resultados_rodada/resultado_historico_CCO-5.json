@@ -1,0 +1,828 @@
+{
+  "elements": {
+    "nodes": [
+      {
+        "data": {
+          "id": "CTCO02",
+          "codigo": "CTCO02",
+          "nome": "ALGORITMOS E ESTRUTURAS DE DADOS II",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 3,
+          "disponivel": true,
+          "periodo_ofertado": "2026-1",
+          "W": 32,
+          "P1": 12,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 10
+        }
+      },
+      {
+        "data": {
+          "id": "XDES02",
+          "codigo": "XDES02",
+          "nome": "PROGRAMAÇÃO ORIENTADA A OBJETOS",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 3,
+          "disponivel": true,
+          "periodo_ofertado": "2026-1",
+          "W": 28,
+          "P1": 8,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 10
+        }
+      },
+      {
+        "data": {
+          "id": "XPAD01",
+          "codigo": "XPAD01",
+          "nome": "BANCO DE DADOS I",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 4,
+          "disponivel": false,
+          "periodo_ofertado": "2026-1",
+          "W": 18,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 8
+        }
+      },
+      {
+        "data": {
+          "id": "CTCO06",
+          "codigo": "CTCO06",
+          "nome": "COMPILADORES",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 7,
+          "disponivel": false,
+          "periodo_ofertado": "2026-2",
+          "W": 12,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 2
+        }
+      },
+      {
+        "data": {
+          "id": "CRSC02",
+          "codigo": "CRSC02",
+          "nome": "SISTEMAS OPERACIONAIS",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 3,
+          "disponivel": true,
+          "periodo_ofertado": "2026-1",
+          "W": 24,
+          "P1": 4,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 10
+        }
+      },
+      {
+        "data": {
+          "id": "XMAC02",
+          "codigo": "XMAC02",
+          "nome": "MÉTODOS MATEMÁTICOS PARA ANÁLISE DE DADOS",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 3,
+          "disponivel": true,
+          "periodo_ofertado": "2026-1",
+          "W": 24,
+          "P1": 4,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 10
+        }
+      },
+      {
+        "data": {
+          "id": "XAHC02",
+          "codigo": "XAHC02",
+          "nome": "INTERAÇÃO HUMANO-COMPUTADOR",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 6,
+          "disponivel": false,
+          "periodo_ofertado": "2026-2",
+          "W": 14,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 4
+        }
+      },
+      {
+        "data": {
+          "id": "XDES03",
+          "codigo": "XDES03",
+          "nome": "PROGRAMAÇÃO WEB",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 4,
+          "disponivel": false,
+          "periodo_ofertado": "2026-2",
+          "W": 22,
+          "P1": 4,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 8
+        }
+      },
+      {
+        "data": {
+          "id": "CMAC03",
+          "codigo": "CMAC03",
+          "nome": "ALGORITMOS EM GRAFOS",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 3,
+          "disponivel": true,
+          "periodo_ofertado": "2026-1",
+          "W": 20,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 10
+        }
+      },
+      {
+        "data": {
+          "id": "CTCO04",
+          "codigo": "CTCO04",
+          "nome": "PROJETO E ANÁLISE DE ALGORITMOS",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 4,
+          "disponivel": false,
+          "periodo_ofertado": "2026-2",
+          "W": 26,
+          "P1": 8,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 8
+        }
+      },
+      {
+        "data": {
+          "id": "XRSC01",
+          "codigo": "XRSC01",
+          "nome": "REDES DE COMPUTADORES",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 4,
+          "disponivel": false,
+          "periodo_ofertado": "2026-2",
+          "W": 18,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 8
+        }
+      },
+      {
+        "data": {
+          "id": "CRSC05",
+          "codigo": "CRSC05",
+          "nome": "SISTEMAS EMBARCADOS",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 4,
+          "disponivel": false,
+          "periodo_ofertado": "2026-2",
+          "W": 18,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 8
+        }
+      },
+      {
+        "data": {
+          "id": "CDES05",
+          "codigo": "CDES05",
+          "nome": "PROGRAMAÇÃO LÓGICA E FUNCIONAL",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 4,
+          "disponivel": true,
+          "periodo_ofertado": "2026-2",
+          "W": 26,
+          "P1": 8,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 8
+        }
+      },
+      {
+        "data": {
+          "id": "CTCO05",
+          "codigo": "CTCO05",
+          "nome": "TEORIA DA COMPUTAÇÃO",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 6,
+          "disponivel": false,
+          "periodo_ofertado": "2026-1",
+          "W": 18,
+          "P1": 4,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 4
+        }
+      },
+      {
+        "data": {
+          "id": "CMAC05",
+          "codigo": "CMAC05",
+          "nome": "CÁLCULO NUMÉRICO PARA COMPUTAÇÃO",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 4,
+          "disponivel": true,
+          "periodo_ofertado": "2026-2",
+          "W": 18,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 8
+        }
+      },
+      {
+        "data": {
+          "id": "CTCO03",
+          "codigo": "CTCO03",
+          "nome": "ANÁLISE E PROJETO ORIENTADOS A OBJETO",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 4,
+          "disponivel": false,
+          "periodo_ofertado": "2026-1",
+          "W": 18,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 8
+        }
+      },
+      {
+        "data": {
+          "id": "CMCO05",
+          "codigo": "CMCO05",
+          "nome": "INTRODUÇÃO À COMPUTAÇÃO VISUAL",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 5,
+          "disponivel": false,
+          "periodo_ofertado": "2026-1",
+          "W": 16,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 6
+        }
+      },
+      {
+        "data": {
+          "id": "XAHC03",
+          "codigo": "XAHC03",
+          "nome": "METODOLOGIA CIENTÍFICA",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 7,
+          "disponivel": false,
+          "periodo_ofertado": "2026-1",
+          "W": 12,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 2
+        }
+      }
+    ],
+    "edges": [
+      {
+        "data": {
+          "id": "e0",
+          "source": "CTCO02",
+          "target": "XPAD01"
+        }
+      },
+      {
+        "data": {
+          "id": "e1",
+          "source": "CTCO02",
+          "target": "CTCO04"
+        }
+      },
+      {
+        "data": {
+          "id": "e2",
+          "source": "XDES02",
+          "target": "XDES03"
+        }
+      },
+      {
+        "data": {
+          "id": "e3",
+          "source": "XDES02",
+          "target": "CTCO03"
+        }
+      },
+      {
+        "data": {
+          "id": "e4",
+          "source": "XDES02",
+          "target": "CMCO05"
+        }
+      },
+      {
+        "data": {
+          "id": "e5",
+          "source": "CRSC02",
+          "target": "XRSC01"
+        }
+      },
+      {
+        "data": {
+          "id": "e6",
+          "source": "CRSC02",
+          "target": "CRSC05"
+        }
+      },
+      {
+        "data": {
+          "id": "e7",
+          "source": "XMAC02",
+          "target": "CMCO05"
+        }
+      },
+      {
+        "data": {
+          "id": "e8",
+          "source": "XDES03",
+          "target": "XAHC02"
+        }
+      },
+      {
+        "data": {
+          "id": "e9",
+          "source": "CTCO04",
+          "target": "CTCO05"
+        }
+      },
+      {
+        "data": {
+          "id": "e10",
+          "source": "CDES05",
+          "target": "CTCO05"
+        }
+      },
+      {
+        "data": {
+          "id": "e11",
+          "source": "CTCO05",
+          "target": "CTCO06"
+        }
+      }
+    ]
+  },
+  "meta": {
+    "curso": "CCO",
+    "periodo_atual": 7,
+    "periodo_ingresso": "2023.1",
+    "total": 18,
+    "disponiveis": 7,
+    "max_horas": 128,
+    "media_aprovacoes": 2.5,
+    "orcamento_materias": 2,
+    "recomendacao": {
+      "1": {
+        "codigos": [
+          "CTCO02",
+          "XDES02"
+        ],
+        "horas": 128,
+        "w": 60,
+        "horas_livres": 0,
+        "slots_optativa": 0
+      },
+      "2": {
+        "codigos": [
+          "CDES05",
+          "CMAC05"
+        ],
+        "horas": 128,
+        "w": 44,
+        "horas_livres": 0,
+        "slots_optativa": 0
+      }
+    },
+    "lista_optativas": [
+      {
+        "codigo": "ADM03E",
+        "nome": "EMPREENDEDORISMO TECNOLÓGICO",
+        "periodo": 1,
+        "ch": 48,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "ADM08H",
+        "nome": "PSICOLOGIA: AS RELAÇÕES INDIVÍDUO-GRUPO",
+        "periodo": 1,
+        "ch": 48,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "ADM54H",
+        "nome": "GESTÃO DE CARREIRA",
+        "periodo": 1,
+        "ch": 32,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "ADM58H",
+        "nome": "PSICOLOGIA ORGANIZACIONAL E DO TRABALHO",
+        "periodo": 1,
+        "ch": 32,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "ECOX22",
+        "nome": "MARATONA DE PROGRAMAÇÃO II",
+        "periodo": 1,
+        "ch": 48,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "IEPG01",
+        "nome": "EMPREENDEDORISMO E INOVAÇÃO",
+        "periodo": 1,
+        "ch": 32,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "IEPG10",
+        "nome": "ENGENHARIA ECONÔMICA",
+        "periodo": 1,
+        "ch": 48,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "IEPG14",
+        "nome": "COMPORTAMENTO ORGANIZACIONAL I",
+        "periodo": 1,
+        "ch": 32,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "IEPG20",
+        "nome": "INTRODUÇÃO À ECONOMIA",
+        "periodo": 1,
+        "ch": 48,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "IEPG22",
+        "nome": "ADMINISTRAÇÃO APLICADA",
+        "periodo": 1,
+        "ch": 32,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "ADM52H",
+        "nome": "COMPORTAMENTO ORGANIZACIONAL II",
+        "periodo": 2,
+        "ch": 32,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "ECOX21",
+        "nome": "MARATONA DE PROGRAMAÇÃO I",
+        "periodo": 2,
+        "ch": 48,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "IEPG21",
+        "nome": "CIÊNCIAS HUMANAS E SOCIAIS",
+        "periodo": 2,
+        "ch": 48,
+        "periodo_ofertado": "2026-2",
+        "disponivel": true
+      },
+      {
+        "codigo": "LET007",
+        "nome": "LIBRAS: LINGUAGEM BRASILEIRA DE SINAIS",
+        "periodo": 2,
+        "ch": 48,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "ECOS04",
+        "nome": "SIMULAÇÃO E AVALIAÇÃO DE DESEMPENHO",
+        "periodo": 5,
+        "ch": 32,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "SADG01",
+        "nome": "GESTÃO E GOVERNANÇA DE TI",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "SDES05",
+        "nome": "ENGENHARIA DE SOFTWARE II",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "SDES07",
+        "nome": "DESENVOLVIMENTO DE SISTEMAS WEB",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "SPAD03",
+        "nome": "INTRODUÇÃO À ANÁLISE DE DADOS",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "XAHC07",
+        "nome": "COMPUTAÇÃO APLICADA À EDUCAÇÃO",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "XDES11",
+        "nome": "TÓPICOS EM DES I",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "2026-2",
+        "disponivel": true
+      },
+      {
+        "codigo": "XDES14",
+        "nome": "DESENVOLVIMENTO PARA DISPOSITIVOS MÓVEIS",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "XDES16",
+        "nome": "FUNDAMENTOS DE GAME DESIGN",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "XMCO03",
+        "nome": "METAHEURÍSTICAS",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "XMCO08",
+        "nome": "TEORIA DOS JOGOS",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "XPAD09",
+        "nome": "ANÁLISE E PREVISÃO DE SÉRIES TEMPORAIS",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "XRSC06",
+        "nome": "AUDITORIA E SEGURANÇA DE SI",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "XRSC08",
+        "nome": "PROGRAMAÇÃO PARALELA",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "2026-1",
+        "disponivel": false
+      },
+      {
+        "codigo": "XRSC10",
+        "nome": "TÓPICOS EM RSC",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "CMCO06",
+        "nome": "MODELAGEM GEOMÉTRICA E VISUAL",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "SDES06",
+        "nome": "GERÊNCIA DE PROJETOS DE SOFTWARE",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "SPAD02",
+        "nome": "BANCOS DE DADOS II",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "XAHC08",
+        "nome": "TÓPICOS EM UX DESIGN",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "XDES08",
+        "nome": "ARQUITETURA DE SOFTWARE",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "XDES10",
+        "nome": "ENGENHARIA DE SOFTWARE EXPERIMENTAL",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "2026-2",
+        "disponivel": true
+      },
+      {
+        "codigo": "XDES12",
+        "nome": "TÓPICOS EM DES II",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "2026-2",
+        "disponivel": true
+      },
+      {
+        "codigo": "XDES17",
+        "nome": "INTRODUÇÃO A CODIFICAÇÃO DE JOGOS DIGITAIS",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "2026-2",
+        "disponivel": false
+      },
+      {
+        "codigo": "XMCO02",
+        "nome": "MÉTODOS EXATOS",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "2026-2",
+        "disponivel": false
+      },
+      {
+        "codigo": "XMCO09",
+        "nome": "CIÊNCIA DE REDES",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "2026-2",
+        "disponivel": false
+      },
+      {
+        "codigo": "XPAD04",
+        "nome": "BANCO DE DADOS NOSQL",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "XPAD08",
+        "nome": "TÓPICOS EM PAD",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "2026-2",
+        "disponivel": false
+      },
+      {
+        "codigo": "XRSC07",
+        "nome": "COMPUTAÇÃO EM NUVEM",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "2026-1",
+        "disponivel": false
+      },
+      {
+        "codigo": "XRSC09",
+        "nome": "SISTEMAS DISTRIBUÍDOS",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "CMCO07",
+        "nome": "VISÃO COMPUTACIONAL",
+        "periodo": 7,
+        "ch": 64,
+        "periodo_ofertado": "2026-1",
+        "disponivel": false
+      },
+      {
+        "codigo": "SADG02",
+        "nome": "ECONOMIA DA INFORMAÇÃO",
+        "periodo": 7,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "XAHC06",
+        "nome": "TÓPICOS EM AHC",
+        "periodo": 7,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "XMCO04",
+        "nome": "TÓPICOS EM MCO",
+        "periodo": 7,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      }
+    ],
+    "fantasmas": [],
+    "arquivo": "historico_CCO-5.pdf"
+  }
+}

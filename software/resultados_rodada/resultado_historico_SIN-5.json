@@ -1,0 +1,555 @@
+{
+  "elements": {
+    "nodes": [
+      {
+        "data": {
+          "id": "SDES06",
+          "codigo": "SDES06",
+          "nome": "GERÊNCIA DE PROJETOS DE SOFTWARE",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 6,
+          "disponivel": true,
+          "periodo_ofertado": "2026-2",
+          "W": 14,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 4
+        }
+      },
+      {
+        "data": {
+          "id": "SDES07",
+          "codigo": "SDES07",
+          "nome": "DESENVOLVIMENTO DE SISTEMAS WEB",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 7,
+          "disponivel": true,
+          "periodo_ofertado": "2026-1",
+          "W": 12,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 2
+        }
+      },
+      {
+        "data": {
+          "id": "XMCO01",
+          "codigo": "XMCO01",
+          "nome": "INTELIGÊNCIA ARTIFICIAL",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 6,
+          "disponivel": true,
+          "periodo_ofertado": "2026-2",
+          "W": 14,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 4
+        }
+      },
+      {
+        "data": {
+          "id": "XAHC02",
+          "codigo": "XAHC02",
+          "nome": "INTERAÇÃO HUMANO-COMPUTADOR",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 7,
+          "disponivel": true,
+          "periodo_ofertado": "2026-1",
+          "W": 12,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 2
+        }
+      },
+      {
+        "data": {
+          "id": "XAHC03",
+          "codigo": "XAHC03",
+          "nome": "METODOLOGIA CIENTÍFICA",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 8,
+          "disponivel": false,
+          "periodo_ofertado": "2026-2",
+          "W": 10,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 0
+        }
+      },
+      {
+        "data": {
+          "id": "XRSC01",
+          "codigo": "XRSC01",
+          "nome": "REDES DE COMPUTADORES",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 5,
+          "disponivel": true,
+          "periodo_ofertado": "2026-1",
+          "W": 16,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 6
+        }
+      },
+      {
+        "data": {
+          "id": "SPAD02",
+          "codigo": "SPAD02",
+          "nome": "BANCO DE DADOS II",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 5,
+          "disponivel": true,
+          "periodo_ofertado": "2026-1",
+          "W": 16,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 6
+        }
+      },
+      {
+        "data": {
+          "id": "ADM51E",
+          "codigo": "ADM51E",
+          "nome": "GESTÃO DO CONHECIMENTO",
+          "tipo": "Obrigatoria",
+          "ch": 48,
+          "periodo": 5,
+          "disponivel": true,
+          "periodo_ofertado": "2026-1",
+          "W": 16,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 6
+        }
+      },
+      {
+        "data": {
+          "id": "ADM03E",
+          "codigo": "ADM03E",
+          "nome": "EMPREENDEDORISMO TECNOLÓGICO",
+          "tipo": "Obrigatoria",
+          "ch": 48,
+          "periodo": 8,
+          "disponivel": true,
+          "periodo_ofertado": "2026-2",
+          "W": 10,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 0
+        }
+      },
+      {
+        "data": {
+          "id": "IEPG10",
+          "codigo": "IEPG10",
+          "nome": "ENGENHARIA ECONÔMICA",
+          "tipo": "Obrigatoria",
+          "ch": 48,
+          "periodo": 6,
+          "disponivel": true,
+          "periodo_ofertado": "2026-2",
+          "W": 14,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 4
+        }
+      },
+      {
+        "data": {
+          "id": "SPAD03",
+          "codigo": "SPAD03",
+          "nome": "INTRODUÇÃO À ANÁLISE DE DADOS",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 5,
+          "disponivel": true,
+          "periodo_ofertado": "2026-1",
+          "W": 16,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 6
+        }
+      },
+      {
+        "data": {
+          "id": "SADG01",
+          "codigo": "SADG01",
+          "nome": "GESTÃO E GOVERNANÇA DE TI",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 9,
+          "disponivel": true,
+          "periodo_ofertado": "2026-1",
+          "W": 10,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 0
+        }
+      },
+      {
+        "data": {
+          "id": "XAHC01",
+          "codigo": "XAHC01",
+          "nome": "COMPUTAÇÃO E SOCIEDADE",
+          "tipo": "Obrigatoria",
+          "ch": 64,
+          "periodo": 8,
+          "disponivel": true,
+          "periodo_ofertado": "2026-2",
+          "W": 10,
+          "P1": 0,
+          "P2": 5,
+          "P3": 0,
+          "P4": 5,
+          "P5": 0
+        }
+      }
+    ],
+    "edges": []
+  },
+  "meta": {
+    "curso": "SIN",
+    "periodo_atual": 7,
+    "periodo_ingresso": "2023.1",
+    "total": 13,
+    "disponiveis": 12,
+    "max_horas": 320,
+    "media_aprovacoes": 5.3,
+    "orcamento_materias": 5,
+    "recomendacao": {
+      "1": {
+        "codigos": [
+          "XRSC01",
+          "SPAD02",
+          "ADM51E",
+          "SPAD03",
+          "SDES07"
+        ],
+        "horas": 304,
+        "w": 76,
+        "horas_livres": 16,
+        "slots_optativa": 0
+      },
+      "2": {
+        "codigos": [
+          "SDES06",
+          "XMCO01",
+          "IEPG10",
+          "ADM03E",
+          "XAHC01"
+        ],
+        "horas": 288,
+        "w": 62,
+        "horas_livres": 32,
+        "slots_optativa": 0
+      }
+    },
+    "lista_optativas": [
+      {
+        "codigo": "ECOS04",
+        "nome": "SIMULAÇÃO E AVALIAÇÃO DE DESEMPENHO",
+        "periodo": 0,
+        "ch": 32,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "XADG03",
+        "nome": "TÓPICOS EM ADG",
+        "periodo": 0,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "XAHC06",
+        "nome": "TÓPICOS EM AHC",
+        "periodo": 0,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "XAHC07",
+        "nome": "COMPUTAÇÃO APLICADA À EDUCAÇÃO",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "2026-2",
+        "disponivel": true
+      },
+      {
+        "codigo": "XPAD09",
+        "nome": "ANÁLISE E PREVISÃO DE SÉRIES TEMPORAIS",
+        "periodo": 5,
+        "ch": 64,
+        "periodo_ofertado": "2026-1",
+        "disponivel": true
+      },
+      {
+        "codigo": "ADM54H",
+        "nome": "GESTÃO DE CARREIRA",
+        "periodo": 6,
+        "ch": 32,
+        "periodo_ofertado": "2026-2",
+        "disponivel": true
+      },
+      {
+        "codigo": "ADM58H",
+        "nome": "PSICOLOGIA ORGANIZACIONAL E DO TRABALHO",
+        "periodo": 6,
+        "ch": 32,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "IEPG05",
+        "nome": "FINANÇAS PARA EXECUTIVOS",
+        "periodo": 6,
+        "ch": 48,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "IEPG15",
+        "nome": "LOGÍSTICA E GESTÃO DA CADEIA DE SUPRIMENTOS",
+        "periodo": 6,
+        "ch": 32,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "IEPG21",
+        "nome": "CIÊNCIAS HUMANAS E SOCIAIS",
+        "periodo": 6,
+        "ch": 48,
+        "periodo_ofertado": "2026-1 / 2026-2",
+        "disponivel": true
+      },
+      {
+        "codigo": "LET007",
+        "nome": "LIBRAS: LÍNGUA BRASILEIRA DE SINAIS",
+        "periodo": 6,
+        "ch": 48,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "SPAD06",
+        "nome": "MINERAÇÃO DE DADOS",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "2026-1",
+        "disponivel": false
+      },
+      {
+        "codigo": "XDES10",
+        "nome": "ENGENHARIA DE SOFTWARE EXPERIMENTAL",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "2026-2",
+        "disponivel": true
+      },
+      {
+        "codigo": "XMCO02",
+        "nome": "MÉTODOS EXATOS",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "XPAD04",
+        "nome": "BANCOS DE DADOS NOSQL",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "2026-2",
+        "disponivel": true
+      },
+      {
+        "codigo": "XPAD08",
+        "nome": "TÓPICOS EM PAD",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "XRSC07",
+        "nome": "COMPUTAÇÃO EM NUVEM",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      },
+      {
+        "codigo": "XRSC09",
+        "nome": "SISTEMAS DISTRIBUÍDOS",
+        "periodo": 6,
+        "ch": 64,
+        "periodo_ofertado": "2026-1",
+        "disponivel": false
+      },
+      {
+        "codigo": "ADM01F",
+        "nome": "FINANÇAS: CONCEITOS E APLICAÇÕES",
+        "periodo": 7,
+        "ch": 32,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "ADM08H",
+        "nome": "PSICOLOGIA: AS RELAÇÕES INDIVÍDUO-GRUPO",
+        "periodo": 7,
+        "ch": 48,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "ADM51H",
+        "nome": "CIÊNCIAS, TECNOLOGIAS E ORGANIZAÇÕES",
+        "periodo": 7,
+        "ch": 48,
+        "periodo_ofertado": "2026-1",
+        "disponivel": true
+      },
+      {
+        "codigo": "ADM52H",
+        "nome": "COMPORTAMENTO ORGANIZACIONAL II",
+        "periodo": 7,
+        "ch": 32,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "IEPG13",
+        "nome": "CUSTOS EMPRESARIAIS",
+        "periodo": 7,
+        "ch": 48,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "SADG02",
+        "nome": "ECONOMIA DA INFORMAÇÃO",
+        "periodo": 7,
+        "ch": 64,
+        "periodo_ofertado": "2026-1",
+        "disponivel": true
+      },
+      {
+        "codigo": "SPAD05",
+        "nome": "ANÁLISE DE DADOS GEOESPACIAIS",
+        "periodo": 7,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "SPAD07",
+        "nome": "ARMAZÉM DE DADOS",
+        "periodo": 7,
+        "ch": 64,
+        "periodo_ofertado": "2026-2",
+        "disponivel": false
+      },
+      {
+        "codigo": "XDES08",
+        "nome": "ARQUITETURA DE SOFTWARE",
+        "periodo": 7,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "XDES11",
+        "nome": "TÓPICOS EM DES",
+        "periodo": 7,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "XMCO03",
+        "nome": "METAHEURÍSTICAS",
+        "periodo": 7,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "XMCO04",
+        "nome": "TÓPICOS EM MCO",
+        "periodo": 7,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "XMCO08",
+        "nome": "TEORIA DOS JOGOS",
+        "periodo": 7,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": true
+      },
+      {
+        "codigo": "XRSC06",
+        "nome": "AUDITORIA E SEGURANÇA DE SI",
+        "periodo": 7,
+        "ch": 64,
+        "periodo_ofertado": "2026-2",
+        "disponivel": false
+      },
+      {
+        "codigo": "XRSC10",
+        "nome": "TÓPICOS EM RSC",
+        "periodo": 7,
+        "ch": 64,
+        "periodo_ofertado": "2026-2",
+        "disponivel": false
+      },
+      {
+        "codigo": "XAHC08",
+        "nome": "TÓPICOS SOBRE UX DESIGN",
+        "periodo": 8,
+        "ch": 64,
+        "periodo_ofertado": "",
+        "disponivel": false
+      }
+    ],
+    "fantasmas": [],
+    "arquivo": "historico_SIN-5.pdf"
+  }
+}
