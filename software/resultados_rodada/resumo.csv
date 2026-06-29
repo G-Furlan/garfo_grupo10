@@ -1,0 +1,11 @@
+arquivo,curso,periodo_atual,pendentes_obrig,disponiveis_prereq,media_aprovacoes,orcamento_horas,orcamento_materias,rec2026_1_qtd,rec2026_1_horas,rec2026_1_w,rec2026_1_vagas_opt,rec2026_2_qtd,rec2026_2_horas,rec2026_2_w,rec2026_2_vagas_opt,optativas_catalogo
+historico_CCO-1,CCO,7,20,6,2.5,128,2,1,64,18,1,2,128,76,0,44
+historico_CCO-2,CCO,9,5,3,4.0,256,4,2,128,44,2,1,64,30,3,46
+historico_CCO-3,CCO,5,21,9,5.0,320,5,5,320,112,0,2,128,36,3,47
+historico_CCO-4,CCO,8,16,7,2.0,128,2,2,128,58,0,2,128,56,0,41
+historico_CCO-5,CCO,7,18,7,2.5,128,2,2,128,60,0,2,128,44,0,47
+historico_SIN-1,SIN,7,14,12,4.0,256,4,4,240,60,0,4,256,72,0,34
+historico_SIN-2,SIN,7,16,10,3.8,256,4,3,176,38,1,4,224,84,0,32
+historico_SIN-3,SIN,9,9,8,4.6,320,5,5,304,116,0,3,192,50,2,32
+historico_SIN-4,SIN,7,19,10,3.7,256,4,4,240,104,0,4,224,72,0,33
+historico_SIN-5,SIN,7,13,12,5.3,320,5,5,304,76,0,5,288,62,0,34
