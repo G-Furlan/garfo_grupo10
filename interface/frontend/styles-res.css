@@ -1,16 +1,75 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+ :root { --roxo:#2c38be; --ouro:#687edf; --borda:#e0e0e0; }
+        * { box-sizing: border-box; }
+        body { font-family: "DM Sans", serif; margin: 0; background:#f4f4f9; color:#222; }
+        header {
+            background:#fff; border-bottom:2px solid var(--borda);
+            padding:14px 24px; display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+        }
+        .voltar{text-decoration: none; font-size: 24px; padding: 1vh; color: black;}
+        header h2 { margin:0; font-size:24px; font-family: "DM Serif Display", serif;}
+        .seletor { display:flex; gap:0; border:1px solid var(--roxo); border-radius:6px; overflow:hidden; }
+        .seletor button {
+            border:0; background:#fff; color:var(--roxo); padding:7px 14px; cursor:pointer;
+            font-weight:bold; font-size:13px;
+        }
+        .seletor button.ativo { background:var(--roxo); color:#fff; }
+        .meta { display:flex; gap:16px; font-size:13px; color:#555; flex-wrap:wrap; }
+        .meta b { color:#222; }
+        .legenda { display:flex; gap:14px; font-size:12px; margin-left:auto; align-items:center; flex-wrap:wrap; }
+        .pill { display:inline-flex; align-items:center; gap:6px; }
+        .dot { width:14px; height:14px; border-radius:3px; display:inline-block; }
+        .layout { display:flex; gap:16px; padding:16px 24px; align-items:flex-start; }
+        #cy { flex:1;  min-height:66vh; background:#fff; border:1px solid var(--borda); border-radius:8px; }
+        .coluna-dir { width:300px; display:flex; flex-direction:column; gap:16px; }
+        .card-painel { background:#fff; border:1px solid var(--borda); border-radius:8px; padding:16px; }
+        #painel { min-height:160px; }
+        #painel h3 { margin:0 0 4px; font-size:16px; }
+        #painel .cod { color:#888; font-size:12px; }
+        #painel .status { font-weight:bold; margin:8px 0; }
+        #painel .ok { color:#1e7a3a; } #painel .no { color:#c0392b; } #painel .rec { color:#b8860b; }
+        .pesos { margin-top:12px; }
+        .peso-row { display:flex; align-items:center; gap:8px; margin:5px 0; font-size:13px; }
+        .peso-row .nome { width:118px; color:#555; }
+        .bar { flex:1; height:10px; background:#eee; border-radius:5px; overflow:hidden; }
+        .bar > span { display:block; height:100%; background:var(--roxo); }
+        .peso-row .val { width:24px; text-align:right; font-weight:bold; }
+        .total { margin-top:10px; padding-top:8px; border-top:1px solid var(--borda); font-size:15px; font-weight:bold; }
+        .vazio { text-align:center; padding:60px 20px; color:#777; }
+        .vazio a { color:var(--roxo); }
+        .hint { color:#999; font-size:12px; }
 
-    #cy {
-        width: 800px;
-        height: 600px;
-        background-color: white;
-        border: 2px solid #ccc;
-        border-radius: 8px;
-        margin-top: 20px;
-    }
-}
+        /* Seção de recomendadas (aparece ao rolar) */
+        #recs { padding:8px 24px 48px; }
+        #recs .cabecalho { display:flex; align-items:baseline; gap:12px; border-top:3px solid var(--ouro);
+            padding-top:18px; margin-top:8px; }
+        #recs h3 { margin:0; font-size:20px; }
+        #recs .resumo { color:#777; font-size:13px; }
+        .cards { display:flex; flex-wrap:wrap; gap:14px; margin-top:16px; }
+        .card {
+            width:220px; background:#fff; border:1px solid var(--borda); border-left:5px solid var(--ouro);
+            border-radius:8px; padding:14px; box-shadow:0 1px 3px rgba(0,0,0,.06);
+            opacity:0; transform:translateY(14px); transition:opacity .45s ease, transform .45s ease;
+        }
+        .card.visivel { opacity:1; transform:none; }
+        .card .c-cod { font-weight:bold; color:var(--roxo); font-size:13px; }
+        .card .c-nome { font-size:15px; margin:4px 0 10px; line-height:1.25; }
+        .card .c-meta { display:flex; justify-content:space-between; font-size:12px; color:#666; }
+        .card .c-w { font-weight:bold; color:#b8860b; }
+        /* Card cinza de vaga livre para optativa */
+        .card.card-vazio { border:2px dashed #bbb; border-left:2px dashed #bbb; background:#fafafa; box-shadow:none; }
+        .card.card-vazio .c-cod { color:#888; }
+        .card.card-vazio .c-nome { color:#999; font-style:italic; }
+        .card.card-vazio .c-meta { color:#aaa; }
+        /* Lista de optativas (coluna direita) */
+        #painel-optativas .opt-titulo { margin:0 0 2px; font-size:15px; }
+        #painel-optativas .opt-sub { color:#888; font-size:12px; margin-bottom:10px; }
+        #opt-lista { max-height:30vh; overflow-y:auto; }
+        .opt-row { padding:8px 0; border-bottom:1px solid #f0f0f0; }
+        .opt-row:last-child { border-bottom:0; }
+        .opt-top { display:flex; justify-content:space-between; align-items:baseline; }
+        .opt-cod { font-weight:bold; color:var(--roxo); font-size:13px; }
+        .opt-ch { font-size:12px; color:#666; }
+        .opt-nome { font-size:13px; line-height:1.25; margin:2px 0; }
+        .opt-per { font-size:11px; color:#999; }
+        .opt-vazio { color:#999; font-size:13px; padding:8px 0; }
+        .recs-vazio { color:#999; margin-top:16px; }

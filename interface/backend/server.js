@@ -23,22 +23,6 @@ app.get('/sistema', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/sistema.html'));
 });
 
-// Rota da grade manual (mantida como estava)
-app.post('/calcular-grade', (req, res) => {
-    const materiasSelecionadas = req.body.materias;
-    const pythonProcess = spawn(PYTHON, ['grafo.py', JSON.stringify(materiasSelecionadas)]);
-    let dataResponse = "";
-    pythonProcess.on('error', () => res.status(500).json({ error: "Não foi possível iniciar o Python." }));
-    pythonProcess.stdout.on('data', (data) => { dataResponse += data.toString(); });
-    pythonProcess.on('close', () => {
-        try {
-            res.json(JSON.parse(dataResponse));
-        } catch (error) {
-            res.status(500).json({ error: "Erro ao processar o grafo em Python." });
-        }
-    });
-});
-
 // -----------------------------------------------------------------
 // Upload do histórico  (salva o PDF e roda o pipeline automaticamente)
 // -----------------------------------------------------------------

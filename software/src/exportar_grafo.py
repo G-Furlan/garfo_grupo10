@@ -33,7 +33,7 @@ def orcamento_por_media(media):
     por semestre (vinda do parser). Ex.: média 4.3 -> 4 matérias -> 256h.
     Calouro/sem histórico fechado (média < 1) cai no fallback.
     """
-    if not media or media < 1:
+    if not media or media < 4:
         n = MATERIAS_FALLBACK
     else:
         n = min(MAX_MATERIAS_TETO, round(media))
