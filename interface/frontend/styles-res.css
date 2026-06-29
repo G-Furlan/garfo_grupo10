@@ -6,7 +6,7 @@
             padding:14px 24px; display:flex; align-items:center; gap:20px; flex-wrap:wrap;
         }
         .voltar{text-decoration: none; font-size: 24px; padding: 1vh; color: black;}
-        header h2 { margin:0; font-size:24px; font-family: "DM Serif Display", serif;}
+        header h2 { margin:0; font-size:28px; font-family: "DM Serif Display", serif;}
         .seletor { display:flex; gap:0; border:1px solid var(--roxo); border-radius:6px; overflow:hidden; }
         .seletor button {
             border:0; background:#fff; color:var(--roxo); padding:7px 14px; cursor:pointer;
@@ -42,7 +42,7 @@
         #recs { padding:8px 24px 48px; }
         #recs .cabecalho { display:flex; align-items:baseline; gap:12px; border-top:3px solid var(--ouro);
             padding-top:18px; margin-top:8px; }
-        #recs h3 { margin:0; font-size:20px; }
+        #recs h3 { margin:0; font-size:22px; font-family: "DM Serif Display", serif; }
         #recs .resumo { color:#777; font-size:13px; }
         .cards { display:flex; flex-wrap:wrap; gap:14px; margin-top:16px; }
         .card {
