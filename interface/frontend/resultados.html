@@ -10,6 +10,15 @@
     <title>Grafo de Recomendação — Resultados</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.26.0/cytoscape.min.js"></script>
     <link rel="stylesheet" href="styles-res.css">
+    <style>
+        /* Horário e conflitos (adicionados à exibição dos cards) */
+        .c-hora { font-size: 12px; color: #555; margin-top: 6px; }
+        .c-aviso { font-size: 12px; color: #b00020; font-weight: bold; margin-top: 4px; }
+        .card.card-conflito { border: 2px solid #e09f00; box-shadow: 0 0 0 2px rgba(224,159,0,.18); }
+        .opt-hora { color: #666; }
+        .opt-choca { color: #b00020; font-weight: bold; }
+        #recs-resumo .aviso-conflito { color: #b00020; font-weight: bold; }
+    </style>
 </head>
 <body>
     <header>
@@ -85,6 +94,59 @@
         if (!po || po.includes('/')) return true;          // desconhecida ou ambos
         try { return parseInt(po.split('-')[1][0], 10) === sem; }
         catch (e) { return true; }
+    }
+
+    // --- HORÁRIO (formato UNIFEI: "2T34 4T12" = dia(s) + turno + aula(s)) ---
+    // Transforma a string em um conjunto de "fatias" dia+turno+aula (ex.: 2T3, 2T4).
+    function parseHorario(str) {
+        const slots = new Set();
+        if (!str) return slots;
+        for (const token of String(str).trim().split(/\s+/)) {
+            const m = token.match(/^(\d+)([MTN])(\d+)$/i);
+            if (!m) continue;
+            const dias = m[1].split(''), turno = m[2].toUpperCase(), aulas = m[3].split('');
+            for (const d of dias) for (const a of aulas) slots.add(`${d}${turno}${a}`);
+        }
+        return slots;
+    }
+    function intersecta(a, b) { for (const s of a) if (b.has(s)) return true; return false; }
+
+    // Horário de uma disciplina no semestre selecionado (string crua ou '').
+    function horarioDoSem(node, sem) {
+        const h = node && node.horario;
+        return (h && h['2026-' + sem]) || '';
+    }
+
+    // Glosa amigável: "2T34 4T12" -> "Seg, Qua · tarde"
+    const _DIAS = { 2: 'Seg', 3: 'Ter', 4: 'Qua', 5: 'Qui', 6: 'Sex', 7: 'Sáb' };
+    const _TURNOS = { M: 'manhã', T: 'tarde', N: 'noite' };
+    function glosarHorario(str) {
+        if (!str) return '';
+        const dias = new Set(), turnos = new Set();
+        for (const token of String(str).trim().split(/\s+/)) {
+            const m = token.match(/^(\d+)([MTN])(\d+)$/i);
+            if (!m) continue;
+            m[1].split('').forEach(d => dias.add(_DIAS[d] || d));
+            turnos.add(_TURNOS[m[2].toUpperCase()] || m[2]);
+        }
+        return dias.size ? `${[...dias].join(', ')} · ${[...turnos].join('/')}` : '';
+    }
+
+    // Conflitos de horário entre os códigos de uma grade, no semestre sem.
+    // Retorna { codigo: [códigos que chocam com ele] }.
+    function detectarConflitos(codigos, dados, sem) {
+        const slots = {};
+        codigos.forEach(c => { slots[c] = parseHorario(horarioDoSem(dados[c], sem)); });
+        const conf = {};
+        for (let i = 0; i < codigos.length; i++)
+            for (let j = i + 1; j < codigos.length; j++) {
+                const a = codigos[i], b = codigos[j];
+                if (intersecta(slots[a], slots[b])) {
+                    (conf[a] = conf[a] || []).push(b);
+                    (conf[b] = conf[b] || []).push(a);
+                }
+            }
+        return conf;
     }
 
     function desenhar(grafo) {
@@ -195,24 +257,36 @@
         sec.style.display = 'block';
         document.getElementById('recs-titulo').textContent = `Recomendadas para 2026.${sem}`;
         const slots = recs.slots_optativa || 0;
-        document.getElementById('recs-resumo').textContent =
-            `${recs.codigos.length} obrigatória(s) · ${recs.horas}h`
-            + (slots ? ` · ${slots} vaga(s) livre(s) p/ optativa` : '');
 
         const cont = document.getElementById('recs-cards');
         if (!recs.codigos.length && !slots) {
+            document.getElementById('recs-resumo').textContent = '';
             cont.innerHTML = `<div class="recs-vazio">Nada disponível e ofertado em 2026.${sem}.</div>`;
             return;
         }
         const dados = {};
         GRAFO.elements.nodes.forEach(n => dados[n.data.codigo] = n.data);
 
+        // Conflitos de horário entre as recomendadas do semestre
+        const conflitos = detectarConflitos(recs.codigos, dados, sem);
+        const temConflito = Object.keys(conflitos).length > 0;
+
+        document.getElementById('recs-resumo').innerHTML =
+            `${recs.codigos.length} obrigatória(s) · ${recs.horas}h`
+            + (slots ? ` · ${slots} vaga(s) livre(s) p/ optativa` : '')
+            + (temConflito ? ` · <span class="aviso-conflito">⚠ conflito de horário</span>` : '');
+
         let html = recs.codigos.map((c, i) => {
             const d = dados[c];
-            return `<div class="card" style="transition-delay:${i * 60}ms">
+            const h = horarioDoSem(d, sem);
+            const conf = conflitos[c];
+            const glosa = glosarHorario(h);
+            return `<div class="card${conf ? ' card-conflito' : ''}" style="transition-delay:${i * 60}ms">
                 <div class="c-cod">${d.codigo}</div>
                 <div class="c-nome">${d.nome}</div>
                 <div class="c-meta"><span>${d.ch}h · período ${d.periodo}</span><span class="c-w">W ${d.W}</span></div>
+                <div class="c-hora">${h ? '🕘 ' + h + (glosa ? ' · ' + glosa : '') : 'horário não informado'}</div>
+                ${conf ? `<div class="c-aviso">⚠ choca com ${conf.join(', ')}</div>` : ''}
             </div>`;
         }).join('');
 
@@ -237,6 +311,13 @@
 
     // Lista de optativas liberadas (prereq ok) e ofertadas no semestre selecionado
     function montarListaOptativas(sem) {
+        const dados = {};
+        GRAFO.elements.nodes.forEach(n => dados[n.data.codigo] = n.data);
+        // Fatias de horário já ocupadas pelas obrigatórias recomendadas neste semestre
+        const recCods = ((GRAFO.meta.recomendacao || {})[String(sem)] || {}).codigos || [];
+        const slotsGrade = new Set();
+        recCods.forEach(c => parseHorario(horarioDoSem(dados[c], sem)).forEach(s => slotsGrade.add(s)));
+
         const lista = (GRAFO.meta.lista_optativas || [])
             .filter(o => o.disponivel && ofertadaEm(o.periodo_ofertado, sem));
         document.getElementById('opt-sub').textContent =
@@ -246,12 +327,15 @@
             cont.innerHTML = `<div class="opt-vazio">Nenhuma optativa liberada neste semestre.</div>`;
             return;
         }
-        cont.innerHTML = lista.map(o => `
-            <div class="opt-row">
+        cont.innerHTML = lista.map(o => {
+            const h = (o.horario && o.horario['2026-' + sem]) || '';
+            const choca = h && intersecta(parseHorario(h), slotsGrade);
+            return `<div class="opt-row">
                 <div class="opt-top"><span class="opt-cod">${o.codigo}</span><span class="opt-ch">${o.ch}h</span></div>
                 <div class="opt-nome">${o.nome}</div>
-                <div class="opt-per">período ${o.periodo}</div>
-            </div>`).join('');
+                <div class="opt-per">período ${o.periodo}${h ? ` · <span class="opt-hora">🕘 ${h}</span>` : ''}${choca ? ' · <span class="opt-choca">choca c/ a grade</span>' : ''}</div>
+            </div>`;
+        }).join('');
     }
 
     function mostrarPainel(d) {
@@ -275,10 +359,13 @@
                 <span class="bar"><span style="width:${(v / maxP) * 100}%"></span></span>
                 <span class="val">${v}</span></div>`).join('');
 
+        const h = horarioDoSem(d, SEM);
+        const glosa = glosarHorario(h);
         cont.innerHTML = `
             <div class="cod">${d.codigo} · ${d.tipo === 'Optativa' ? 'Optativa' : 'Obrigatória'} · ${d.ch}h · período ${d.periodo} · oferta ${d.periodo_ofertado || '—'}</div>
             <h3>${d.nome}</h3>
             <div class="status ${cls}">${status}</div>
+            <div class="c-hora">🕘 ${h ? h + (glosa ? ' · ' + glosa : '') : 'horário não informado em 2026.' + SEM}</div>
             <div class="pesos">${linhas}</div>
             <div class="total">W total: ${d.W}</div>`;
     }
