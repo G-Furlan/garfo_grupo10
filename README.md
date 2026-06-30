@@ -255,7 +255,6 @@ O sistema não substitui a análise final do discente ou da coordenação do cur
 - Otimizar a escolha de optativas.
 - Controlar automaticamente a carga horária total de optativas já cumpridas.
 - Permitir restrições personalizadas de disponibilidade do aluno.
-- Adicionar métricas quantitativas de avaliação das recomendações.
 - Criar testes automatizados para parser, construção do grafo e recomendação.
 
 ## Licença
