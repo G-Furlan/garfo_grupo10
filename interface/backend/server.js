@@ -49,8 +49,7 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
-// Resolve qual Python usar: prioriza o da venv do software/ (onde pandas/pdfplumber
-// estão instalados); senão usa a variável PYTHON_BIN; senão tenta 'python3'/'python'.
+// Resolve qual Python usar
 function resolverPython() {
     const candidatos = [
         path.join(__dirname, '../../software/.venv/bin/python'),        // Linux/Mac/WSL
@@ -65,7 +64,7 @@ function resolverPython() {
 const PYTHON = resolverPython();
 console.log(`Python usado pelo backend: ${PYTHON}`);
 
-// Roda o pipeline Python (parser -> parte 1 -> parte 2) e devolve o grafo Cytoscape
+// Roda o pipeline e devolve o grafo Cytoscape
 function processarGrafo(caminhoPdf) {
     return new Promise((resolve, reject) => {
         const scriptPath = path.join(__dirname, '../../software/src/exportar_grafo.py');

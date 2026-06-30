@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-PARTE 2 do pipeline de recomendação de matrícula.
-
-Recebe o grafo de pendentes da PARTE 1 (grafo_pendentes.construir_grafo_dependencias)
+Recebe o grafo de pendentes (grafo_pendentes.construir_grafo_dependencias)
 e atribui a cada nó (disciplina) os pesos P1..P5, o peso total W e o booleano
-'disponivel'. O grafo continua sendo o mesmo dict da parte 1 — só ganha atributos.
+'disponivel'.
 
 Esquema de pesos (definido pelo grupo):
     P1  Caminho crítico   — quanto esta disciplina destrava à frente (vem da parte 1)
@@ -19,7 +17,7 @@ from grafo_pendentes import calcular_caminhos_criticos
 
 
 # -------------------------------------------------------------
-# CONSTANTES DE CALIBRAÇÃO  (knobs — ver nota de calibração no fim do arquivo)
+# CONSTANTES DE CALIBRAÇÃO 
 # -------------------------------------------------------------
 FATOR_P1          = 4   # P1 = caminho_critico * FATOR_P1
 P2_OBRIGATORIA    = 5   # P2 = bônus fixo para obrigatória (0 para optativa)
@@ -32,7 +30,7 @@ PESO_ATRASO       = 2   # P5 = (períodos de atraso + 1) * PESO_ATRASO
 # DISPONIBILIDADE
 # -------------------------------------------------------------
 def esta_disponivel(node, disciplinas_resolvidas):
-    """True se ao menos um grupo de pré-requisitos está satisfeito (OR de grupos AND)."""
+    """True se ao menos um grupo de pré-requisitos está satisfeito."""
     grupos = node.get('pre_requisitos', [])
     if not grupos:
         return True

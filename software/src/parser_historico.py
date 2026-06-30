@@ -144,7 +144,7 @@ def extrair_dados_completos_sigaa(caminho_pdf):
             # para não zerar a conta, mas o ideal é que ele já tenha histórico finalizado.
             semestres_fechados = semestres_unicos 
             
-        # 3. Filtra o histórico para olhar APENAS para os semestres que já terminaram
+        # 3. Filtra o histórico para olhar apenas para os semestres que já terminaram
         df_historico_fechado = df_bruto[df_bruto['semestre'].isin(semestres_fechados)]
         
         # 4. Faz o cálculo real
@@ -155,7 +155,7 @@ def extrair_dados_completos_sigaa(caminho_pdf):
             media_aprovacao_semestre = total_aprovacoes / total_semestres_avaliados
         # -----------------------------------------------------------------------
 
-        # Agrupamento da tabela do histórico (Restante do código igual...)
+        # Agrupamento da tabela do histórico 
         df_consolidado = df_bruto.groupby('codigo').agg(
             tentativas=('situacao', 'count'),
             reprovacoes=('situacao', lambda x: (x == 'REP').sum()),
@@ -178,7 +178,7 @@ def extrair_dados_completos_sigaa(caminho_pdf):
         with open(caminho_json, 'r', encoding='utf-8') as f:
             mapa_equivalencias = json.load(f)
     except FileNotFoundError:
-        pass # Silenciado o print para não sujar o log principal
+        pass 
 
     disciplinas_resolvidas_expandidas = set(disciplinas_resolvidas)
     for disc in disciplinas_resolvidas:
@@ -189,7 +189,6 @@ def extrair_dados_completos_sigaa(caminho_pdf):
     pendentes_unicos = set(pendentes)
     pendentes_reais = [codigo for codigo in pendentes_unicos if codigo not in disciplinas_resolvidas_expandidas]
 
-    # Agora a função retorna a 'media_aprovacao_semestre' como o 7º item
     return curso_identificado, df_consolidado, list(disciplinas_resolvidas_expandidas), pendentes_reais, periodo_ingresso, codigos_suspensoes, media_aprovacao_semestre
 
 
@@ -205,7 +204,6 @@ if __name__ == "__main__":
         caminho_arquivo = max(arquivos_pdf, key=os.path.getmtime)
         print(f"Arquivo detectado automaticamente para análise: {os.path.basename(caminho_arquivo)}")
         
-        # Recebendo a 7ª variável: media_aprovacoes
         curso, df_historico, disciplinas_resolvidas, lista_pendentes, periodo_ingresso, suspensoes, media_aprovacoes = extrair_dados_completos_sigaa(caminho_arquivo)
 
         print(f"\n===== RESULTADOS DA ANÁLISE =====")

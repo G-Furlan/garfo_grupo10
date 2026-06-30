@@ -1,40 +1,14 @@
-"""
-PARTE 1 do pipeline de recomendação de matrícula.
-
-Gera o grafo de dependências das disciplinas OBRIGATÓRIAS que ainda faltam
-para o aluno concluir o curso (lidas do histórico pelo parser).
-
-Representação canônica: dicionário puro (sem NetworkX), na forma
-
-    {
-        'curso': 'CCO',
-        'nos': {
-            'COD': {
-                'nome': str,
-                'tipo': 'Obrigatoria',
-                'ch': int,
-                'periodo_ideal': int,
-                'periodo_ofertado': str,
-                'pre_requisitos': [[...], ...]   # grupos: OR entre grupos, AND dentro
-            },
-            ...
-        },
-        'arestas': {
-            'COD': ['COD_QUE_DEPENDE_DELE', ...]  # COD -> dep  (dep depende de COD)
-        },
-        'fantasmas': ['CODIGO_INEXISTENTE', ...]   # pendentes que não estão na grade
-    }
-
-Este grafo é o produto da PARTE 1. A PARTE 2 vai decorá-lo com pesos (P1-P6) e
-a PARTE 3 vai percorrê-lo (BFS) para escolher as melhores disciplinas do semestre.
-"""
-
 import json
 
 
 # -------------------------------------------------------------
 # CARREGAMENTO E NORMALIZAÇÃO
 # -------------------------------------------------------------
+
+# O conceito de 'fantasma' abordado nesse código foi utilizado para garantir 
+# a normalização do banco de dados em meio suas inconsistências.
+# Entretanto, na versão atual do projeto, esse conceito não é mais relevante 
+# por termos deixado o banco de dados correto e consistente.
 
 def carregar_grade(curso):
     """Carrega o JSON da grade curricular do curso."""
@@ -51,8 +25,7 @@ def eh_obrigatoria(dados):
 
 def normalizar_pre_requisitos(pre_req_raw):
     """
-    Garante o formato lista-de-listas (OR de grupos AND).
-    Obrigatórias já vêm como [['A', 'B'], ['C']]; flat ['A', 'B'] vira [['A'], ['B']].
+    Garante o formato lista-de-listas
     """
     if not pre_req_raw:
         return []
@@ -95,23 +68,10 @@ def construir_grafo_dependencias(pendentes, grade, curso=None):
     """
     Constrói o grafo de dependências entre as disciplinas obrigatórias pendentes.
 
-    Só entram no grafo disciplinas que estão em `pendentes`, existem na grade e
-    são obrigatórias. Uma aresta v -> u é criada quando v é pré-requisito de u
-    (em qualquer grupo) e ambos são pendentes. Disciplinas já concluídas não
-    viram nó nem aresta — o grafo representa apenas o que ainda falta.
-
-    Parâmetros:
-        pendentes : list[str]  — códigos das obrigatórias pendentes (do parser)
-        grade     : dict       — grade completa carregada do JSON
-        curso     : str | None — metadado opcional
-
-    Retorno:
-        dict  com chaves 'curso', 'nos', 'arestas', 'fantasmas'
     """
     pendentes_unicos = list(dict.fromkeys(pendentes))  # remove duplicatas, preserva ordem
 
-    # Conjunto de nós: pendentes que existem na grade (obrigatória OU optativa).
-    # O escopo (incluir ou não optativas) é decidido por quem monta a lista `pendentes`.
+    # Conjunto de nós: pendentes que existem na grade (obrigatória ou optativa).
     nos_validos = {
         cod for cod in pendentes_unicos
         if cod in grade
@@ -144,7 +104,7 @@ def construir_grafo_dependencias(pendentes, grade, curso=None):
 
 
 # -------------------------------------------------------------
-# MÉTRICA ESTRUTURAL: CAMINHO CRÍTICO (insumo do P1 na parte 2)
+# MÉTRICA ESTRUTURAL: CAMINHO CRÍTICO
 # -------------------------------------------------------------
 
 def calcular_caminhos_criticos(grafo):
@@ -198,7 +158,7 @@ def imprimir_grafo(grafo):
     print(f"{'CÓDIGO':<14} | {'CH':<4} | {'PER':<4} | {'CRÍT':<5} | NOME")
     print("-" * 72)
 
-    # Ordena por caminho crítico (mais estruturante primeiro), depois período
+    # Ordena por caminho crítico, depois período
     ordenados = sorted(
         nos.items(),
         key=lambda x: (-caminhos.get(x[0], 0), x[1]['periodo_ideal'])

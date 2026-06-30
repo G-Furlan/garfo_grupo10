@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-PARTE 3 (passo 1) do pipeline de recomendação de matrícula.
-
-Recebe o grafo ponderado da PARTE 2 e escolhe a melhor grade do PRÓXIMO semestre
+Recebe o grafo ponderado e escolhe a melhor grade do PRÓXIMO semestre
 resolvendo uma MOCHILA 0/1 (knapsack):
 
     valor    = W (peso de prioridade da disciplina)
@@ -13,9 +11,7 @@ Maximiza a soma de W das disciplinas escolhidas sem estourar max_horas, consider
 apenas as disciplinas disponíveis (pré-requisitos satisfeitos). Opcionalmente filtra
 também pelas que são ofertadas no semestre-alvo.
 
-
 """
-
 
 def _ch_int(ch):
     """Carga horária como inteiro (o nó já guarda int, mas aceita '64h' por segurança)."""
@@ -84,7 +80,6 @@ def recomendar_semestre(grafo, max_horas, semestre_alvo=None):
                         None (default) considera todas as disponíveis
 
     Efeito: marca cada nó com 'recomendada' (bool).
-    Retorno: dict com recomendadas, em_espera, total_w, total_horas, max_horas.
     """
     candidatos = []
     for cod, d in grafo['nos'].items():

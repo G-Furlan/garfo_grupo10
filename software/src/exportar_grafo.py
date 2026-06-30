@@ -1,29 +1,24 @@
 # -*- coding: utf-8 -*-
 """
-Orquestra o pipeline (parser -> parte 1 -> parte 2) e exporta o grafo ponderado
+Monta o pipeline e exporta o grafo ponderado
 em JSON no formato que o Cytoscape consome.
 
-Uso:
-    python src/exportar_grafo.py [caminho_do_pdf]
-Se o caminho não for passado, usa o PDF mais recente do diretório de datasets.
-Imprime na stdout: {"elements": {"nodes":[...], "edges":[...]}, "meta": {...}}
-ou {"error": "..."} em caso de falha.
 """
 import os, sys, json, glob, re
 from datetime import datetime
 
-# Torna o script independente do diretório de onde é chamado (ex.: pelo Node).
+# Torna o script independente do diretório de onde é chamado
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # .../software
 os.chdir(RAIZ)
 sys.path.insert(0, os.path.join(RAIZ, 'src'))
 
-from parser_historico import extrair_dados_completos_sigaa          # noqa: E402
-from grafo_pendentes import carregar_grade, construir_grafo_dependencias, eh_obrigatoria  # noqa: E402
-from grafo_pesos import atribuir_pesos, esta_disponivel                  # noqa: E402
-from recomendar_semestre import recomendar_semestre                 # noqa: E402
+from parser_historico import extrair_dados_completos_sigaa          
+from grafo_pendentes import carregar_grade, construir_grafo_dependencias, eh_obrigatoria  
+from grafo_pesos import atribuir_pesos, esta_disponivel                 
+from recomendar_semestre import recomendar_semestre                
 
-MAX_MATERIAS_TETO = 8     # teto de matérias por semestre (evita orçamento irreal)
-MATERIAS_FALLBACK = 4     # usado quando o aluno não tem histórico fechado (média < 1)
+MAX_MATERIAS_TETO = 8     # teto de matérias por semestre 
+MATERIAS_FALLBACK = 4     # usado quando o aluno não tem histórico fechado (média < 4)
 CH_REFERENCIA = 64        # carga horária de referência por matéria
 
 
@@ -31,7 +26,7 @@ def orcamento_por_media(media):
     """
     Orçamento de carga horária do semestre a partir da média de matérias aprovadas
     por semestre (vinda do parser). Ex.: média 4.3 -> 4 matérias -> 256h.
-    Calouro/sem histórico fechado (média < 1) cai no fallback.
+    Calouro/sem histórico fechado (média < 4) cai no fallback.
     """
     if not media or media < 4:
         n = MATERIAS_FALLBACK
@@ -154,7 +149,7 @@ def gerar(caminho_pdf=None, max_horas=None):
     grade = carregar_grade(curso)
     resolvidas_set = set(resolvidas)
 
-    # O GRAFO contém apenas as obrigatórias pendentes (espinha dorsal).
+    # O grafo contém apenas as obrigatórias pendentes
     grafo = construir_grafo_dependencias(pendentes_obrig, grade, curso=curso)
     periodo_atual = calcular_periodo_atual_aluno(periodo_ingresso, suspensoes)
     grafo = atribuir_pesos(grafo, resolvidas, df_historico, periodo_atual)
@@ -164,7 +159,7 @@ def gerar(caminho_pdf=None, max_horas=None):
         max_horas = orcamento_por_media(media)
 
     # Recomendação por semestre (só obrigatórias). O que sobrar do orçamento
-    # vira "vagas de optativa" (slots), não disciplinas optativas específicas.
+    # vira "vagas de optativa", não disciplinas optativas específicas.
     def recomendar(sem):
         r = recomendar_semestre(grafo, max_horas, semestre_alvo=sem)
         # Pós-processamento: remove conflitos de horário da grade do knapsack.
@@ -172,16 +167,16 @@ def gerar(caminho_pdf=None, max_horas=None):
             grafo, r['recomendadas'], r['em_espera'], sem, max_horas)
         horas_livres = max(0, max_horas - horas)
         return {
-            "codigos": grade,                       # grade OFICIAL (sem conflito de horário)
+            "codigos": grade,                       # grade oficial (sem conflito de horário)
             "horas": horas,
             "w": sum(grafo['nos'][c]['W'] for c in grade),
             "horas_livres": horas_livres,
             "slots_optativa": horas_livres // CH_REFERENCIA,  # vagas de ~64h para optativa
-            "pick_knapsack": r['recomendadas'],     # seleção bruta do knapsack (pode ter conflito)
+            "pick_knapsack": r['recomendadas'],     # seleção do knapsack (pode ter conflito)
             "descartadas": descartadas,             # removidas pelo reparo de conflito
         }
 
-    # Lista de optativas (catálogo ainda não cursado): sigla, nome, período, CH, oferta
+    # Lista de optativas: sigla, nome, período, CH, oferta
     # e se os pré-requisitos já estão satisfeitos. NÃO entram no grafo.
     lista_optativas = []
     for cod, dados in grade.items():
