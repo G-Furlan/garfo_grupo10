@@ -45,7 +45,7 @@ def calcular_periodo_atual_aluno(periodo_ingresso, suspensoes):
         return 1
     ano_i, sem_i = map(int, periodo_ingresso.split('.'))
     hoje = datetime.now()
-    sem_atual = 1 if hoje.month <= 6 else 2
+    sem_atual = 1 if hoje.month <= 7 else 2
     decorridos = ((hoje.year - ano_i) * 2) + (sem_atual - sem_i) + 1
     return max(1, decorridos - len(suspensoes))
 
