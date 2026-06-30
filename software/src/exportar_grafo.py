@@ -23,7 +23,7 @@ from grafo_pesos import atribuir_pesos, esta_disponivel                  # noqa:
 from recomendar_semestre import recomendar_semestre                 # noqa: E402
 
 MAX_MATERIAS_TETO = 8     # teto de matérias por semestre (evita orçamento irreal)
-MATERIAS_FALLBACK = 4     # usado quando o aluno não tem histórico fechado (média < 1)
+MATERIAS_FALLBACK = 3     # usado quando o aluno não tem histórico fechado (média < 1)
 CH_REFERENCIA = 64        # carga horária de referência por matéria
 
 
@@ -33,7 +33,7 @@ def orcamento_por_media(media):
     por semestre (vinda do parser). Ex.: média 4.3 -> 4 matérias -> 256h.
     Calouro/sem histórico fechado (média < 1) cai no fallback.
     """
-    if not media or media < 4:
+    if not media or media < 3:
         n = MATERIAS_FALLBACK
     else:
         n = min(MAX_MATERIAS_TETO, round(media))
