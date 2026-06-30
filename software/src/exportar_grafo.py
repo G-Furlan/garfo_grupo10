@@ -9,7 +9,7 @@ Se o caminho não for passado, usa o PDF mais recente do diretório de datasets.
 Imprime na stdout: {"elements": {"nodes":[...], "edges":[...]}, "meta": {...}}
 ou {"error": "..."} em caso de falha.
 """
-import os, sys, json, glob
+import os, sys, json, glob, re
 from datetime import datetime
 
 # Torna o script independente do diretório de onde é chamado (ex.: pelo Node).
@@ -23,7 +23,7 @@ from grafo_pesos import atribuir_pesos, esta_disponivel                  # noqa:
 from recomendar_semestre import recomendar_semestre                 # noqa: E402
 
 MAX_MATERIAS_TETO = 8     # teto de matérias por semestre (evita orçamento irreal)
-MATERIAS_FALLBACK = 3     # usado quando o aluno não tem histórico fechado (média < 1)
+MATERIAS_FALLBACK = 4     # usado quando o aluno não tem histórico fechado (média < 1)
 CH_REFERENCIA = 64        # carga horária de referência por matéria
 
 
@@ -33,7 +33,7 @@ def orcamento_por_media(media):
     por semestre (vinda do parser). Ex.: média 4.3 -> 4 matérias -> 256h.
     Calouro/sem histórico fechado (média < 1) cai no fallback.
     """
-    if not media or media < 3:
+    if not media or media < 4:
         n = MATERIAS_FALLBACK
     else:
         n = min(MAX_MATERIAS_TETO, round(media))
@@ -45,7 +45,7 @@ def calcular_periodo_atual_aluno(periodo_ingresso, suspensoes):
         return 1
     ano_i, sem_i = map(int, periodo_ingresso.split('.'))
     hoje = datetime.now()
-    sem_atual = 1 if hoje.month <= 7 else 2
+    sem_atual = 1 if hoje.month <= 6 else 2
     decorridos = ((hoje.year - ano_i) * 2) + (sem_atual - sem_i) + 1
     return max(1, decorridos - len(suspensoes))
 
@@ -84,6 +84,62 @@ def _ch_int(ch_raw):
         return 64
 
 
+def _parse_horario(horario_str):
+    """Fatia uma string de horário UNIFEI ('2T34 4T12') em {dia+turno+aula}."""
+    slots = set()
+    if not horario_str:
+        return slots
+    for token in str(horario_str).split():
+        m = re.match(r'^(\d+)([MTN])(\d+)$', token, re.I)
+        if not m:
+            continue
+        turno = m.group(2).upper()
+        for dia in m.group(1):
+            for aula in m.group(3):
+                slots.add(dia + turno + aula)
+    return slots
+
+
+def _horario_no_semestre(node, semestre):
+    return (node.get('horario') or {}).get(f'2026-{semestre}', '')
+
+
+def resolver_conflitos_horario(grafo, recomendadas, em_espera, semestre, max_horas):
+    """
+    Reparo guloso de conflitos de horário sobre a grade vinda do knapsack.
+
+    Percorre as disciplinas em ordem decrescente de peso e mantém as que não
+    colidem com as já escolhidas; em cada par em conflito, a de MENOR peso é
+    descartada. O espaço liberado é repreenchido pela próxima obrigatória
+    disponível (também por peso) que caiba no orçamento e não gere novo conflito;
+    o que sobrar vira vaga de optativa.
+
+    Observação de projeto: a seleção ótima por carga horária (knapsack 0/1) NÃO é
+    alterada — este é um pós-processamento. A versão exata (mochila com restrição
+    de conflito, DCKP) é NP-difícil, por isso adota-se aqui o reparo guloso.
+
+    Retorna (grade_sem_conflito, horas_usadas, descartadas).
+    """
+    nos = grafo['nos']
+    grade, ocupados, horas, descartadas = [], set(), 0, []
+
+    for cod in recomendadas:                       # já ordenadas por -W
+        slots = _parse_horario(_horario_no_semestre(nos[cod], semestre))
+        ch = _ch_int(nos[cod]['ch'])
+        if not (slots & ocupados) and horas + ch <= max_horas:
+            grade.append(cod); ocupados |= slots; horas += ch
+        else:
+            descartadas.append(cod)                # bloqueada por conflito
+
+    for cod in em_espera:                          # reservas, já ordenadas por -W
+        slots = _parse_horario(_horario_no_semestre(nos[cod], semestre))
+        ch = _ch_int(nos[cod]['ch'])
+        if horas + ch <= max_horas and not (slots & ocupados):
+            grade.append(cod); ocupados |= slots; horas += ch
+
+    return grade, horas, descartadas
+
+
 def gerar(caminho_pdf=None, max_horas=None):
     pasta = os.path.join(RAIZ, 'src', 'data', 'Dataset-Cenario1-RecomendacaoMatricula')
     if not caminho_pdf:
@@ -111,13 +167,18 @@ def gerar(caminho_pdf=None, max_horas=None):
     # vira "vagas de optativa" (slots), não disciplinas optativas específicas.
     def recomendar(sem):
         r = recomendar_semestre(grafo, max_horas, semestre_alvo=sem)
-        horas_livres = max(0, max_horas - r['total_horas'])
+        # Pós-processamento: remove conflitos de horário da grade do knapsack.
+        grade, horas, descartadas = resolver_conflitos_horario(
+            grafo, r['recomendadas'], r['em_espera'], sem, max_horas)
+        horas_livres = max(0, max_horas - horas)
         return {
-            "codigos": r['recomendadas'],
-            "horas": r['total_horas'],
-            "w": r['total_w'],
+            "codigos": grade,                       # grade OFICIAL (sem conflito de horário)
+            "horas": horas,
+            "w": sum(grafo['nos'][c]['W'] for c in grade),
             "horas_livres": horas_livres,
             "slots_optativa": horas_livres // CH_REFERENCIA,  # vagas de ~64h para optativa
+            "pick_knapsack": r['recomendadas'],     # seleção bruta do knapsack (pode ter conflito)
+            "descartadas": descartadas,             # removidas pelo reparo de conflito
         }
 
     # Lista de optativas (catálogo ainda não cursado): sigla, nome, período, CH, oferta

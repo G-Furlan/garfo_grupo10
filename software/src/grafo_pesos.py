@@ -80,6 +80,7 @@ def calcular_p5(node, periodo_atual_aluno):
     Aplica-se SÓ a obrigatórias — optativas não têm prazo, então não acumulam atraso.
     Disciplina do período atual recebe 1*PESO_ATRASO; cada período de atraso soma mais.
     """
+    periodo_atual_aluno = periodo_atual_aluno + 1
     if node.get('tipo') != 'Obrigatoria':
         return 0
     periodo_ideal = node.get('periodo_ideal', 0)

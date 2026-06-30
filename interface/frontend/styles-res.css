@@ -44,6 +44,12 @@
             padding-top:18px; margin-top:8px; }
         #recs h3 { margin:0; font-size:22px; font-family: "DM Serif Display", serif; }
         #recs .resumo { color:#777; font-size:13px; }
+        #recs-conflitos { padding:8px 24px 48px; }
+        #recs-conflitos .cabecalho { display:flex; align-items:baseline; gap:12px; border-top:3px solid var(--ouro);
+            padding-top:18px; margin-top:8px; }
+        #recs-conflitos h3 { margin:0; font-size:22px; font-family: "DM Serif Display", serif; }
+        #recs-conflitos .resumo { color:#777; font-size:13px; }
+        #recs-conflitos h3 {margin:0; font-size:20px; font-family: "DM Serif Display", serif; }
         .cards { display:flex; flex-wrap:wrap; gap:14px; margin-top:16px; }
         .card {
             width:220px; background:#fff; border:1px solid var(--borda); border-left:5px solid var(--ouro);

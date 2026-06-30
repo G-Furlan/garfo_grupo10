@@ -62,9 +62,17 @@
         <div class="cards" id="recs-cards"></div>
     </section>
 
+    <section id="recs-conflitos" style="display:none;">
+        <div class="cabecalho">
+            <h3 id="conf-titulo">Conflitos de horário</h3>
+            <span class="resumo" id="conf-resumo"></span>
+        </div>
+        <div class="cards" id="conf-cards"></div>
+    </section>
+
     <script>
     const API = 'http://localhost:3000';
-    let GRAFO = null, CY = null, SEM = 2, OBS = null;   // SEM = semestre selecionado (1 ou 2)
+    let GRAFO = null, CY = null, SEM = 2, OBS = null, DADOS = {};   // SEM = semestre selecionado (1 ou 2)
 
     async function carregar() {
         const cyDiv = document.getElementById('cy');
@@ -152,6 +160,9 @@
     function desenhar(grafo) {
         const nodes = grafo.elements.nodes;
         const edges = grafo.elements.edges;
+
+        DADOS = {};
+        nodes.forEach(n => DADOS[n.data.codigo] = n.data);
 
         const ws = nodes.map(n => n.data.W);
         const minW = Math.min(...ws), maxW = Math.max(...ws);
@@ -248,65 +259,85 @@
             <span>Limite: <b>${m.max_horas}h</b> (≈ ${m.orcamento_materias} matérias · média ${m.media_aprovacoes ?? '—'}/sem)</span>
             <span>Recomendadas: <b>${recs.codigos.length}</b> (${recs.horas}h)</span>`;
 
-        montarCards(recs, sem);
+        montarOficial(sem);
+        montarConflitos(sem);
         montarListaOptativas(sem);
+        revelarCards();
     }
 
-    function montarCards(recs, sem) {
-        const sec = document.getElementById('recs');
-        sec.style.display = 'block';
-        document.getElementById('recs-titulo').textContent = `Recomendadas para 2026.${sem}`;
-        const slots = recs.slots_optativa || 0;
+    // Monta um card de disciplina (com horário); badge de conflito é opcional.
+    function cardDisciplina(c, i, sem, conflitaCom) {
+        const d = DADOS[c];
+        const h = horarioDoSem(d, sem);
+        const glosa = glosarHorario(h);
+        return `<div class="card${conflitaCom ? ' card-conflito' : ''}" style="transition-delay:${i * 60}ms">
+            <div class="c-cod">${d.codigo}</div>
+            <div class="c-nome">${d.nome}</div>
+            <div class="c-meta"><span>${d.ch}h · período ${d.periodo}</span><span class="c-w">W ${d.W}</span></div>
+            <div class="c-hora">${h ? '🕘 ' + h + (glosa ? ' · ' + glosa : '') : 'horário não informado'}</div>
+            ${conflitaCom ? `<div class="c-aviso">⚠ choca com ${conflitaCom.join(', ')}</div>` : ''}
+        </div>`;
+    }
+
+    function cardOptativaVaga(i) {
+        return `<div class="card card-vazio" style="transition-delay:${i * 60}ms">
+            <div class="c-cod">Optativa</div>
+            <div class="c-nome">Espaço livre</div>
+            <div class="c-meta"><span>escolha da lista ao lado</span><span>~64h</span></div>
+        </div>`;
+    }
+
+    // SEÇÃO 1 — Recomendação oficial (já sem conflitos; o reparo é feito no backend)
+    function montarOficial(sem) {
+        const rec = (GRAFO.meta.recomendacao && GRAFO.meta.recomendacao[String(sem)]) || { codigos: [] };
+        document.getElementById('recs').style.display = 'block';
+        document.getElementById('recs-titulo').textContent =
+            `Recomendação oficial para 2026.${sem} (sem conflitos de horário)`;
+        const slots = rec.slots_optativa || 0;
+        document.getElementById('recs-resumo').textContent =
+            `${rec.codigos.length} obrigatória(s) · ${rec.horas || 0}h`
+            + (slots ? ` · ${slots} vaga(s) livre(s) p/ optativa` : '');
 
         const cont = document.getElementById('recs-cards');
-        if (!recs.codigos.length && !slots) {
-            document.getElementById('recs-resumo').textContent = '';
+        if (!rec.codigos.length && !slots) {
             cont.innerHTML = `<div class="recs-vazio">Nada disponível e ofertado em 2026.${sem}.</div>`;
             return;
         }
-        const dados = {};
-        GRAFO.elements.nodes.forEach(n => dados[n.data.codigo] = n.data);
-
-        // Conflitos de horário entre as recomendadas do semestre
-        const conflitos = detectarConflitos(recs.codigos, dados, sem);
-        const temConflito = Object.keys(conflitos).length > 0;
-
-        document.getElementById('recs-resumo').innerHTML =
-            `${recs.codigos.length} obrigatória(s) · ${recs.horas}h`
-            + (slots ? ` · ${slots} vaga(s) livre(s) p/ optativa` : '')
-            + (temConflito ? ` · <span class="aviso-conflito">⚠ conflito de horário</span>` : '');
-
-        let html = recs.codigos.map((c, i) => {
-            const d = dados[c];
-            const h = horarioDoSem(d, sem);
-            const conf = conflitos[c];
-            const glosa = glosarHorario(h);
-            return `<div class="card${conf ? ' card-conflito' : ''}" style="transition-delay:${i * 60}ms">
-                <div class="c-cod">${d.codigo}</div>
-                <div class="c-nome">${d.nome}</div>
-                <div class="c-meta"><span>${d.ch}h · período ${d.periodo}</span><span class="c-w">W ${d.W}</span></div>
-                <div class="c-hora">${h ? '🕘 ' + h + (glosa ? ' · ' + glosa : '') : 'horário não informado'}</div>
-                ${conf ? `<div class="c-aviso">⚠ choca com ${conf.join(', ')}</div>` : ''}
-            </div>`;
-        }).join('');
-
-        // Vagas livres: cards cinza apontando espaço para optativa
-        for (let s = 0; s < slots; s++) {
-            const i = recs.codigos.length + s;
-            html += `<div class="card card-vazio" style="transition-delay:${i * 60}ms">
-                <div class="c-cod">Optativa</div>
-                <div class="c-nome">Espaço livre</div>
-                <div class="c-meta"><span>escolha da lista ao lado</span><span>~64h</span></div>
-            </div>`;
-        }
+        let html = rec.codigos.map((c, i) => cardDisciplina(c, i, sem, null)).join('');
+        for (let s = 0; s < slots; s++) html += cardOptativaVaga(rec.codigos.length + s);
         cont.innerHTML = html;
+    }
 
-        // Revela os cards ao rolar
+    // SEÇÃO 2 — Representação dos conflitos: a seleção bruta do knapsack (por peso),
+    // com os choques sinalizados, do mesmo modo que era exibido antes do reparo.
+    function montarConflitos(sem) {
+        const rec = (GRAFO.meta.recomendacao && GRAFO.meta.recomendacao[String(sem)]) || {};
+        const pick = rec.pick_knapsack || rec.codigos || [];
+        const descartadas = rec.descartadas || [];
+        const sec = document.getElementById('recs-conflitos');
+        sec.style.display = 'block';
+        document.getElementById('conf-titulo').textContent =
+            `Conflitos de horário — priorização por peso (2026.${sem})`;
+
+        const conflitos = detectarConflitos(pick, DADOS, sem);
+        const temConflito = Object.keys(conflitos).length > 0;
+        document.getElementById('conf-resumo').innerHTML = temConflito
+            ? `<span class="aviso-conflito">⚠ ${Object.keys(conflitos).length} disciplina(s) em conflito</span>`
+              + (descartadas.length ? ` — ${descartadas.length} substituída(s) na recomendação oficial acima` : '')
+            : 'Nenhum conflito — a recomendação oficial coincide com a priorização por peso.';
+
+        const cont = document.getElementById('conf-cards');
+        if (!pick.length) { cont.innerHTML = `<div class="recs-vazio">—</div>`; return; }
+        cont.innerHTML = pick.map((c, i) => cardDisciplina(c, i, sem, conflitos[c] || null)).join('');
+    }
+
+    // Observa os cards das duas seções e revela ao rolar (um único observer)
+    function revelarCards() {
         if (OBS) OBS.disconnect();
         OBS = new IntersectionObserver((entries) => {
             entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visivel'); });
         }, { threshold: 0.15 });
-        cont.querySelectorAll('.card').forEach(c => OBS.observe(c));
+        document.querySelectorAll('#recs-cards .card, #conf-cards .card').forEach(c => OBS.observe(c));
     }
 
     // Lista de optativas liberadas (prereq ok) e ofertadas no semestre selecionado
