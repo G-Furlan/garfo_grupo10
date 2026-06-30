@@ -32,6 +32,3 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-
-# Arquivos de Dados (Prevenção de exposição de dados reais de alunos)
-*.pdf
