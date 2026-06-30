@@ -25,8 +25,7 @@ Representação canônica: dicionário puro (sem NetworkX), na forma
         'fantasmas': ['CODIGO_INEXISTENTE', ...]   # pendentes que não estão na grade
     }
 
-Este grafo é o produto da PARTE 1. A PARTE 2 vai decorá-lo com pesos (P1-P6) e
-a PARTE 3 vai percorrê-lo (BFS) para escolher as melhores disciplinas do semestre.
+Este grafo é o produto da PARTE 1. A PARTE 2 vai decorá-lo com pesos (P1-P5) e
 """
 
 import json

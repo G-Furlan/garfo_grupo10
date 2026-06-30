@@ -13,7 +13,7 @@ Maximiza a soma de W das disciplinas escolhidas sem estourar max_horas, consider
 apenas as disciplinas disponíveis (pré-requisitos satisfeitos). Opcionalmente filtra
 também pelas que são ofertadas no semestre-alvo.
 
-O passo 2 (BFS multi-semestre) vai reaproveitar `recomendar_semestre` em ondas.
+
 """
 
 
