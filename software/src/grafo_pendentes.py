@@ -82,6 +82,7 @@ def _montar_no(codigo, grade):
         'ch': ch,
         'periodo_ideal': periodo_ideal,
         'periodo_ofertado': dados.get('periodo_ofertado', ''),
+        'horario': dados.get('horario', {}),  # {'2026-1': '2T34 4T12', ...} por semestre
         'pre_requisitos': normalizar_pre_requisitos(dados.get('pre_requisitos', [])),
     }
 

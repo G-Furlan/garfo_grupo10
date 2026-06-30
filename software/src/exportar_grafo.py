@@ -63,6 +63,7 @@ def para_cytoscape(grafo, meta):
             "periodo": d.get('periodo_ideal'),
             "disponivel": bool(d.get('disponivel')),
             "periodo_ofertado": d.get('periodo_ofertado', ''),
+            "horario": d.get('horario', {}),
             "W": d.get('W', 0),
             "P1": d.get('P1', 0), "P2": d.get('P2', 0), "P3": d.get('P3', 0),
             "P4": d.get('P4', 0), "P5": d.get('P5', 0),
@@ -131,6 +132,7 @@ def gerar(caminho_pdf=None, max_horas=None):
             "periodo": int(dados.get('periodo', 0) or 0),
             "ch": _ch_int(dados.get('carga_horaria', '64h')),
             "periodo_ofertado": dados.get('periodo_ofertado', ''),
+            "horario": dados.get('horario', {}),
             "disponivel": esta_disponivel({'pre_requisitos': dados.get('pre_requisitos', [])}, resolvidas_set),
         })
     lista_optativas.sort(key=lambda o: (o['periodo'], o['codigo']))
